@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Draw
+    public class Draw
     {
+        public void DrawMap(IList<string> lMap)
+        {
+            foreach (var l in lMap)
+            {
+                Console.WriteLine(l);
+            }
+            Console.ReadLine();
+        }
     }
 }

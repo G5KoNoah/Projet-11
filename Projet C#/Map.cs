@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Map
+    class Map
     {
+
+        public IList<string> fileToText(string sFilePath)
+        {
+            IList<string> lMap = new List<string>();
+            StreamReader oFile = new StreamReader(sFilePath);
+            string line = oFile.ReadLine();
+            if (oFile != null)
+            {
+                while (line != null)
+                {
+                    lMap.Add(line);
+                    line = oFile.ReadLine();
+                    
+                }
+                oFile.Close();
+            }
+            return lMap;
+        }
+
     }
 }
