@@ -18,21 +18,34 @@ namespace Projet_C_
         public void InputTest()
         {
             ConsoleKeyInfo  key = Console.ReadKey(true);
-            if (key.Key == ConsoleKey.LeftArrow)
+            switch (key.Key)
             {
-                Console.WriteLine("Flèche gauche pressée");
-            }
-            if (key.Key == ConsoleKey.RightArrow)
-            {
-                Console.WriteLine("Flèche droite pressée");
-            }
-            if (key.Key == ConsoleKey.DownArrow)
-            {
-                Console.WriteLine("Flèche du bas pressée");
-            }
-            if (key.Key == ConsoleKey.UpArrow)
-            {
-                Console.WriteLine("Flèche du haut pressée");
+                case ConsoleKey.Enter:
+                    Console.WriteLine("Entrer pressée");
+                    break;
+
+                case ConsoleKey.Escape:
+                    Console.WriteLine("Echape pressée");
+                    break;
+
+                case ConsoleKey.LeftArrow:
+                    Console.WriteLine("Flèche gauche pressée");
+                    break;
+
+                case ConsoleKey.UpArrow:
+                    Console.WriteLine("Flèche du haut pressée");
+                    break;
+
+                case ConsoleKey.RightArrow:
+                    Console.WriteLine("Flèche droite pressée");
+                    break;
+
+                case ConsoleKey.DownArrow:
+                    Console.WriteLine("Flèche du bas pressée");
+                    break;
+
+                default:
+                    break;
             }
         }
 
