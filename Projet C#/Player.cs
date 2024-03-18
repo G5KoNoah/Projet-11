@@ -8,36 +8,36 @@ namespace Projet_C_
 {
     public class Player
     {
-        List<Character> _Character;
-        List<Tools> _Tools;
+        List<Character> _character;
+        List<Tools> _tools;
 
-        public List<Character> ListCharacter
+        public List<Character> listCharacter
         {
-            get { return _Character; }
-            set { _Character = value; }
+            get { return _character; }
+            set { _character = value; }
         }
 
-        public Character Character
+        public Character character
         {
-            get { return Character; }
-            set { _Character.Add(value); }
+            get { return character; }
+            set { _character.Add(value); }
         }
 
-        public List<Tools> ListTools
+        public List<Tools> listTools
         {
-            get { return _Tools; }
-            set { _Tools = value; }
+            get { return _tools; }
+            set { _tools = value; }
         }
 
-        public Tools Tool
+        public Tools tool
         {
-            get { return Tool; }
-            set { _Tools.Add(value); }
+            get { return tool; }
+            set { _tools.Add(value); }
         }
         public Player(List<Character> listCharacters, List<Tools> listTools)
         {
-            _Character = listCharacters;
-            _Tools = listTools;
+            _character = listCharacters;
+            _tools = listTools;
         }
     }
 }
