@@ -8,5 +8,6 @@ namespace Projet_C_
 {
     internal class Marbles : Tools
     {
+        public Marbles() { }
     }
 }

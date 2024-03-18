@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Tools
+    public class Tools
     {
     }
 }

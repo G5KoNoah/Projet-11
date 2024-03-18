@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Character
+    public class Character
     {
         public Character() { }
         Type m_oType {  get; set; }
