@@ -49,6 +49,12 @@ namespace Projet_C_
                         case '/':
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
+                        case '§':
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        case '£':
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            break;
                     }
                     Console.Write(' ');
                 }

@@ -7,6 +7,7 @@ var map = draw.FileToText("..\\..\\..\\map1.txt");
 draw.DrawMap(map);
 Input input = new Input();
 
+
 while (true)
 {
     input.InputTest();  
