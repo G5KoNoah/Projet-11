@@ -8,5 +8,8 @@ namespace Projet_C_
 {
     public class GameManager
     {
+        Input _Input;
+
+        public GameManager() { }
     }
 }
