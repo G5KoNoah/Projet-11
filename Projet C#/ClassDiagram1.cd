@@ -3,7 +3,7 @@
   <Class Name="Projet_C_.Character" Collapsed="true">
     <Position X="10.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAIAAAIAAAAAQAAAAAgAQAAIAIAAIAAQBQAgAAUGA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAQAAAgQEBAAAIAEAAAAACAAAAAGA=</HashCode>
       <FileName>Character.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="Projet_C_.Player" Collapsed="true">
     <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAABAgEAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,11 +56,11 @@
       <FileName>Tools.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Projet_C_.Type" Collapsed="true">
+  <Class Name="Projet_C_.CharacterType" Collapsed="true">
     <Position X="8.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAIAAAAQAAAAAAAAAAgCQAAIAIAAIAAAAQAgAAUGA=</HashCode>
-      <FileName>Type.cs</FileName>
+      <FileName>CharacterType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.GameManager" Collapsed="true">
@@ -70,10 +70,10 @@
       <FileName>GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="Projet_C_.CharacterStats">
+  <Struct Name="Projet_C_.CharacterStats" Collapsed="true">
     <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ABAAIAAAAAAAAAQAAAAAgAAAAIAIAAIAAAAQAgAAUGA=</HashCode>
       <FileName>CharacterStats.cs</FileName>
     </TypeIdentifier>
   </Struct>

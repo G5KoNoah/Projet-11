@@ -13,27 +13,15 @@ namespace Projet_C_
 
         public List<Character> listCharacter
         {
-            get { return _character; }
-            set { _character = value; }
+            get => _character;
         }
 
-        public Character character
-        {
-            get { return character; }
-            set { _character.Add(value); }
-        }
 
         public List<Tools> listTools
         {
-            get { return _tools; }
-            set { _tools = value; }
+            get => _tools;
         }
 
-        public Tools tool
-        {
-            get { return tool; }
-            set { _tools.Add(value); }
-        }
         public Player(List<Character> listCharacters, List<Tools> listTools)
         {
             _character = listCharacters;
