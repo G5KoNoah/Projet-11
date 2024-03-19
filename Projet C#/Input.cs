@@ -22,6 +22,7 @@ namespace Projet_C_
             {
                 case ConsoleKey.Enter:
                     Console.WriteLine("Entrer pressée");
+                    
                     break;
 
                 case ConsoleKey.Escape:
@@ -29,19 +30,24 @@ namespace Projet_C_
                     break;
 
                 case ConsoleKey.LeftArrow:
-                    Console.WriteLine("Flèche gauche pressée");
+                    //Console.WriteLine("Flèche gauche pressée");
+                    Console.CursorLeft -= 1;
                     break;
 
                 case ConsoleKey.UpArrow:
-                    Console.WriteLine("Flèche du haut pressée");
+                    //Console.WriteLine("Flèche du haut pressée");
+                    Console.CursorTop -= 1;
+                    
                     break;
 
                 case ConsoleKey.RightArrow:
-                    Console.WriteLine("Flèche droite pressée");
+                    //Console.WriteLine("Flèche droite pressée");
+                    Console.CursorLeft += 1;
                     break;
 
                 case ConsoleKey.DownArrow:
-                    Console.WriteLine("Flèche du bas pressée");
+                    //Console.WriteLine("Flèche du bas pressée");
+                    Console.CursorTop += 1;
                     break;
 
                 default:
