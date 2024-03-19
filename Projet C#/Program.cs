@@ -4,7 +4,7 @@ using Projet_C_;
 Map test = new Map();
 Draw draw = new Draw();
 var map = draw.FileToText("..\\..\\..\\map1.txt");
-test.TranslateMap(map);
+draw.DrawMap(map);
 Input input = new Input();
 
 while (true)

@@ -28,9 +28,31 @@ namespace Projet_C_
 
         public void DrawMap(List<string> lMap)
         {
-            foreach (var l in lMap)
+            foreach (string l in lMap)
             {
-                Console.WriteLine(l);
+                foreach (char m in l)
+                {
+                    switch (m)
+                    {
+                        case '_' or '|':
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            break;
+                        case '.':
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            break;
+                        case '*':
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            break;
+                        case '$':
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            break;
+                        case '/':
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            break;
+                    }
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
             }
         }
     }
