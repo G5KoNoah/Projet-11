@@ -10,19 +10,32 @@ namespace Projet_C_
     {
         List<Character> _character;
         List<Tools> _tools;
+        int _LeftPos;
+        int _TopPos;
 
-        public List<Character> ListCharacter
-        { 
-            get => _character; 
-        }
-        public List<Tools> ListTools
+        public List<Character> ListCharacter { get => _character; }
+        public List<Tools> ListTools { get => _tools; }
+
+        public int LeftPos { get => _LeftPos; private set => _LeftPos = value; }
+        public int TopPos { get => _TopPos; private set => _TopPos = value; }
+        public Player()
         {
-            get => _tools;
+            _character = new List<Character> { };
+            _tools = new List<Tools> { };
+            _LeftPos = 0;
+            _TopPos = 0;
         }
-        public Player(List<Character> listCharacters, List<Tools> listTools)
+
+        public event Action Move;
+        public void MoveLeft(int nb)
         {
-            _character = listCharacters;
-            _tools = listTools;
+            LeftPos += nb;
+            Move?.Invoke();
+        }
+        public void MoveTop(int nb)
+        {
+            TopPos += nb;
+            Move?.Invoke();
         }
     }
 }

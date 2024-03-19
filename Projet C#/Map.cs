@@ -13,13 +13,14 @@ namespace Projet_C_
         {
             _Map = new List<string>();
         }
-        public void TranslateMap(List<string> lMap)
+        public void TranslateMap(List<string> lMap, Player player)
         {
-            foreach (string l in lMap)
+            Console.Clear();
+            for (int i = 0; i < lMap.Count; i++)
             {
-                foreach(char m in l)
+                for(int j = 0; j < lMap[i].Length; j++)
                 {
-                    switch (m)
+                    switch (lMap[i][j])
                     {
                         case '_' or '|':
                             Console.BackgroundColor = ConsoleColor.Blue;
@@ -28,9 +29,19 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             break;
                     }
-                    Console.Write(' ');
+                    if(i == player.TopPos && j == player.LeftPos)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write('P');
+                    }
+                    else
+                    {
+                        Console.Write(' ');
+                    }
+                    
                 }
                 Console.WriteLine();
+
             }
         }
 
