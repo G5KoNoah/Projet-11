@@ -6,15 +6,38 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Player
+    public class Player
     {
-        public Player() { 
-            m_lCharacters = new List<Character>();
-            m_lTools = new List<Tools>();
-        }
-        
-        public IList<Character> m_lCharacters { get; set; }
-        public IList<Tools> m_lTools { get; set; }
+        List<Character> _character;
+        List<Tools> _tools;
 
+        public List<Character> listCharacter
+        {
+            get { return _character; }
+            set { _character = value; }
+        }
+
+        public Character character
+        {
+            get { return character; }
+            set { _character.Add(value); }
+        }
+
+        public List<Tools> listTools
+        {
+            get { return _tools; }
+            set { _tools = value; }
+        }
+
+        public Tools tool
+        {
+            get { return tool; }
+            set { _tools.Add(value); }
+        }
+        public Player(List<Character> listCharacters, List<Tools> listTools)
+        {
+            _character = listCharacters;
+            _tools = listTools;
+        }
     }
 }

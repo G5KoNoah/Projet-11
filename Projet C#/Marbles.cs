@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Marbles : Tools
+    public class Marbles : Tools
     {
+        public Marbles() { }
     }
 }
