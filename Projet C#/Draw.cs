@@ -51,6 +51,21 @@ namespace Projet_C_
                         case '.':
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             break;
+                        case '*':
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            break;
+                        case '$':
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            break;
+                        case '/':
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            break;
+                        case '§':
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        case '£':
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            break;
                     }
                     if (i == _Player.TopPos && j == _Player.LeftPos)
                     {
@@ -64,6 +79,10 @@ namespace Projet_C_
 
                 }
                 Console.WriteLine();
+
+
+
+                        
 
             }
             Console.SetCursorPosition(0, 0);
