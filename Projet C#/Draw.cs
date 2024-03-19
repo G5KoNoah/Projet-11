@@ -11,7 +11,9 @@ namespace Projet_C_
         Map _Map;
         Player _Player;
 
-        public Draw(ref Map map, ref Player player)
+        public Map Map { get => _Map; set => _Map = value; }
+
+        public Draw(Map map, Player player)
         {
             _Map = map;
             _Player = player;
@@ -38,6 +40,7 @@ namespace Projet_C_
         public void DrawMap()
         {
             //Console.Clear();
+            Console.ResetColor();
             List<string> lMap = _Map.MapList;
             for (int i = 0; i < lMap.Count; i++)
             {
@@ -62,10 +65,9 @@ namespace Projet_C_
                             break;
                         case '§':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //Console.Write('O');
                             break;
-                        case '£':
-                            Console.BackgroundColor = ConsoleColor.Gray;
-                            break;
+                        
                     }
                     if (i == _Player.TopPos && j == _Player.LeftPos)
                     {

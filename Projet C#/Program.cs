@@ -6,9 +6,18 @@ using System.Numerics;
 Console.CursorVisible = false;
 Map test = new Map();
 Player player = new Player();
-Draw draw = new Draw(ref test, ref player);
+Draw draw = new Draw(test, player);
 var map = draw.FileToText("..\\..\\..\\map1.txt");
+
 test.MapList = map;
+
+Map mapBateau = new Map();
+//Draw draw = new Draw(ref mapBateau, ref player);
+var map2 = draw.FileToText("..\\..\\..\\boat.txt");
+
+mapBateau.MapList = map2;
+
+
 Input input = new Input();
 
 //Init Type
@@ -36,18 +45,26 @@ characters.Add(luffy);
 
 List<Tools> tools = new List<Tools>();
 
-Player player = new Player(characters, tools);
-Console.WriteLine(player.listCharacter[0].Level);
-Console.WriteLine(player.listCharacter[0].NeedXP);
-player.listCharacter[0].GainExperience(150);
-Console.WriteLine(150);
-Console.WriteLine(player.listCharacter[0].Level);
-Console.WriteLine(player.listCharacter[0].NeedXP);
+//Player player = new Player(characters, tools);
+//Console.WriteLine(player.listCharacter[0].Level);
+//Console.WriteLine(player.listCharacter[0].NeedXP);
+//player.listCharacter[0].GainExperience(150);
+//Console.WriteLine(150);
+//Console.WriteLine(player.listCharacter[0].Level);
+//Console.WriteLine(player.listCharacter[0].NeedXP);
 draw.DrawMap();
 player.Move += draw.DrawMap;
 while (true)
 {
-    input.InputTest(player);  
+    input.InputTest(player);
+    if(player.LeftPos == 2)
+    {
+       
+
+
+
+        draw.Map = mapBateau;
+    }
 }
 
 
