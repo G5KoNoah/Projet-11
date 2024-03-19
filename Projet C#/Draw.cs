@@ -8,6 +8,15 @@ namespace Projet_C_
 {
     public class Draw
     {
+        Map _Map;
+        Player _Player;
+
+        public Draw(ref Map map, ref Player player)
+        {
+            _Map = map;
+            _Player = player;
+        }
+
         public List<string> FileToText(string sFilePath)
         {
             List<string> lFileText = new List<string>();
@@ -26,12 +35,38 @@ namespace Projet_C_
             return lFileText;
         }
 
-        public void DrawMap(List<string> lMap)
+        public void DrawMap()
         {
-            foreach (var l in lMap)
+            //Console.Clear();
+            List<string> lMap = _Map.MapList;
+            for (int i = 0; i < lMap.Count; i++)
             {
-                Console.WriteLine(l);
+                for (int j = 0; j < lMap[i].Length; j++)
+                {
+                    switch (lMap[i][j])
+                    {
+                        case '_' or '|':
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            break;
+                        case '.':
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            break;
+                    }
+                    if (i == _Player.TopPos && j == _Player.LeftPos)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write('P');
+                    }
+                    else
+                    {
+                        Console.Write(' ');
+                    }
+
+                }
+                Console.WriteLine();
+
             }
+            Console.SetCursorPosition(0, 0);
         }
     }
 }

@@ -22,19 +22,27 @@ namespace Projet_C_
         {
             _character = new List<Character> { };
             _tools = new List<Tools> { };
-            _LeftPos = 0;
-            _TopPos = 0;
+            _LeftPos = 1;
+            _TopPos = 1;
         }
 
         public event Action Move;
         public void MoveLeft(int nb)
         {
             LeftPos += nb;
+            if (LeftPos == 0)
+            {
+                LeftPos++;
+            }
             Move?.Invoke();
         }
         public void MoveTop(int nb)
         {
             TopPos += nb;
+            if (TopPos == 0)
+            {
+                TopPos++;
+            }
             Move?.Invoke();
         }
     }
