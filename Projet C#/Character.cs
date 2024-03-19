@@ -26,7 +26,7 @@ namespace Projet_C_
         int _attackSpeed;
         int _precision;
 
-        public string Name { get { return _name; } }
+        public string Name { get => _name; }
         public XP experience { get { return _XP; } }
         public int PV { get { return _PV; } }
         public int PT { get { return _PT; } }
