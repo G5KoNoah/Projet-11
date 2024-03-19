@@ -6,25 +6,32 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    class Map
+    public class Map
     {
-
-        public List<string> fileToText(string sFilePath)
+        List<string> _Map;
+        public Map()
         {
-            List<string> lMap = new List<string>();
-            StreamReader oFile = new StreamReader(sFilePath);
-            string line = oFile.ReadLine();
-            if (oFile != null)
+            _Map = new List<string>();
+        }
+        public void TranslateMap(List<string> lMap)
+        {
+            foreach (string l in lMap)
             {
-                while (line != null)
+                foreach(char m in l)
                 {
-                    lMap.Add(line);
-                    line = oFile.ReadLine();
-                    
+                    switch (m)
+                    {
+                        case '_' or '|':
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            break;
+                        case '.':
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            break;
+                    }
+                    Console.Write(' ');
                 }
-                oFile.Close();
+                Console.WriteLine();
             }
-            return lMap;
         }
 
     }

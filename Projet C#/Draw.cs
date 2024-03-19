@@ -8,7 +8,25 @@ namespace Projet_C_
 {
     public class Draw
     {
-        public void DrawMap(IList<string> lMap)
+        public List<string> FileToText(string sFilePath)
+        {
+            List<string> lFileText = new List<string>();
+            StreamReader oFile = new StreamReader(sFilePath);
+            string line = oFile.ReadLine();
+            if (oFile != null)
+            {
+                while (line != null)
+                {
+                    lFileText.Add(line);
+                    line = oFile.ReadLine();
+
+                }
+                oFile.Close();
+            }
+            return lFileText;
+        }
+
+        public void DrawMap(List<string> lMap)
         {
             foreach (var l in lMap)
             {
