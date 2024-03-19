@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.Numerics;
 
 Console.CursorVisible = false;
+Console.BackgroundColor = ConsoleColor.Blue;
 Map test = new Map();
 Player player = new Player();
-Draw draw = new Draw(ref test, ref player);
+Draw draw = new Draw(test, player);
 var map = draw.FileToText("..\\..\\..\\map1.txt");
 test.MapList = map;
 Input input = new Input();
@@ -19,7 +20,7 @@ CharacterType strengthType = new CharacterType("strength", 1.2f, 0.8f, 1.2f, 1.2
 
 speedType.Weakness = rangeType;
 rangeType.Weakness = strengthType;
-strengthType.Weakness = rangeType;
+strengthType.Weakness = speedType;
 
 //Init CharacterStats
 
@@ -27,7 +28,7 @@ CharacterStats luffyStats = new CharacterStats("Luffy", strengthType, 200, 80, 3
 
 //Init Character
 
-Character luffy = new Character(luffyStats, 1);
+Character luffy = new Character(luffyStats);
 
 //Init Player
 
@@ -36,13 +37,13 @@ characters.Add(luffy);
 
 List<Tools> tools = new List<Tools>();
 
-Player player = new Player(characters, tools);
-Console.WriteLine(player.listCharacter[0].Level);
-Console.WriteLine(player.listCharacter[0].NeedXP);
-player.listCharacter[0].GainExperience(150);
-Console.WriteLine(150);
-Console.WriteLine(player.listCharacter[0].Level);
-Console.WriteLine(player.listCharacter[0].NeedXP);
+//Player player = new Player(characters, tools);
+//Console.WriteLine(player.listCharacter[0].Level);
+//Console.WriteLine(player.listCharacter[0].NeedXP);
+//player.listCharacter[0].GainExperience(150);
+//Console.WriteLine(150);
+//Console.WriteLine(player.listCharacter[0].Level);
+//Console.WriteLine(player.listCharacter[0].NeedXP);
 draw.DrawMap();
 player.Move += draw.DrawMap;
 while (true)

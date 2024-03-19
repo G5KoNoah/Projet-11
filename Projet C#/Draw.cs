@@ -11,7 +11,9 @@ namespace Projet_C_
         Map _Map;
         Player _Player;
 
-        public Draw(ref Map map, ref Player player)
+        public Map Map { get => _Map; set => _Map = value; }
+
+        public Draw(Map map, Player player)
         {
             _Map = map;
             _Player = player;

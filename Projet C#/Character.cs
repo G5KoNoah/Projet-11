@@ -33,7 +33,7 @@ namespace Projet_C_
         public event Action LevelUp;
 
 
-        public Character(CharacterStats stats, int level) 
+        public Character(CharacterStats stats, int level = 1) 
         {
             _defaultStats = stats; 
             _level = level;
