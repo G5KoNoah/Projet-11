@@ -14,7 +14,6 @@ namespace Projet_C_
             {
                 Console.WriteLine(l);
             }
-            Console.ReadLine();
         }
     }
 }

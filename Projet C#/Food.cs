@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    public class Food(string name, string type) : Tools(name, type)
-    {
+    //public class Food(string name, string type) : Tools(name, type)
+    //{
 
-    }
+    //}
 }
