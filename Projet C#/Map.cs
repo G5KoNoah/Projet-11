@@ -9,9 +9,9 @@ namespace Projet_C_
     class Map
     {
 
-        public IList<string> fileToText(string sFilePath)
+        public List<string> fileToText(string sFilePath)
         {
-            IList<string> lMap = new List<string>();
+            List<string> lMap = new List<string>();
             StreamReader oFile = new StreamReader(sFilePath);
             string line = oFile.ReadLine();
             if (oFile != null)
