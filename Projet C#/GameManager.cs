@@ -53,14 +53,14 @@ namespace Projet_C_
             InitType();
             InitCharacter();
 
-            //Draw.DrawMap();
+            Draw.DrawMap();
 
             CharacterStats stats = new CharacterStats("oui", ListCharacterTypes[0],2,1,2,1,2,1);
 
             Character cTest = new Character(stats,1);
             enemy.Character = cTest;
             
-            Draw.Fight(Player, enemy);
+            //Draw.Fight(Player, enemy);
             Player.Move += Draw.DrawMap;
 
             Console.CursorVisible = false;
