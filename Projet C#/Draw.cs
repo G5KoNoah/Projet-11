@@ -40,7 +40,7 @@ namespace Projet_C_
         public void DrawMap()
         {
             //Console.Clear();
-            Console.ResetColor();
+            //Console.ResetColor();
             List<string> lMap = _Map.MapList;
             for (int i = 0; i < lMap.Count; i++)
             {
@@ -63,11 +63,18 @@ namespace Projet_C_
                         case '/':
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
-                        case '§':
+                        
+
+
+                        case '1':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             //Console.Write('O');
                             break;
-                        
+                        case '8':
+                            Console.BackgroundColor = ConsoleColor.DarkCyan;
+                            //Console.Write('O');
+                            break;
+
                     }
                     if (i == _Player.TopPos && j == _Player.LeftPos)
                     {
