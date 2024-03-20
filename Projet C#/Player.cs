@@ -20,7 +20,7 @@ namespace Projet_C_
         public int TopPos { get => _TopPos; private set => _TopPos = value; }
         public Player()
         {
-            _character = null;
+            _character = new List<Character> { };
             _tools = null;
             _LeftPos = 6;
             _TopPos = 10;

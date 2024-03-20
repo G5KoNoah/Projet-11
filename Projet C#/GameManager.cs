@@ -47,14 +47,20 @@ namespace Projet_C_
             Player = new Player();
             ListCharacterTypes = new List<CharacterType>();  
             ListMap = new List<Map>();
-            //Enemy enemy = new Enemy();  
+            Enemy enemy = new Enemy();  
 
             InitMap();
             InitType();
             InitCharacter();
 
-            Draw.DrawMap();
-            //Draw.Fight(Player, enemy);
+            //Draw.DrawMap();
+
+            CharacterStats stats = new CharacterStats("oui", ListCharacterTypes[0],2,1,2,1,2,1);
+
+            Character cTest = new Character(stats,1);
+            enemy.Character = cTest;
+            Player.ListCharacter.Add(cTest);
+            Draw.Fight(Player, enemy);
             Player.Move += Draw.DrawMap;
 
             Console.CursorVisible = false;
