@@ -30,19 +30,13 @@ namespace Projet_C_
         public void MoveLeft(int nb)
         {
             LeftPos += nb;
-            if (LeftPos == 0)
-            {
-                LeftPos++;
-            }
+            LeftPos++;
             Move?.Invoke();
         }
         public void MoveTop(int nb)
         {
             TopPos += nb;
-            if (TopPos == 0)
-            {
-                TopPos++;
-            }
+            TopPos++;
             Move?.Invoke();
         }
     }

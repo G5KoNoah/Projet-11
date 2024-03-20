@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet_C_
 {
@@ -12,6 +13,7 @@ namespace Projet_C_
         Player _Player;
 
         public Map Map { get => _Map; set => _Map = value; }
+        public Player Player { get => _Player; set => _Player = value; }
 
         public Draw(Map map, Player player)
         {
@@ -40,7 +42,8 @@ namespace Projet_C_
         public void DrawMap()
         {
             //Console.Clear();
-            List<string> lMap = _Map.MapList;
+            List<string> lMap = Map.MapList;
+            bool testp = true;
             for (int i = 0; i < lMap.Count; i++)
             {
                 for (int j = 0; j < lMap[i].Length; j++)
@@ -49,6 +52,7 @@ namespace Projet_C_
                     {
                         case '_' or '|':
                             Console.BackgroundColor = ConsoleColor.Blue;
+                            testp = false;
                             break;
                         case '.':
                             Console.BackgroundColor = ConsoleColor.Yellow;
@@ -69,7 +73,7 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.Gray;
                             break;
                     }
-                    if (i == _Player.TopPos && j == _Player.LeftPos)
+                    if (i == Player.TopPos && j == Player.LeftPos && testp)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('P');
@@ -78,6 +82,7 @@ namespace Projet_C_
                     {
                         Console.Write(' ');
                     }
+                    testp = true;
 
                 }
                 Console.WriteLine();
