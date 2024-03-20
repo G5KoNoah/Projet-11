@@ -15,8 +15,9 @@ namespace Projet_C_
             
             
         }
-        public void InputTest(Player player)
+        public void InputTest()
         {
+            Player player = GameManager.Instance.Player;
             ConsoleKeyInfo  key = Console.ReadKey(true);
             switch (key.Key)
             {

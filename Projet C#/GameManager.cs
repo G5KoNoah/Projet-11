@@ -19,7 +19,6 @@ namespace Projet_C_
         private static GameManager instance = null;
         private static readonly object padlock = new object();
 
-
         public static GameManager Instance
         {
             get
@@ -35,17 +34,22 @@ namespace Projet_C_
             }
         }
 
+        public Player Player { get => _Player; private set => _Player = value; }
+        public Map MapIsland { get => _MapIsland; private set => _MapIsland = value; }
+        internal Input Input { get => _Input; set => _Input = value; }
+        public IList<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; set => _ListCharacterTypes = value; }
+        public Draw Draw { get => _Draw; set => _Draw = value; }
 
         public GameManager() {
-            _Input = new Input();
-            _Player = new Player();
-            _ListCharacterTypes = new List<CharacterType>();  
+            Input = new Input();
+            Player = new Player();
+            ListCharacterTypes = new List<CharacterType>();  
             InitMap();
             InitType();
             InitCharacter();
 
-            _Draw.DrawMap();
-            _Player.Move += _Draw.DrawMap;
+            Draw.DrawMap();
+            Player.Move += Draw.DrawMap;
 
 
 
@@ -53,14 +57,14 @@ namespace Projet_C_
 
         public void InitMap()
         {
-            _MapIsland = new Map();
-            _Draw = new Draw(_MapIsland, _Player);
-            var map = _Draw.FileToText("..\\..\\..\\map1.txt");
-            _MapIsland.MapList = map;
+            MapIsland = new Map();
+            Draw = new Draw(MapIsland, Player);
+            var map = Draw.FileToText("..\\..\\..\\map1.txt");
+            MapIsland.MapList = map;
 
 
             _MapBoat = new Map();
-            var map2 = _Draw.FileToText("..\\..\\..\\boat.txt");
+            var map2 = Draw.FileToText("..\\..\\..\\boat.txt");
             _MapBoat.MapList = map2;
 
 
@@ -68,13 +72,13 @@ namespace Projet_C_
 
         public void InitType()
         {
-            _ListCharacterTypes.Add(new CharacterType("speed", 1.0f, 1.0f, 1.0f, 1.0f, 1.2f, 0.8f));
-            _ListCharacterTypes.Add(new CharacterType("range", 0.8f, 1.2f, 0.8f, 0.8f, 0.8f, 1.2f));
-            _ListCharacterTypes.Add(new CharacterType("strength", 1.2f, 0.8f, 1.2f, 1.2f, 1.0f, 1.0f));
+            ListCharacterTypes.Add(new CharacterType("speed", 1.0f, 1.0f, 1.0f, 1.0f, 1.2f, 0.8f));
+            ListCharacterTypes.Add(new CharacterType("range", 0.8f, 1.2f, 0.8f, 0.8f, 0.8f, 1.2f));
+            ListCharacterTypes.Add(new CharacterType("strength", 1.2f, 0.8f, 1.2f, 1.2f, 1.0f, 1.0f));
 
-            _ListCharacterTypes[0].Weakness = _ListCharacterTypes[1];
-            _ListCharacterTypes[1].Weakness = _ListCharacterTypes[2];
-            _ListCharacterTypes[2].Weakness = _ListCharacterTypes[0];
+            ListCharacterTypes[0].Weakness = ListCharacterTypes[1];
+            ListCharacterTypes[1].Weakness = ListCharacterTypes[2];
+            ListCharacterTypes[2].Weakness = ListCharacterTypes[0];
         }
 
         public void InitCharacter()
@@ -82,7 +86,7 @@ namespace Projet_C_
 
             //Init CharacterStats
 
-            CharacterStats luffyStats = new CharacterStats("Luffy", _ListCharacterTypes[2], 200, 80, 30, 30, 80, 60);
+            CharacterStats luffyStats = new CharacterStats("Luffy", ListCharacterTypes[2], 200, 80, 30, 30, 80, 60);
 
             //Init Character
 
@@ -93,10 +97,10 @@ namespace Projet_C_
         {
             while (true)
             {
-                _Input.InputTest(_Player);
-                if (_Player.LeftPos == 2)
+                Input.InputTest();
+                if (Player.LeftPos == 2)
                 {
-                    _Draw.Map = _MapBoat;
+                    Draw.Map = _MapBoat;
                 }
             }
         }

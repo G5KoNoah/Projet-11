@@ -18,26 +18,32 @@ namespace Projet_C_
 
         public int LeftPos { get => _LeftPos; private set => _LeftPos = value; }
         public int TopPos { get => _TopPos; private set => _TopPos = value; }
-        public Player(List<Character> characters, List<Tools> tools)
+        public Player()
         {
-            _character = characters;
-            _tools = tools;
-            _LeftPos = 1;
-            _TopPos = 1;
+            _character = null;
+            _tools = null;
+            _LeftPos = 6;
+            _TopPos = 10;
         }
 
         public event Action Move;
         public void MoveLeft(int nb)
         {
-            LeftPos += nb;
-            LeftPos++;
-            Move?.Invoke();
+            List<string> collisions = GameManager.Instance.MapIsland.MapList;
+            if (collisions[TopPos][LeftPos + nb] != '|') {
+                LeftPos += nb;
+                Move?.Invoke();
+            }
+            
         }
         public void MoveTop(int nb)
         {
-            TopPos += nb;
-            TopPos++;
-            Move?.Invoke();
+            List<string> collisions = GameManager.Instance.MapIsland.MapList;
+            if (collisions[TopPos + nb][LeftPos] != '|')
+            {
+                TopPos += nb;
+                Move?.Invoke();
+            }
         }
     }
 }
