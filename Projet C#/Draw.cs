@@ -42,7 +42,7 @@ namespace Projet_C_
         public void Fight(Player player, Enemy enemy)
         {
             Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("                 " + player.ListCharacter[0].DefaultStats.Name + "                                        " + enemy.Character.DefaultStats.Name);
+            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name);
             Console.WriteLine("           ---------------                           ---------------          ");
             Console.WriteLine("          |               |                         |               |         ");
             Console.WriteLine("          |               |                         |               |         ");
@@ -53,6 +53,8 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---          ");
             Console.WriteLine("                  |                                         |          ");
             Console.WriteLine("                  |                                         |          ");
+            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.PV + "                              " + enemy.Character.DefaultStats.PV);
+            
         }
 
         public void DrawMap()

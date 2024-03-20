@@ -59,7 +59,7 @@ namespace Projet_C_
 
             Character cTest = new Character(stats,1);
             enemy.Character = cTest;
-            Player.ListCharacter.Add(cTest);
+            
             Draw.Fight(Player, enemy);
             Player.Move += Draw.DrawMap;
 
@@ -109,6 +109,7 @@ namespace Projet_C_
             //Init Character
 
             Character luffy = new Character(luffyStats, 1);
+            Player.ListCharacter.Add(luffy);
         }
 
         public void MainLoop()
