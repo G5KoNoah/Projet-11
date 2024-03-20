@@ -3,7 +3,7 @@ using Projet_C_;
 using System.Diagnostics;
 using System.Numerics;
 
-Console.CursorVisible = false;
+
 //Map test = new Map();
 //Player player = new Player();
 //Draw draw = new Draw(test, player);

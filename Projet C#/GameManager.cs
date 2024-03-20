@@ -14,6 +14,7 @@ namespace Projet_C_
         Player _Player;
         Draw _Draw;
         IList<CharacterType> _ListCharacterTypes;
+        IList<Map> _ListMap;
 
 
         private static GameManager instance = null;
@@ -35,17 +36,29 @@ namespace Projet_C_
             }
         }
 
+        public Player Player { get => _Player; private set => _Player = value; }
+        public IList<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; private set => _ListCharacterTypes = value; }
+        public Map MapIsland { get => _MapIsland; private set => _MapIsland = value; }
+        public Map MapBoat { get => _MapBoat; private set => _MapBoat = value; }
+        public Draw Draw { get => _Draw; private set => _Draw = value; }
+        internal Input Input { get => _Input; private set => _Input = value; }
+        public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
 
         public GameManager() {
             _Input = new Input();
             _Player = new Player();
-            _ListCharacterTypes = new List<CharacterType>();  
+            _ListCharacterTypes = new List<CharacterType>();
+            _ListMap = new List<Map>();
+
+
             InitMap();
             InitType();
             InitCharacter();
 
             _Draw.DrawMap();
             _Player.Move += _Draw.DrawMap;
+
+            Console.CursorVisible = false;
 
 
 
@@ -58,10 +71,14 @@ namespace Projet_C_
             var map = _Draw.FileToText("..\\..\\..\\map1.txt");
             _MapIsland.MapList = map;
 
+            _ListMap.Add(_MapIsland);
+           
 
             _MapBoat = new Map();
             var map2 = _Draw.FileToText("..\\..\\..\\boat.txt");
             _MapBoat.MapList = map2;
+
+            _ListMap.Add(_MapBoat);
 
 
         }
@@ -96,7 +113,7 @@ namespace Projet_C_
                 _Input.InputTest(_Player);
                 if (_Player.LeftPos == 2)
                 {
-                    _Draw.Map = _MapBoat;
+                    _Draw.Map = _ListMap[1];
                 }
             }
         }
