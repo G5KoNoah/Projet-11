@@ -39,6 +39,22 @@ namespace Projet_C_
             return lFileText;
         }
 
+        public void Fight(Player player, Enemy enemy)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("          " + player.ListCharacter[0].DefaultStats.Name + "                    " + enemy.Character.DefaultStats.Name + "          ");
+            Console.WriteLine("           ---------------                           ---------------          ");
+            Console.WriteLine("          |               |                         |               |         ");
+            Console.WriteLine("          |               |                         |               |         ");
+            Console.WriteLine("          |               |                         |               |         ");
+            Console.WriteLine("           ---------------                           ---------------          ");
+            Console.WriteLine("                  |                                         |          ");
+            Console.WriteLine("                  |                                         |          ");
+            Console.WriteLine("                 ---                                       ---          ");
+            Console.WriteLine("                  |                                         |          ");
+            Console.WriteLine("                  |                                         |          ");
+        }
+
         public void DrawMap()
         {
             //Console.Clear();
@@ -101,10 +117,6 @@ namespace Projet_C_
             Console.SetCursorPosition(0, 0);
         }
 
-        //public void Fight(Player player, Enemy enemy)
-        //{
-        //    Console.BackgroundColor = ConsoleColor.Red;
-        //    Console.WriteLine("          " + player.ListCharacter[0].DefaultStats.Name + "                    " + enemy.Character.DefaultStats.Name + "          ");
-        //}
+        
     }
 }
