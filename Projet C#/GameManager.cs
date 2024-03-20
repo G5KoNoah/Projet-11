@@ -14,6 +14,7 @@ namespace Projet_C_
         Player _Player;
         Draw _Draw;
         IList<CharacterType> _ListCharacterTypes;
+        IList<Map> _ListMap;
 
 
         private static GameManager instance = null;
@@ -35,15 +36,19 @@ namespace Projet_C_
         }
 
         public Player Player { get => _Player; private set => _Player = value; }
-        public Map MapIsland { get => _MapIsland; private set => _MapIsland = value; }
-        internal Input Input { get => _Input; set => _Input = value; }
-        public IList<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; set => _ListCharacterTypes = value; }
-        public Draw Draw { get => _Draw; set => _Draw = value; }
+        public IList<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; private set => _ListCharacterTypes = value; }
+
+        public Draw Draw { get => _Draw; private set => _Draw = value; }
+        public Input Input { get => _Input; private set => _Input = value; }
+        public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
 
         public GameManager() {
             Input = new Input();
             Player = new Player();
             ListCharacterTypes = new List<CharacterType>();  
+            ListMap = new List<Map>();
+
+
             InitMap();
             InitType();
             InitCharacter();
@@ -51,21 +56,27 @@ namespace Projet_C_
             Draw.DrawMap();
             Player.Move += Draw.DrawMap;
 
+            Console.CursorVisible = false;
+
 
 
         }
 
         public void InitMap()
         {
-            MapIsland = new Map();
-            Draw = new Draw(MapIsland, Player);
-            var map = Draw.FileToText("..\\..\\..\\map1.txt");
-            MapIsland.MapList = map;
+            Map mapIsland = new Map();
+            Draw = new Draw(mapIsland, Player);
+            var text = Draw.FileToText("..\\..\\..\\map1.txt");
+            mapIsland.MapList = text;
 
+            ListMap.Add(mapIsland);
+           
 
-            _MapBoat = new Map();
-            var map2 = Draw.FileToText("..\\..\\..\\boat.txt");
-            _MapBoat.MapList = map2;
+            Map mapBoat = new Map();
+            var text2 = Draw.FileToText("..\\..\\..\\boat.txt");
+            mapBoat.MapList = text2;
+
+            ListMap.Add(mapBoat);
 
 
         }
@@ -100,7 +111,7 @@ namespace Projet_C_
                 Input.InputTest();
                 if (Player.LeftPos == 2)
                 {
-                    Draw.Map = _MapBoat;
+                    Draw.Map = ListMap[1];
                 }
             }
         }
