@@ -43,7 +43,7 @@ namespace Projet_C_
         {
             //Console.Clear();
             List<string> lMap = Map.MapList;
-            bool testp = true;
+           
             for (int i = 0; i < lMap.Count; i++)
             {
                 for (int j = 0; j < lMap[i].Length; j++)
@@ -52,7 +52,7 @@ namespace Projet_C_
                     {
                         case '_' or '|':
                             Console.BackgroundColor = ConsoleColor.Blue;
-                            testp = false;
+                           
                             break;
                         case '.':
                             Console.BackgroundColor = ConsoleColor.Yellow;
@@ -66,14 +66,20 @@ namespace Projet_C_
                         case '/':
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
-                        case '§':
+                        
+
+
+                        case '1':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //Console.Write('O');
                             break;
-                        case '£':
-                            Console.BackgroundColor = ConsoleColor.Gray;
+                        case '8':
+                            Console.BackgroundColor = ConsoleColor.DarkCyan;
+                            //Console.Write('O');
                             break;
+
                     }
-                    if (i == Player.TopPos && j == Player.LeftPos && testp)
+                    if (i == Player.TopPos && j == Player.LeftPos)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('P');
@@ -82,7 +88,7 @@ namespace Projet_C_
                     {
                         Console.Write(' ');
                     }
-                    testp = true;
+              
 
                 }
                 Console.WriteLine();
