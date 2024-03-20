@@ -17,12 +17,17 @@ strengthType.Weakness = speedType;
 
 //Init CharacterStats
 
-CharacterStats luffyStats = new CharacterStats("Luffy", strengthType, 200, 80, 30, 30, 80, 60);
+CharacterStats luffyStats = new CharacterStats("Luffy", strengthType, 200.0f, 80.0f, 30.0f, 30.0f, 80.0f, 60.0f);
 
 //Init Character
 
 Character luffy = new Character(luffyStats, 1);
 
+//Init Spells
+
+Spell redHawk = new Spell(1, "Red Hawk", 1.5f,50.0f, strengthType, luffy);
+
+luffy.Spells.Add(redHawk);
 //Init Player
 
 List<Character> characters = new List<Character>();
@@ -31,14 +36,22 @@ characters.Add(luffy);
 List<Tools> tools = new List<Tools>();
 
 Player player = new Player(characters, tools);
+Console.WriteLine(player.ListCharacter[0].Level);
+Console.WriteLine(player.ListCharacter[0].Attack);
+Console.WriteLine(player.ListCharacter[0].Spells[0].Level);
+Console.WriteLine(player.ListCharacter[0].Spells[0].Attack);
 //Console.WriteLine(player.ListCharacter[0].Level);
 //Console.WriteLine(player.ListCharacter[0].NeedXP);
-//player.ListCharacter[0].GainExperience(150);
+player.ListCharacter[0].GainExperience(10000);
+Console.WriteLine(player.ListCharacter[0].Spells[0].Attack);
+player.ListCharacter[0].Spells[0].GainExperience(10000);
 //Console.WriteLine(150);
-//Console.WriteLine(player.ListCharacter[0].Level);
+Console.WriteLine(player.ListCharacter[0].Level);
+Console.WriteLine(player.ListCharacter[0].Attack);
 //Console.WriteLine(player.ListCharacter[0].NeedXP);
-
-
+Console.WriteLine(player.ListCharacter[0].Spells[0].Level);
+Console.WriteLine(player.ListCharacter[0].Spells[0].Attack);
+//Console.WriteLine(player.ListCharacter[0].Spells[0].Level);
 Console.CursorVisible = false;
 Console.BackgroundColor = ConsoleColor.Blue;
 Map test = new Map();
