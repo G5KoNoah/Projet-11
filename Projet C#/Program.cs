@@ -3,14 +3,7 @@ using Projet_C_;
 using System.Diagnostics;
 using System.Numerics;
 
-Console.CursorVisible = false;
-Console.BackgroundColor = ConsoleColor.Blue;
-Map test = new Map();
-Player player = new Player();
-Draw draw = new Draw(test, player);
-var map = draw.FileToText("..\\..\\..\\map1.txt");
-test.MapList = map;
-Input input = new Input();
+
 
 //Init Type
 
@@ -28,7 +21,7 @@ CharacterStats luffyStats = new CharacterStats("Luffy", strengthType, 200, 80, 3
 
 //Init Character
 
-Character luffy = new Character(luffyStats);
+Character luffy = new Character(luffyStats, 1);
 
 //Init Player
 
@@ -37,13 +30,23 @@ characters.Add(luffy);
 
 List<Tools> tools = new List<Tools>();
 
-//Player player = new Player(characters, tools);
-//Console.WriteLine(player.listCharacter[0].Level);
-//Console.WriteLine(player.listCharacter[0].NeedXP);
-//player.listCharacter[0].GainExperience(150);
+Player player = new Player(characters, tools);
+//Console.WriteLine(player.ListCharacter[0].Level);
+//Console.WriteLine(player.ListCharacter[0].NeedXP);
+//player.ListCharacter[0].GainExperience(150);
 //Console.WriteLine(150);
-//Console.WriteLine(player.listCharacter[0].Level);
-//Console.WriteLine(player.listCharacter[0].NeedXP);
+//Console.WriteLine(player.ListCharacter[0].Level);
+//Console.WriteLine(player.ListCharacter[0].NeedXP);
+
+
+Console.CursorVisible = false;
+Console.BackgroundColor = ConsoleColor.Blue;
+Map test = new Map();
+Draw draw = new Draw(test, player);
+var map = draw.FileToText("..\\..\\..\\map1.txt");
+test.MapList = map;
+Input input = new Input();
+
 draw.DrawMap();
 player.Move += draw.DrawMap;
 while (true)

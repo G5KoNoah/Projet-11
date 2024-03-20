@@ -18,10 +18,10 @@ namespace Projet_C_
 
         public int LeftPos { get => _LeftPos; private set => _LeftPos = value; }
         public int TopPos { get => _TopPos; private set => _TopPos = value; }
-        public Player()
+        public Player(List<Character> characters, List<Tools> tools)
         {
-            _character = new List<Character> { };
-            _tools = new List<Tools> { };
+            _character = characters;
+            _tools = tools;
             _LeftPos = 1;
             _TopPos = 1;
         }
