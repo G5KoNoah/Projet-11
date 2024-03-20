@@ -100,5 +100,11 @@ namespace Projet_C_
             }
             Console.SetCursorPosition(0, 0);
         }
+
+        //public void Fight(Player player, Enemy enemy)
+        //{
+        //    Console.BackgroundColor = ConsoleColor.Red;
+        //    Console.WriteLine("          " + player.ListCharacter[0].DefaultStats.Name + "                    " + enemy.Character.DefaultStats.Name + "          ");
+        //}
     }
 }

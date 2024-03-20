@@ -28,23 +28,23 @@ namespace Projet_C_
         public float Defense { get => _defense; }
         public float AttackSpeed { get => _attackSpeed; }
         public float Precision { get => _precision; }
-
+        public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
 
         public event Action LevelUp;
 
 
         public Character(CharacterStats stats, int level = 1) 
         {
-            _defaultStats = stats; 
+            DefaultStats = stats; 
             _level = level;
             _needXP = 100 * level;
 
-            _PV = _defaultStats.PV;
-            _PT = _defaultStats.PT;
-            _attack = _defaultStats.Attack;
-            _defense = _defaultStats.Defense;
-            _attackSpeed = _defaultStats.AttackSpeed;
-            _precision = _defaultStats.Precision;
+            _PV = DefaultStats.PV;
+            _PT = DefaultStats.PT;
+            _attack = DefaultStats.Attack;
+            _defense = DefaultStats.Defense;
+            _attackSpeed = DefaultStats.AttackSpeed;
+            _precision = DefaultStats.Precision;
 
             StatsLevel();
         }

@@ -54,6 +54,7 @@ namespace Projet_C_
             InitCharacter();
 
             Draw.DrawMap();
+            //Draw.Fight();
             Player.Move += Draw.DrawMap;
 
             Console.CursorVisible = false;

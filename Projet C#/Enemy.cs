@@ -12,6 +12,8 @@ namespace Projet_C_
         public Enemy() {
             
         }
-        Character m_oCharacter { get; set; }
+        Character _Character;
+
+        public Character Character { get => _Character; set => _Character = value; }
     }
 }

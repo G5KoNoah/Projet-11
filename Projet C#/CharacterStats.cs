@@ -23,6 +23,7 @@ namespace Projet_C_
         public float Defense { get => _defense; }
         public float AttackSpeed { get => _attackSpeed; }
         public float Precision { get => _precision;}
+        public string Name { get => _name; set => _name = value; }
 
         public CharacterStats(string name, CharacterType type, int PV, int PT, int attack, int defense, int attackSpeed, int precision)
         {
