@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Input
+    public class Input
     {
        
         public Input()

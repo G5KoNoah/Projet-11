@@ -29,7 +29,7 @@ namespace Projet_C_
         public event Action Move;
         public void MoveLeft(int nb)
         {
-            List<string> collisions = GameManager.Instance.MapIsland.MapList;
+            List<string> collisions = GameManager.Instance.ListMap[0].MapList;
             if (collisions[TopPos][LeftPos + nb] != '|') {
                 LeftPos += nb;
                 Move?.Invoke();
@@ -38,7 +38,7 @@ namespace Projet_C_
         }
         public void MoveTop(int nb)
         {
-            List<string> collisions = GameManager.Instance.MapIsland.MapList;
+            List<string> collisions = GameManager.Instance.ListMap[0].MapList;
             if (collisions[TopPos + nb][LeftPos] != '|')
             {
                 TopPos += nb;
