@@ -98,9 +98,6 @@ namespace Projet_C_
                             Console.WriteLine("             personnage");
                             Console.ForegroundColor = ConsoleColor.Black;
                             break;
-
-
-
                     }
 
                     break;
@@ -116,7 +113,6 @@ namespace Projet_C_
                             Console.WriteLine("             spell 2");
                             Console.WriteLine("             spell 3");
                             break;
-
                         case 2:
 
                             Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
@@ -125,7 +121,6 @@ namespace Projet_C_
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 3");
                             break;
-
                         case 3:
                             Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
                             Console.WriteLine("             spell 2");
@@ -133,25 +128,20 @@ namespace Projet_C_
                             Console.WriteLine("             spell 3");
                             Console.ForegroundColor = ConsoleColor.Black;
                             break;
-
                     }
                                       
                     break;
             }
-            
-
-
-
-
 
                 for (int i = 0; i < 14; i++)
-            {
-                for (int j = 0; j < 120; j++)
                 {
-                    Console.Write(' ');
-                }
+
+                    for (int j = 0; j < 120; j++)
+                    {
+                        Console.Write(' ');
+                    }
                 Console.WriteLine();
-            }
+                }
             Console.SetCursorPosition(0, 0);
 
         }
@@ -184,6 +174,10 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
                         case '1':
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //Console.Write('O');
+                            break;
+                        case '2':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             //Console.Write('O');
                             break;

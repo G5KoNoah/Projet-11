@@ -61,14 +61,12 @@ namespace Projet_C_
 
             InitMap();
             InitType();
+            
             InitCharacter();
 
             Draw.DrawMap();
 
-            CharacterStats stats = new CharacterStats("oui", ListCharacterTypes[0],2,1,2,1,2,1);
-
-            Character cTest = new Character(stats,1);
-            _enemy.Character = cTest;
+            
             
             //Draw.Fight(Player, enemy);
             Player.Move += Draw.DrawMap;
@@ -116,6 +114,11 @@ namespace Projet_C_
 
             CharacterStats luffyStats = new CharacterStats("Luffy", ListCharacterTypes[2], 200, 80, 30, 30, 80, 60);
             CharacterStats crocoStats = new CharacterStats("Croco", ListCharacterTypes[1], 200.0f, 80.0f, 30.0f, 30.0f, 80.0f, 60.0f);
+
+            CharacterStats stats = new CharacterStats("Mec", ListCharacterTypes[0], 100, 1, 2, 1, 2, 1);
+
+            Character cTest = new Character(stats, 1);
+            _enemy.Character = cTest;
             //Init Character
 
             Character luffy = new Character(luffyStats, 1);
@@ -127,6 +130,7 @@ namespace Projet_C_
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
 
             luffy.Spells.Add(redHawk);
+            _enemy.Character.Spells.Add(redHawk);
         }
 
         public void MainLoop()

@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Projet_C_.Character" Collapsed="true">
-    <Position X="10.5" Y="5.25" Width="1.5" />
+    <Position X="10.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAQAAAgYEBAAAAAMABAAACigBAAAA=</HashCode>
+      <HashCode>AAAAAACIAAAAAAAAQAAAgYEBAAAAAMABAAACigBAAAA=</HashCode>
       <FileName>Character.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Draw" Collapsed="true">
     <Position X="1.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAABAAAAAAAAAAAAAAAAAAAAAAAACEAQABAAA=</HashCode>
+      <HashCode>AAAACAAAABAIAAAAAAAAAAAAAAAAAAAAAACEAQABAAA=</HashCode>
       <FileName>Draw.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Enemy" Collapsed="true">
-    <Position X="8" Y="5.75" Width="1.5" />
+    <Position X="7.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAACAA=</HashCode>
       <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.FightManager" Collapsed="true">
-    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FightManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Input" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAAAAAAABAAAACAAAAAAAAACAAAAARAAAAAA=</HashCode>
       <FileName>Input.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,7 +50,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Tools" Collapsed="true">
-    <Position X="4" Y="4.75" Width="1.5" />
+    <Position X="3" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAAQAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Tools.cs</FileName>
@@ -66,7 +66,7 @@
   <Class Name="Projet_C_.GameManager" Collapsed="true">
     <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAKACIAAAABCAgAAAAAAgAEIFABAAEAAQQAEAQQAAAA=</HashCode>
+      <HashCode>AAKACIAAAABCAhAAAAAAkAEIFABBAEAAQQAEAQQAAAA=</HashCode>
       <FileName>GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -78,16 +78,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Spell" Collapsed="true">
-    <Position X="7.5" Y="6.25" Width="1.5" />
+    <Position X="7.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAEQAQAAAAQAAAAEAAEADCAACAgAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAEQAQAAAAQQAAAEAAEADCAACAgAAAAA=</HashCode>
       <FileName>Spell.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.CharacterStats" Collapsed="true">
-    <Position X="9.75" Y="3.5" Width="1.5" />
+    <Position X="10.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAQAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>CharacterStats.cs</FileName>
     </TypeIdentifier>
   </Class>

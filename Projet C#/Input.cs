@@ -68,7 +68,7 @@ namespace Projet_C_
             }
         }
 
-        public void InputFight(Player player, Enemy enemy) {
+        public async void InputFight(Player player, Enemy enemy) {
 
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (State)
@@ -83,7 +83,6 @@ namespace Projet_C_
                                 case 1:
                                     State = StateFight.FightState;
                                     GameManager.Instance.Draw.Fight(player, enemy, Select);
-
                                     break;
                             }
                             break;
@@ -126,10 +125,14 @@ namespace Projet_C_
                             {
                                 case 1:
                                     enemy.Character.TakeDamage(player.ListCharacter[0].SpellAttack(0));
+                                    //Console.WriteLine(player.ListCharacter[0].SpellAttack(0));
+                                    
+                                    Random aleatoire = new Random();
+                                    int spell = aleatoire.Next(0, 2);
+                                    player.ListCharacter[0].TakeDamage(enemy.Character.SpellAttack(spell));
+                                    
+                                    State = StateFight.firstState;                
                                     GameManager.Instance.Draw.Fight(player, enemy, Select);
-
-
-
                                     break;
                             }
                             break;

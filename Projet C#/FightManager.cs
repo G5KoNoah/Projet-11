@@ -21,7 +21,15 @@ namespace Projet_C_
                 if (enemy.Character.PV == 0)
                 {
                     Console.WriteLine("c'est finit");
-                    player.ListCharacter[0].GainExperience(1000);
+                    
+                }
+
+                
+
+                if (player.ListCharacter[0].PV == 0)
+                {
+                    Console.WriteLine("c'est finit loose");
+                    
                 }
             }
             
