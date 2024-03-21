@@ -9,6 +9,7 @@ namespace Projet_C_
     public sealed class GameManager
     {
         Input _Input;
+        FightManager _fightManager;
         Map _MapIsland;
         Map _MapBoat;
         Player _Player;
@@ -17,6 +18,7 @@ namespace Projet_C_
         List<Character> _characters;
         IList<Map> _ListMap;
         List<Tools> _tools;
+        Enemy _enemy;
 
 
         private static GameManager instance = null;
@@ -45,6 +47,7 @@ namespace Projet_C_
         public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
         public List<Character> Characters { get => _characters; set => _characters = value; }
         public List<Tools> Tools { get => _tools; set => _tools = value; }
+        public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
 
         public GameManager() {
             Input = new Input();
@@ -53,12 +56,21 @@ namespace Projet_C_
             Characters = new List<Character>();
             Tools = new List<Tools>();
             Player = new Player(Characters, Tools);
+            _enemy = new Enemy();
+            FightManager = new FightManager();
 
             InitMap();
             InitType();
             InitCharacter();
 
             Draw.DrawMap();
+
+            CharacterStats stats = new CharacterStats("oui", ListCharacterTypes[0],2,1,2,1,2,1);
+
+            Character cTest = new Character(stats,1);
+            _enemy.Character = cTest;
+            
+            //Draw.Fight(Player, enemy);
             Player.Move += Draw.DrawMap;
 
             Console.CursorVisible = false;
@@ -122,9 +134,11 @@ namespace Projet_C_
             while (true)
             {
                 Input.InputTest();
-                if (Player.LeftPos == 2)
+                if (Player.LeftPos == 6)
                 {
-                    Draw.Map = ListMap[1];
+                    //Draw.Map = ListMap[1];
+                    //Draw.Fight(Player, _enemy);
+                    FightManager.MainLoop(Player, _enemy);
                 }
             }
         }

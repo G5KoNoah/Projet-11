@@ -35,6 +35,7 @@ namespace Projet_C_
                 Move?.Invoke();
             }
             
+
         }
         public void MoveTop(int nb)
         {
@@ -44,6 +45,7 @@ namespace Projet_C_
                 TopPos += nb;
                 Move?.Invoke();
             }
+            
         }
     }
 }

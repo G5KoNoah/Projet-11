@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    internal class Enemy
+    public class Enemy
     {
             
         public Enemy() {
             
         }
-        Character m_oCharacter { get; set; }
+        Character _Character;
+
+        public Character Character { get => _Character; set => _Character = value; }
     }
 }

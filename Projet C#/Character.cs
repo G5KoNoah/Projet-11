@@ -27,7 +27,7 @@ namespace Projet_C_
 
         public Character(CharacterStats stats, int level = 1) 
         {
-            _defaultStats = stats; 
+            DefaultStats = stats; 
             _level = level;
             _needXP = 100 * level;
 
