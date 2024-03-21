@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Projet_C_
 {
-    public class Spell : Stats
+    public class Spell 
     {
         int _level;
         int _needXP;
@@ -14,22 +14,20 @@ namespace Projet_C_
 
         string _name;
         CharacterType _type;
-        Character _character;
 
         float _consumedPT;
         float _attackRatio;
         public int Level { get => _level; }
         public int NeedXP { get => _needXP; }
-
+        public float AttackRation { get => _attackRatio; }
 
         public event Action LevelUpSpell;
 
-        public Spell(int level,string name, float attack, float consumed, CharacterType type, Character character)
+        public Spell(int level,string name, float attack, float consumed, CharacterType type)
         {
             _level = level;
             _needXP = 500 * level;
             _name = name;
-            _character = character;
             _type = type;
             _attackRatio = attack;
             
@@ -51,8 +49,7 @@ namespace Projet_C_
         }
         public void StatsLevel()
         {
-            Attack = _attackRatio * _character.Attack;
-            Attack *= 1.0f + (0.1f * _level - 0.01f);
+            _attackRatio *= 1.0f + (0.1f * _level - 0.01f);
         }
     }
 }

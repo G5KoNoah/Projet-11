@@ -19,8 +19,11 @@ namespace Projet_C_
         public int NeedXP {  get => _needXP; }
 
         public List<Spell> Spells { get => _spells;  }
-        public event Action LevelUp;
 
+        public event Action LevelUp;
+        public event Action OnDamage;
+        public event Action OnDeath;
+        public event Action onAttack;
 
         public Character(CharacterStats stats, int level = 1) 
         {
@@ -57,11 +60,29 @@ namespace Projet_C_
         {
             PV += 5 * _level;
             PT += 5 * _level;
-            Attack *=  1.0f + (0.01f* _level - 0.01f);
+            Attack = (float)Math.Round(Attack * (1.0f + (0.01f* _level - 0.01f)));
             AttackSpeed += 5 * _level;
             Defense += 5 * _level;
             Precision += 5 * _level;
         }
+        
+        public void TakeDamage(float damage)
+        {
+            OnDamage?.Invoke();
 
+            PV -= damage;
+            if(PV < 0)
+            {
+                OnDeath?.Invoke();
+                PV = 0;
+
+            }
+        }
+
+        public float SpellAttack(int spell)
+        {
+            onAttack?.Invoke();
+            return (float)Math.Round(_spells[spell].AttackRation * Attack);
+        }
     }
 }

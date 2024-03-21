@@ -16,12 +16,12 @@ namespace Projet_C_
         {
             _name = name;
             _type = type;
-            PV *= Pv * type.PV;
-            PT *= Pt * type.PT;
-            Attack = attack * type.Attack;
-            Defense = defense * type.Defense;
-            AttackSpeed = attackSpeed * type.AttackSpeed;
-            Precision = precision * type.Precision;
+            PV = (float)Math.Round(Pv * type.PV);
+            PT = (float)Math.Round(Pt * type.PT);
+            Attack = (float)Math.Round(attack * type.Attack);
+            Defense = (float)Math.Round(defense * type.Defense);
+            AttackSpeed = (float)Math.Round(attackSpeed * type.AttackSpeed);
+            Precision = (float)Math.Round(precision * type.Precision);
         }
     }
 }
