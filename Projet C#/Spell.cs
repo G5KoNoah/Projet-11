@@ -21,6 +21,7 @@ namespace Projet_C_
         public int NeedXP { get => _needXP; }
         public float AttackRation { get => _attackRatio; }
         public string Name { get => _name; set => _name = value; }
+        public CharacterType Type { get => _type; private set => _type = value; }
 
         public event Action LevelUpSpell;
 
@@ -29,7 +30,7 @@ namespace Projet_C_
             _level = level;
             _needXP = 500 * level;
             Name = name;
-            _type = type;
+            Type = type;
             _attackRatio = attack;
             
             _consumedPT = consumed;

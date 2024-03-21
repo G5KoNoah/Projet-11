@@ -12,7 +12,6 @@ namespace Projet_C_
         Map _Map;
         Player _Player;
 
-        
 
         public Map Map { get => _Map; set => _Map = value; }
         public Player Player { get => _Player; set => _Player = value; }
@@ -21,6 +20,7 @@ namespace Projet_C_
         {
             _Map = map;
             _Player = player;
+
             
         }
 

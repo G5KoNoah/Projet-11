@@ -80,10 +80,18 @@ namespace Projet_C_
             }
         }
 
-        public float SpellAttack(int spell)
+        public float SpellAttack(int spell, CharacterType type)
         {
             onAttack?.Invoke();
-            return (float)Math.Round(_spells[spell].AttackRation * Attack);
+            float damage = _spells[spell].AttackRation * Attack;
+            if (_spells[spell].Type == DefaultStats.Type.Weakness)
+            {
+                damage *= 2;
+            }else if(_spells[spell].Type.Weakness == DefaultStats.Type)
+            {
+                damage *= 0.5f;
+            }
+            return (float)Math.Round(damage);
         }
     }
 }

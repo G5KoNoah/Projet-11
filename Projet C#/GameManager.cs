@@ -20,6 +20,7 @@ namespace Projet_C_
         List<Tools> _tools;
         Enemy _enemy;
 
+        Random _Random;
 
         private static GameManager instance = null;
         private static readonly object padlock = new object();
@@ -58,7 +59,7 @@ namespace Projet_C_
             Player = new Player(Characters, Tools);
             _enemy = new Enemy();
             FightManager = new FightManager();
-
+            _Random = new Random();
             InitMap();
             InitType();
             InitCharacter();
@@ -134,11 +135,21 @@ namespace Projet_C_
             while (true)
             {
                 Input.InputTest();
-                if (Player.LeftPos == 6)
+
+                //if (Player.LeftPos == 6)
+                //{
+                //    Draw.Map = ListMap[1];
+                //    Draw.Fight(Player, _enemy);
+                //    FightManager.MainLoop(Player, _enemy);
+                //}
+                if (Draw.Map.MapList[Player.TopPos][Player.LeftPos] == '$' && _Random.Next(1,10) == 1)
                 {
                     //Draw.Map = ListMap[1];
                     //Draw.Fight(Player, _enemy);
+                    Console.WriteLine("Un ennemi est apparu !!!!");
+                    Thread.Sleep(2000);
                     FightManager.MainLoop(Player, _enemy);
+
                 }
             }
         }
