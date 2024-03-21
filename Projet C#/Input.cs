@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +10,14 @@ namespace Projet_C_
 {
     public class Input
     {
-       
+        int _select;
+
+        public int Select { get => _select; set => _select = value; }
+
         public Input()
         {
-            
-            
+
+            Select = 1;
         }
         public void InputTest()
         {
@@ -54,6 +58,59 @@ namespace Projet_C_
                 default:
                     break;
             }
+        }
+
+        public void InputFight(Player player, Enemy enemy) {
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.Enter:
+                    //Console.WriteLine("Entrer pressée");
+                    if(Console.CursorTop == 9)
+                    {
+                        Console.WriteLine("Entrer pressée");
+                    }
+
+                    break;
+
+                
+
+                case ConsoleKey.LeftArrow:
+                    
+                    //GameManager.Instance.Draw.Fight(player, enemy);
+                    //Console.CursorLeft -=1;
+                    break;
+
+                case ConsoleKey.UpArrow:
+                    if(Select == 1)
+                    {
+                        Select = 3;
+                    }
+                    else
+                    {
+                        Select -= 1;
+                    }
+                    
+                    GameManager.Instance.Draw.Fight(player, enemy, Select);
+                    //Console.CursorTop -= 1;
+
+                    break;
+
+                case ConsoleKey.RightArrow:
+                    
+                    //Console.CursorLeft +=1;
+                    break;
+
+                case ConsoleKey.DownArrow:
+                    
+                    //Console.CursorTop += 1;
+                    break;
+
+                default:
+                    break;
+            }
+
         }
 
         

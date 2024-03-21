@@ -34,10 +34,7 @@ namespace Projet_C_
                 LeftPos += nb;
                 Move?.Invoke();
             }
-            if (collisions[TopPos][LeftPos + nb] == '*')
-            {
-                int a = 0;
-            }
+            
 
         }
         public void MoveTop(int nb)
@@ -48,10 +45,7 @@ namespace Projet_C_
                 TopPos += nb;
                 Move?.Invoke();
             }
-            if (collisions[TopPos][LeftPos + nb] == '*')
-            {
-               int a = 0;
-            }
+            
         }
     }
 }

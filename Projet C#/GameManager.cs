@@ -9,12 +9,14 @@ namespace Projet_C_
     public sealed class GameManager
     {
         Input _Input;
+        FightManager _fightManager;
         Map _MapIsland;
         Map _MapBoat;
         Player _Player;
         Draw _Draw;
         IList<CharacterType> _ListCharacterTypes;
         IList<Map> _ListMap;
+        Enemy _enemy;
 
 
         private static GameManager instance = null;
@@ -41,13 +43,15 @@ namespace Projet_C_
         public Draw Draw { get => _Draw; private set => _Draw = value; }
         public Input Input { get => _Input; private set => _Input = value; }
         public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
+        public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
 
         public GameManager() {
             Input = new Input();
             Player = new Player();
             ListCharacterTypes = new List<CharacterType>();  
             ListMap = new List<Map>();
-            Enemy enemy = new Enemy();  
+            _enemy = new Enemy();
+            FightManager = new FightManager();
 
             InitMap();
             InitType();
@@ -58,7 +62,7 @@ namespace Projet_C_
             CharacterStats stats = new CharacterStats("oui", ListCharacterTypes[0],2,1,2,1,2,1);
 
             Character cTest = new Character(stats,1);
-            enemy.Character = cTest;
+            _enemy.Character = cTest;
             
             //Draw.Fight(Player, enemy);
             Player.Move += Draw.DrawMap;
@@ -117,9 +121,11 @@ namespace Projet_C_
             while (true)
             {
                 Input.InputTest();
-                if (Player.LeftPos == 2)
+                if (Player.LeftPos == 6)
                 {
-                    Draw.Map = ListMap[1];
+                    //Draw.Map = ListMap[1];
+                    //Draw.Fight(Player, _enemy);
+                    FightManager.MainLoop(Player, _enemy);
                 }
             }
         }

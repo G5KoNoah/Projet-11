@@ -39,9 +39,20 @@ namespace Projet_C_
             return lFileText;
         }
 
-        public void Fight(Player player, Enemy enemy)
+        public void Fight(Player player, Enemy enemy, int select)
         {
             Console.BackgroundColor = ConsoleColor.Red;
+            //for (int i = 0; i < 60; i++)
+            //{
+            //    for (int j = 0; j < 30 ; j++)
+            //    {
+            //        Console.Write(' ');
+            //    }
+            //    Console.WriteLine();
+            //}
+
+                    
+
             Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name);
             Console.WriteLine("           ---------------                           ---------------          ");
             Console.WriteLine("          |               |                         |               |         ");
@@ -54,7 +65,33 @@ namespace Projet_C_
             Console.WriteLine("                  |                                         |          ");
             Console.WriteLine("                  |                                         |          ");
             Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.PV + "                              " + enemy.Character.DefaultStats.PV);
+            if(select == 0) {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("             spell 1");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("             spell 2  ");
+                Console.WriteLine("             spell 3  ");
+            }
+            else
+            {
+                
+                Console.WriteLine("             spell 1");
+                
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("             spell 2  ");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("             spell 3  ");
+            }
             
+            for (int i = 0; i < 15; i++)
+            {
+                for (int j = 0; j < 120; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+            }
+
         }
 
         public void DrawMap()
@@ -84,9 +121,6 @@ namespace Projet_C_
                         case '/':
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
-                        
-
-
                         case '1':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             //Console.Write('O');
