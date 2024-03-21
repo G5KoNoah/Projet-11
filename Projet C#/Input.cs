@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,12 +10,25 @@ namespace Projet_C_
 {
     public class Input
     {
-       
+        Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>> _inputByState;
+        public Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>> InputByState { get => _inputByState; set => _inputByState = value; }
         public Input()
         {
-            
-            
+            Player player = GameManager.Instance.Player;
+            InputByState = new Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>>();
+
+            InputByState[DisplayState.Display.Map][ConsoleKey.LeftArrow] = () => player.MoveLeft(-1);
+            InputByState[DisplayState.Display.Map][ConsoleKey.UpArrow] = () => player.MoveTop(-1);
+            InputByState[DisplayState.Display.Map][ConsoleKey.RightArrow] = () => player.MoveLeft(1);
+            InputByState[DisplayState.Display.Map][ConsoleKey.DownArrow] = () => player.MoveTop(1);
+
+            InputByState[DisplayState.Display.Fight][ConsoleKey.UpArrow] = () => { };
+            InputByState[DisplayState.Display.Fight][ConsoleKey.DownArrow] = () => { };
         }
+
+        public void Input
+        
+
         public void InputTest()
         {
             Player player = GameManager.Instance.Player;
@@ -31,23 +45,19 @@ namespace Projet_C_
                     break;
 
                 case ConsoleKey.LeftArrow:
-                    //Console.WriteLine("Flèche gauche pressée");
                     player.MoveLeft(-1);
                     break;
 
                 case ConsoleKey.UpArrow:
-                    //Console.WriteLine("Flèche du haut pressée");
                     player.MoveTop(-1);
 
                     break;
 
                 case ConsoleKey.RightArrow:
-                    //Console.WriteLine("Flèche droite pressée");
                     player.MoveLeft(1);
                     break;
 
                 case ConsoleKey.DownArrow:
-                    //Console.WriteLine("Flèche du bas pressée");
                     player.MoveTop(1);
                     break;
 

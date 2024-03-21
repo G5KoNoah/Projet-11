@@ -8,14 +8,12 @@ namespace Projet_C_
 {
     public sealed class GameManager
     {
-        Input _Input;
-        Map _MapIsland;
-        Map _MapBoat;
-        Player _Player;
-        Draw _Draw;
-        IList<CharacterType> _ListCharacterTypes;
-        IList<Map> _ListMap;
-
+        Parser _parser;
+        Input _input;
+        Player _player;
+        Draw _draw;
+        List<CharacterType> _listTypes;
+        Dictionary<string, Map> _maps;
 
         private static GameManager instance = null;
         private static readonly object padlock = new object();
@@ -35,50 +33,43 @@ namespace Projet_C_
             }
         }
 
-        public Player Player { get => _Player; private set => _Player = value; }
-        public IList<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; private set => _ListCharacterTypes = value; }
-
-        public Draw Draw { get => _Draw; private set => _Draw = value; }
-        public Input Input { get => _Input; private set => _Input = value; }
-        public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
+        public Player Player { get => _player; private set => _player = value; }
+        public List<CharacterType> ListCharacterTypes { get => _listTypes; private set => _listTypes = value; }
+        public Draw Draw { get => _draw; private set => _draw = value; }
+        public Input Input { get => _input; private set => _input = value; }
+        public Dictionary<string, Map> Maps { get => _maps; set => _maps = value; }
+        public Parser Parser { get => _parser; set => _parser = value; }
+        
 
         public GameManager() {
+            Parser = new Parser();
             Input = new Input();
             Player = new Player();
-            ListCharacterTypes = new List<CharacterType>();  
-            ListMap = new List<Map>();
-
+            ListCharacterTypes = new List<CharacterType>();
+            Maps = new Dictionary<string, Map>();
 
             InitMap();
             InitType();
             InitCharacter();
 
+            Draw = new Draw(Maps["map1"], Player);
+
             Draw.DrawMap();
             Player.Move += Draw.DrawMap;
 
             Console.CursorVisible = false;
-
-
-
         }
 
         public void InitMap()
         {
-            Map mapIsland = new Map();
-            Draw = new Draw(mapIsland, Player);
-            var text = Draw.FileToText("..\\..\\..\\map1.txt");
-            mapIsland.MapList = text;
-
-            ListMap.Add(mapIsland);
-           
-
-            Map mapBoat = new Map();
-            var text2 = Draw.FileToText("..\\..\\..\\boat.txt");
-            mapBoat.MapList = text2;
-
-            ListMap.Add(mapBoat);
-
-
+            string[] names = { "map1", "boat" };
+            foreach (string name in names)
+            {
+                Map map = new Map();
+                var text = Parser.FileToText("..\\..\\..\\" + name +".txt");
+                map.MapList = text;
+                Maps.Add(name, map);
+            }
         }
 
         public void InitType()
@@ -108,10 +99,32 @@ namespace Projet_C_
         {
             while (true)
             {
-                Input.InputTest();
-                if (Player.LeftPos == 2)
+                switch (DisplayState)
                 {
-                    Draw.Map = ListMap[1];
+                    case Display.Menu:
+                        break;
+                    case Display.Map:
+                        Input.InputTest();
+                        if (Player.LeftPos == 10)
+                        {
+                            Draw.Map = Maps["boat"];
+                            DisplayState = Display.Transition;
+                        }
+                        break;
+                    case Display.Transition:
+                        Draw.DrawMap();
+                        Thread.Sleep(2000);
+                        Draw.Map = Maps["map1"];
+                        DisplayState = Display.Map;
+                        Draw.DrawMap();
+                        break;
+                    case Display.Fight:
+
+                        break;
+                    case Display.Inventary:
+                        break;
+                    case Display.Pause:
+                        break;
                 }
             }
         }

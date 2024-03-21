@@ -9,34 +9,16 @@ namespace Projet_C_
 {
     public class Draw
     {
-        Map _Map;
-        Player _Player;
+        Map _map;
+        Player _player;
 
-        public Map Map { get => _Map; set => _Map = value; }
-        public Player Player { get => _Player; set => _Player = value; }
+        public Map Map { get => _map; set => _map = value; }
+        public Player Player { get => _player; set => _player = value; }
 
         public Draw(Map map, Player player)
         {
-            _Map = map;
-            _Player = player;
-        }
-
-        public List<string> FileToText(string sFilePath)
-        {
-            List<string> lFileText = new List<string>();
-            StreamReader oFile = new StreamReader(sFilePath);
-            string line = oFile.ReadLine();
-            if (oFile != null)
-            {
-                while (line != null)
-                {
-                    lFileText.Add(line);
-                    line = oFile.ReadLine();
-
-                }
-                oFile.Close();
-            }
-            return lFileText;
+            Map = map;
+            Player = player;
         }
 
         public void DrawMap()

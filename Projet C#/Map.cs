@@ -9,9 +9,9 @@ namespace Projet_C_
 {
     public class Map
     {
-        List<string> _Map;
+        List<string> _map;
 
-        public List<string> MapList { get => _Map; set => _Map = value; }
+        public List<string> MapList { get => _map; set => _map = value; }
 
         public Map()
         {

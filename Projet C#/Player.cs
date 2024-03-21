@@ -8,28 +8,28 @@ namespace Projet_C_
 {
     public class Player
     {
-        List<Character> _character;
+        List<Character> _characters;
         List<Tools> _tools;
-        int _LeftPos;
-        int _TopPos;
+        int _leftPos;
+        int _topPos;
 
-        public List<Character> ListCharacter { get => _character; }
-        public List<Tools> ListTools { get => _tools; }
+        public List<Character> ListCharacter { get => _characters; private set => _characters = value; }
+        public List<Tools> ListTools { get => _tools; private set => _tools = value; }
 
-        public int LeftPos { get => _LeftPos; private set => _LeftPos = value; }
-        public int TopPos { get => _TopPos; private set => _TopPos = value; }
+        public int LeftPos { get => _leftPos; private set => _leftPos = value; }
+        public int TopPos { get => _topPos; private set => _topPos = value; }
         public Player()
         {
-            _character = null;
-            _tools = null;
-            _LeftPos = 6;
-            _TopPos = 10;
+            ListCharacter = new List<Character>(); ;
+            ListTools = new List<Tools>(); ;
+            LeftPos = 6;
+            TopPos = 10;
         }
 
         public event Action Move;
         public void MoveLeft(int nb)
         {
-            List<string> collisions = GameManager.Instance.ListMap[0].MapList;
+            List<string> collisions = GameManager.Instance.Maps["map1"].MapList;
             if (collisions[TopPos][LeftPos + nb] != '|') {
                 LeftPos += nb;
                 Move?.Invoke();
@@ -38,7 +38,7 @@ namespace Projet_C_
         }
         public void MoveTop(int nb)
         {
-            List<string> collisions = GameManager.Instance.ListMap[0].MapList;
+            List<string> collisions = GameManager.Instance.Maps["map1"].MapList;
             if (collisions[TopPos + nb][LeftPos] != '|')
             {
                 TopPos += nb;
