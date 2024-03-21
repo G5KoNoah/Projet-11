@@ -18,14 +18,14 @@ strengthType.Weakness = speedType;
 //Init CharacterStats
 
 CharacterStats luffyStats = new CharacterStats("Luffy", strengthType, 200.0f, 80.0f, 30.0f, 30.0f, 80.0f, 60.0f);
-
+CharacterStats crocoStats = new CharacterStats("Croco", rangeType, 200.0f, 80.0f, 30.0f, 30.0f, 80.0f, 60.0f);
 //Init Character
 
 Character luffy = new Character(luffyStats, 1);
-
+Character croco = new Character(crocoStats, 1);
 //Init Spells
 
-Spell redHawk = new Spell(1, "Red Hawk", 1.5f,50.0f, strengthType, luffy);
+Spell redHawk = new Spell(1, "Red Hawk", 1.5f,50.0f, strengthType);
 
 luffy.Spells.Add(redHawk);
 //Init Player
@@ -36,25 +36,44 @@ characters.Add(luffy);
 List<Tools> tools = new List<Tools>();
 
 Player player = new Player(characters, tools);
-Console.WriteLine(player.ListCharacter[0].Level);
-Console.WriteLine(player.ListCharacter[0].Attack);
-Console.WriteLine(player.ListCharacter[0].Spells[0].Level);
-Console.WriteLine(player.ListCharacter[0].Spells[0].Attack);
-//Console.WriteLine(player.ListCharacter[0].Level);
-//Console.WriteLine(player.ListCharacter[0].NeedXP);
-player.ListCharacter[0].GainExperience(10000);
-Console.WriteLine(player.ListCharacter[0].Spells[0].Attack);
-player.ListCharacter[0].Spells[0].GainExperience(10000);
-//Console.WriteLine(150);
-Console.WriteLine(player.ListCharacter[0].Level);
-Console.WriteLine(player.ListCharacter[0].Attack);
-//Console.WriteLine(player.ListCharacter[0].NeedXP);
-Console.WriteLine(player.ListCharacter[0].Spells[0].Level);
-Console.WriteLine(player.ListCharacter[0].Spells[0].Attack);
-//Console.WriteLine(player.ListCharacter[0].Spells[0].Level);
+
 Console.CursorVisible = false;
 
-GameManager.Instance.MainLoop();
+//draw.DrawMap();
+player.Move += draw.DrawMap;
+luffy.onAttack += attack;
+croco.OnDeath += died;
+croco.OnDamage += damage;
 
 
- 
+
+
+while (true)
+{
+    //input.InputTest(player);
+    while (croco.PV > 0)
+    {
+        Console.WriteLine(croco.PV);
+        croco.TakeDamage(luffy.SpellAttack(0));
+    }
+
+}
+
+void attack()
+{
+    Console.WriteLine("Attack");
+}
+
+void died()
+{
+    Console.WriteLine("mort");
+    Console.WriteLine(luffy.SpellAttack(0));
+    luffy.GainExperience(2000);
+    Console.WriteLine(luffy.Level);
+    Console.WriteLine(luffy.SpellAttack(0));
+}
+
+void damage()
+{
+    Console.WriteLine("damage");
+}
