@@ -3,7 +3,7 @@
   <Class Name="Projet_C_.Character" Collapsed="true">
     <Position X="10.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAQAAAgQEBAIAIAEIBAAASAgAAUGA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAgYEBAAAAAMABAAACigBAAAA=</HashCode>
       <FileName>Character.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,7 +38,7 @@
   <Class Name="Projet_C_.Map" Collapsed="true">
     <Position X="4.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAQAEAAAAAAAAAAAAAEAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAA=</HashCode>
       <FileName>Map.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -78,7 +78,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.CharacterStats" Collapsed="true">
-    <Position X="4.5" Y="4.25" Width="1.5" />
+    <Position X="9.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CharacterStats.cs</FileName>
@@ -87,7 +87,7 @@
   <Class Name="Projet_C_.Spell" Collapsed="true">
     <Position X="7.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAEQAQAAAAQAAAAEAAEABCAACAgAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAEQAQAAAAQAAAAEAAEADCAACAgAAAAA=</HashCode>
       <FileName>Spell.cs</FileName>
     </TypeIdentifier>
   </Class>

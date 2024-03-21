@@ -14,7 +14,9 @@ namespace Projet_C_
         Player _Player;
         Draw _Draw;
         IList<CharacterType> _ListCharacterTypes;
+        List<Character> _characters;
         IList<Map> _ListMap;
+        List<Tools> _tools;
 
 
         private static GameManager instance = null;
@@ -41,13 +43,16 @@ namespace Projet_C_
         public Draw Draw { get => _Draw; private set => _Draw = value; }
         public Input Input { get => _Input; private set => _Input = value; }
         public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
+        public List<Character> Characters { get => _characters; set => _characters = value; }
+        public List<Tools> Tools { get => _tools; set => _tools = value; }
 
         public GameManager() {
             Input = new Input();
-            Player = new Player();
             ListCharacterTypes = new List<CharacterType>();  
             ListMap = new List<Map>();
-
+            Characters = new List<Character>();
+            Tools = new List<Tools>();
+            Player = new Player(Characters, Tools);
 
             InitMap();
             InitType();
@@ -98,10 +103,18 @@ namespace Projet_C_
             //Init CharacterStats
 
             CharacterStats luffyStats = new CharacterStats("Luffy", ListCharacterTypes[2], 200, 80, 30, 30, 80, 60);
-
+            CharacterStats crocoStats = new CharacterStats("Croco", ListCharacterTypes[1], 200.0f, 80.0f, 30.0f, 30.0f, 80.0f, 60.0f);
             //Init Character
 
             Character luffy = new Character(luffyStats, 1);
+            Characters.Add(luffy);
+
+            Character croco = new Character(crocoStats, 1);
+            Characters.Add(croco);
+
+            Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
+
+            luffy.Spells.Add(redHawk);
         }
 
         public void MainLoop()
