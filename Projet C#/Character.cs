@@ -19,6 +19,7 @@ namespace Projet_C_
         public int NeedXP {  get => _needXP; }
 
         public List<Spell> Spells { get => _spells;  }
+        public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
 
         public event Action LevelUp;
         public event Action OnDamage;
@@ -31,12 +32,12 @@ namespace Projet_C_
             _level = level;
             _needXP = 100 * level;
 
-            PV = _defaultStats.PV;
-            PT = _defaultStats.PT;
-            Attack = _defaultStats.Attack;
-            Defense = _defaultStats.Defense;
-            AttackSpeed = _defaultStats.AttackSpeed;
-            Precision = _defaultStats.Precision;
+            PV = DefaultStats.PV;
+            PT = DefaultStats.PT;
+            Attack = DefaultStats.Attack;
+            Defense = DefaultStats.Defense;
+            AttackSpeed = DefaultStats.AttackSpeed;
+            Precision = DefaultStats.Precision;
 
             StatsLevel();
         }

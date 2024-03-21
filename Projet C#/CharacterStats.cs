@@ -14,8 +14,8 @@ namespace Projet_C_
 
         public CharacterStats(string name, CharacterType type, float Pv, float Pt, float attack, float defense, float attackSpeed, float precision)
         {
-            _name = name;
-            _type = type;
+            Name = name;
+            Type = type;
             PV = (float)Math.Round(Pv * type.PV);
             PT = (float)Math.Round(Pt * type.PT);
             Attack = (float)Math.Round(attack * type.Attack);
@@ -23,5 +23,8 @@ namespace Projet_C_
             AttackSpeed = (float)Math.Round(attackSpeed * type.AttackSpeed);
             Precision = (float)Math.Round(precision * type.Precision);
         }
+
+        public string Name { get => _name; set => _name = value; }
+        public CharacterType Type { get => _type; set => _type = value; }
     }
 }

@@ -111,23 +111,23 @@ namespace Projet_C_
                     {
                         case 1:
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             spell 1 ");
+                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 2");
                             Console.WriteLine("             spell 3");
                             break;
 
                         case 2:
-                            
-                            Console.WriteLine("             spell 1 ");
+
+                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Green;                           
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 3");
                             break;
 
-                        case 3:                            
-                            Console.WriteLine("             spell 1 ");     
+                        case 3:
+                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             spell 3");
