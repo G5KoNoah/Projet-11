@@ -56,7 +56,7 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---                                                          ");
             Console.WriteLine("                  |                                         |                                                           ");
             Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.PV + "                              " + enemy.Character.DefaultStats.PV+ "                                                                  ");
+            Console.WriteLine("              " + player.ListCharacter[0].PV + "                              " + enemy.Character.PV+ "                                                                  ");
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:

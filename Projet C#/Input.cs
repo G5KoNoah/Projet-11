@@ -125,7 +125,9 @@ namespace Projet_C_
                             switch (Select)
                             {
                                 case 1:
-                                    
+                                    enemy.Character.TakeDamage(player.ListCharacter[0].SpellAttack(0));
+                                    GameManager.Instance.Draw.Fight(player, enemy, Select);
+
 
 
                                     break;

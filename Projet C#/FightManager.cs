@@ -17,6 +17,12 @@ namespace Projet_C_
             while (true)
             {
                 GameManager.Instance.Input.InputFight(player, enemy);
+
+                if (enemy.Character.PV == 0)
+                {
+                    Console.WriteLine("c'est finit");
+                    player.ListCharacter[0].GainExperience(1000);
+                }
             }
             
         }
