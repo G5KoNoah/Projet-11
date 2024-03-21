@@ -11,18 +11,12 @@ namespace Projet_C_
         public FightManager() { }
         public void MainLoop(Player player ,Enemy enemy)
         {
-            Console.CursorVisible = true;
-            Console.CursorSize = 100;
+            
+            
             GameManager.Instance.Draw.Fight(player, enemy, 1);
             while (true)
             {
-                if(enemy.Character.PV == 0)
-                {
-                    //GameManager.Instance.Draw.Fight(player, enemy);
-                }
                 GameManager.Instance.Input.InputFight(player, enemy);
-
-
             }
             
         }

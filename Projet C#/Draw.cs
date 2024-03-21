@@ -12,6 +12,8 @@ namespace Projet_C_
         Map _Map;
         Player _Player;
 
+        
+
         public Map Map { get => _Map; set => _Map = value; }
         public Player Player { get => _Player; set => _Player = value; }
 
@@ -19,6 +21,7 @@ namespace Projet_C_
         {
             _Map = map;
             _Player = player;
+            
         }
 
         public List<string> FileToText(string sFilePath)
@@ -42,48 +45,106 @@ namespace Projet_C_
         public void Fight(Player player, Enemy enemy, int select)
         {
             Console.BackgroundColor = ConsoleColor.Red;
-            //for (int i = 0; i < 60; i++)
-            //{
-            //    for (int j = 0; j < 30 ; j++)
-            //    {
-            //        Console.Write(' ');
-            //    }
-            //    Console.WriteLine();
-            //}
-
-                    
-
-            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name);
-            Console.WriteLine("           ---------------                           ---------------          ");
-            Console.WriteLine("          |               |                         |               |         ");
-            Console.WriteLine("          |               |                         |               |         ");
-            Console.WriteLine("          |               |                         |               |         ");
-            Console.WriteLine("           ---------------                           ---------------          ");
-            Console.WriteLine("                  |                                         |          ");
-            Console.WriteLine("                  |                                         |          ");
-            Console.WriteLine("                 ---                                       ---          ");
-            Console.WriteLine("                  |                                         |          ");
-            Console.WriteLine("                  |                                         |          ");
-            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.PV + "                              " + enemy.Character.DefaultStats.PV);
-            if(select == 0) {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("             spell 1");
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("             spell 2  ");
-                Console.WriteLine("             spell 3  ");
-            }
-            else
+            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
+            Console.WriteLine("           ---------------                           ---------------                                                    ");
+            Console.WriteLine("          |               |                         |               |                                                   ");
+            Console.WriteLine("          |               |                         |               |                                                   ");
+            Console.WriteLine("          |               |                         |               |                                                   ");
+            Console.WriteLine("           ---------------                           ---------------                                                    ");
+            Console.WriteLine("                  |                                         |                                                           ");
+            Console.WriteLine("                  |                                         |                                                           ");
+            Console.WriteLine("                 ---                                       ---                                                          ");
+            Console.WriteLine("                  |                                         |                                                           ");
+            Console.WriteLine("                  |                                         |                                                           ");
+            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.PV + "                              " + enemy.Character.DefaultStats.PV+ "                                                                  ");
+            switch (GameManager.Instance.Input.State)
             {
-                
-                Console.WriteLine("             spell 1");
-                
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("             spell 2  ");
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("             spell 3  ");
+                case Input.StateFight.firstState:
+                    switch (select)
+                    {
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             attaquer                                                                                                   ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("             fuire                                                                                                      ");
+                            Console.WriteLine("             objet                                                                                                      ");
+                            Console.WriteLine("             personnage                                                                                                 ");
+                            break;
+
+                        case 2:
+                            Console.WriteLine("             attaquer");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             fuire");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("             objet");
+                            Console.WriteLine("             personnage");
+                            break;
+
+
+                        case 3:
+                            Console.WriteLine("             attaquer");
+                            Console.WriteLine("             fuire");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             objet");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("             personnage");
+                            break;
+
+                        case 4:
+                            Console.WriteLine("             attaquer");
+                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             objet");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             personnage");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            break;
+
+
+
+                    }
+
+                    break;
+
+                case Input.StateFight.FightState:
+
+                    switch (select)
+                    {
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             spell 1 ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("             spell 2");
+                            Console.WriteLine("             spell 3");
+                            break;
+
+                        case 2:
+                            
+                            Console.WriteLine("             spell 1 ");
+                            Console.ForegroundColor = ConsoleColor.Green;                           
+                            Console.WriteLine("             spell 2");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("             spell 3");
+                            break;
+
+                        case 3:                            
+                            Console.WriteLine("             spell 1 ");     
+                            Console.WriteLine("             spell 2");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             spell 3");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            break;
+
+                    }
+                                      
+                    break;
             }
             
-            for (int i = 0; i < 15; i++)
+
+
+
+
+
+                for (int i = 0; i < 14; i++)
             {
                 for (int j = 0; j < 120; j++)
                 {
@@ -91,6 +152,7 @@ namespace Projet_C_
                 }
                 Console.WriteLine();
             }
+            Console.SetCursorPosition(0, 0);
 
         }
 
