@@ -145,7 +145,7 @@ namespace Projet_C_
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
                             {
-                                Select = 3;
+                                Select = character.Spells.Count;
                             }
                             else
                             {
@@ -155,7 +155,7 @@ namespace Projet_C_
                             GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                             break;
                         case ConsoleKey.DownArrow:
-                            if (Select == 3)
+                            if (Select == character.Spells.Count)
                             {
                                 Select = 1;
                             }

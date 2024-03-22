@@ -128,8 +128,10 @@ namespace Projet_C_
             Characters.Add(croco);
 
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
+            Spell attaque2 = new Spell(1, "Attaque 2", 1.5f, 50.0f, ListCharacterTypes[2]);
 
             luffy.Spells.Add(redHawk);
+            luffy.Spells.Add(attaque2);
             _enemy.Character.Spells.Add(redHawk);
         }
 

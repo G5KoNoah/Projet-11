@@ -104,31 +104,47 @@ namespace Projet_C_
 
                 case Input.StateFight.FightState:
 
-                    switch (select)
+                    for (int i = 0; i < character.Spells.Count; i++)
                     {
-                        case 1:
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        if (i + 1 == select)
+                        {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + character.Spells[0].Name);
+                            Console.WriteLine("             " + character.Spells[i].Name + "                ");
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             spell 2");
-                            Console.WriteLine("             spell 3");
-                            break;
-                        case 2:
+                        }
+                        else
+                        {
+                            Console.WriteLine("             " + character.Spells[i].Name + "                ");
+                        }
 
-                            Console.WriteLine("             " + character.Spells[0].Name);
-                            Console.ForegroundColor = ConsoleColor.Green;                           
-                            Console.WriteLine("             spell 2");
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             spell 3");
-                            break;
-                        case 3:
-                            Console.WriteLine("             " + character.Spells[0].Name);
-                            Console.WriteLine("             spell 2");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             spell 3");
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            break;
                     }
+
+                    //switch (select)
+                    //{
+                    //    case 1:
+                    //        Console.ForegroundColor = ConsoleColor.Green;
+                    //        Console.WriteLine("             " + character.Spells[0].Name);
+                    //        Console.ForegroundColor = ConsoleColor.Black;
+                    //        Console.WriteLine("             spell 2");
+                    //        Console.WriteLine("             spell 3");
+                    //        break;
+                    //    case 2:
+
+                    //        Console.WriteLine("             " + character.Spells[0].Name);
+                    //        Console.ForegroundColor = ConsoleColor.Green;                           
+                    //        Console.WriteLine("             spell 2");
+                    //        Console.ForegroundColor = ConsoleColor.Black;
+                    //        Console.WriteLine("             spell 3");
+                    //        break;
+                    //    case 3:
+                    //        Console.WriteLine("             " + character.Spells[0].Name);
+                    //        Console.WriteLine("             spell 2");
+                    //        Console.ForegroundColor = ConsoleColor.Green;
+                    //        Console.WriteLine("             spell 3");
+                    //        Console.ForegroundColor = ConsoleColor.Black;
+                    //        break;
+                    //}
                                       
                     break;
 
