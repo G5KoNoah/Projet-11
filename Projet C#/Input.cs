@@ -135,13 +135,25 @@ namespace Projet_C_
 
                             
                             enemy.Character.TakeDamage(character.SpellAttack(Select - 1));
-                            //Console.WriteLine(player.ListCharacter[0].SpellAttack(0));         
+                            Console.SetCursorPosition(35, 10);
+                            Console.WriteLine(character.SpellAttack(Select - 1));
+                            
+                            Thread.Sleep(1000);
+                            Console.SetCursorPosition(0, 0);
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                            
                             Random aleatoire = new Random();
                             int spell = aleatoire.Next(0, enemy.Character.Spells.Count);
-                            character.TakeDamage(enemy.Character.SpellAttack(spell));                                   
-                            State = StateFight.firstState;                
+                            character.TakeDamage(enemy.Character.SpellAttack(spell));
+                            Console.SetCursorPosition(35, 10);
+                            Console.WriteLine(enemy.Character.SpellAttack(spell));
+
+                            Thread.Sleep(1000);
+                            Console.SetCursorPosition(0, 0);
+                            State = StateFight.firstState;
                             GameManager.Instance.Draw.Fight(player, enemy, Select, character);
-  
+
+
                             break;
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
