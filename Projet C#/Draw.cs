@@ -42,10 +42,10 @@ namespace Projet_C_
             return lFileText;
         }
 
-        public void Fight(Player player, Enemy enemy, int select)
+        public void Fight(Player player, Enemy enemy, int select, Character character)
         {
             Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
+            Console.WriteLine("              " + character.DefaultStats.Name + "  "+ character.DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
             Console.WriteLine("           ---------------                           ---------------                                                    ");
             Console.WriteLine("          |               |                         |               |                                                   ");
             Console.WriteLine("          |               |                         |               |                                                   ");
@@ -56,7 +56,7 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---                                                          ");
             Console.WriteLine("                  |                                         |                                                           ");
             Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("              " + player.ListCharacter[0].PV + "                              " + enemy.Character.PV+ "                                                                  ");
+            Console.WriteLine("              " + character.PV + "                              " + enemy.Character.PV + "                                                                  "); ;
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
@@ -108,21 +108,21 @@ namespace Projet_C_
                     {
                         case 1:
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + character.Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 2");
                             Console.WriteLine("             spell 3");
                             break;
                         case 2:
 
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + character.Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Green;                           
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 3");
                             break;
                         case 3:
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + character.Spells[0].Name);
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             spell 3");
@@ -130,6 +130,26 @@ namespace Projet_C_
                             break;
                     }
                                       
+                    break;
+
+                case Input.StateFight.PersoState:
+
+                    for (int i = 0; i < player.ListCharacter.Count; i++ )
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        if (i+1 == select)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             " + player.ListCharacter[i].DefaultStats.Name + "                ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        }
+                        else
+                        {
+                            Console.WriteLine("             " + player.ListCharacter[i].DefaultStats.Name + "                ");
+                        }
+                        
+                    }
+
                     break;
             }
 

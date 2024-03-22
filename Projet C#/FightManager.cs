@@ -8,15 +8,20 @@ namespace Projet_C_
 {
     public class FightManager
     {
+
+        Character _character;
         public FightManager() { }
+
+        public Character Character { get => _character; set => _character = value; }
+
         public void MainLoop(Player player ,Enemy enemy)
         {
-            
-            
-            GameManager.Instance.Draw.Fight(player, enemy, 1);
+
+            Character = player.ListCharacter[0];
+            GameManager.Instance.Draw.Fight(player, enemy, GameManager.Instance.Input.Select, Character);
             while (true)
             {
-                GameManager.Instance.Input.InputFight(player, enemy);
+                GameManager.Instance.Input.InputFight(player, enemy, Character);
 
                 if (enemy.Character.PV == 0)
                 {
