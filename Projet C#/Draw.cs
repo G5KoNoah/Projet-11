@@ -72,30 +72,30 @@ namespace Projet_C_
                             break;
 
                         case 2:
-                            Console.WriteLine("             attaquer");
+                            Console.WriteLine("             attaquer                      ");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuire                         ");
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             objet");
-                            Console.WriteLine("             personnage");
+                            Console.WriteLine("             objet                         ");
+                            Console.WriteLine("             personnage                    ");
                             break;
 
 
                         case 3:
-                            Console.WriteLine("             attaquer");
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             attaquer                     ");
+                            Console.WriteLine("             fuire                   ");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             objet");
+                            Console.WriteLine("             objet                  ");
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             personnage");
+                            Console.WriteLine("             personnage               ");
                             break;
 
                         case 4:
-                            Console.WriteLine("             attaquer");
-                            Console.WriteLine("             fuire");
-                            Console.WriteLine("             objet");
+                            Console.WriteLine("             attaquer               ");
+                            Console.WriteLine("             fuire               ");
+                            Console.WriteLine("             objet            ");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             personnage");
+                            Console.WriteLine("             personnage            ");
                             Console.ForegroundColor = ConsoleColor.Black;
                             break;
                     }
@@ -119,32 +119,6 @@ namespace Projet_C_
                         }
 
                     }
-
-                    //switch (select)
-                    //{
-                    //    case 1:
-                    //        Console.ForegroundColor = ConsoleColor.Green;
-                    //        Console.WriteLine("             " + character.Spells[0].Name);
-                    //        Console.ForegroundColor = ConsoleColor.Black;
-                    //        Console.WriteLine("             spell 2");
-                    //        Console.WriteLine("             spell 3");
-                    //        break;
-                    //    case 2:
-
-                    //        Console.WriteLine("             " + character.Spells[0].Name);
-                    //        Console.ForegroundColor = ConsoleColor.Green;                           
-                    //        Console.WriteLine("             spell 2");
-                    //        Console.ForegroundColor = ConsoleColor.Black;
-                    //        Console.WriteLine("             spell 3");
-                    //        break;
-                    //    case 3:
-                    //        Console.WriteLine("             " + character.Spells[0].Name);
-                    //        Console.WriteLine("             spell 2");
-                    //        Console.ForegroundColor = ConsoleColor.Green;
-                    //        Console.WriteLine("             spell 3");
-                    //        Console.ForegroundColor = ConsoleColor.Black;
-                    //        break;
-                    //}
                                       
                     break;
 

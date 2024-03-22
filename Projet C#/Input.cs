@@ -127,20 +127,15 @@ namespace Projet_C_
                     {
                         case ConsoleKey.Enter:
 
-                            switch (Select)
-                            {
-                                case 1:
-                                    enemy.Character.TakeDamage(character.SpellAttack(0));
-                                    //Console.WriteLine(player.ListCharacter[0].SpellAttack(0));
-                                    
-                                    Random aleatoire = new Random();
-                                    int spell = aleatoire.Next(0, 2);
-                                    player.ListCharacter[0].TakeDamage(enemy.Character.SpellAttack(spell));
-                                    
-                                    State = StateFight.firstState;                
-                                    GameManager.Instance.Draw.Fight(player, enemy, Select, character);
-                                    break;
-                            }
+                            
+                            enemy.Character.TakeDamage(character.SpellAttack(Select - 1));
+                            //Console.WriteLine(player.ListCharacter[0].SpellAttack(0));         
+                            Random aleatoire = new Random();
+                            int spell = aleatoire.Next(0, 2);
+                            character.TakeDamage(enemy.Character.SpellAttack(spell));                                   
+                            State = StateFight.firstState;                
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+  
                             break;
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
