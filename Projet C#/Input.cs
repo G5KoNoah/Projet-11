@@ -112,7 +112,7 @@ namespace Projet_C_
                     }
                     Console.BackgroundColor = ConsoleColor.Yellow;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                          ");
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                         ");
                     GameManager.Instance.Draw.Pause(SelectPause);
                     break;
                 case ConsoleKey.DownArrow :
