@@ -43,29 +43,45 @@ namespace Projet_C_
         }
         public void Pause( int select)
         {
+
+
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("                                                 " + GameManager.Instance.StartDateTime.Day + "                                                                           ") ;
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("                                 ONE PIECE                                                                              ") ;
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+
+
             switch (select)
             {
                 case 1:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("             Explore                                                                                                   ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("             Explore                                                                                                    ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.WriteLine("                                                                                                                        ");
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("             Quit                                                                                                      ");
+                    Console.WriteLine("             Quit                                                                                                       ");
                     break;
 
                 case 2:
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("             Explore                                                                                                   ");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("             Quit                                                                                                      ");
+                    Console.WriteLine("             Explore                                                                                             ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("             Quit                                                                                                ");
                     break;
 
 
 
             }
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 20; i++)
             {
                 for (int j = 0; j < 120; j++)
                 {
@@ -225,6 +241,10 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.DarkCyan;
                             //Console.Write('O');
                             break;
+                        case '&':
+                            Console.BackgroundColor= ConsoleColor.Black;
+                            break;
+
 
                     }
                     if (i == Player.TopPos && j == Player.LeftPos)

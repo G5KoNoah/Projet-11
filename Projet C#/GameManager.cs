@@ -156,6 +156,11 @@ namespace Projet_C_
                     Thread.Sleep(2000);
                     FightManager.MainLoop(Player, _enemy);
 
+                }else if(Draw.Map.MapList[Player.TopPos][Player.LeftPos] == '&')
+                {
+                    Console.WriteLine("Fight the boss !!!!");
+                    Thread.Sleep(2000);
+                    FightManager.MainLoop(Player, _enemy);
                 }
             }
         }

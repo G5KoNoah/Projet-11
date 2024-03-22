@@ -12,6 +12,7 @@ namespace Projet_C_
     {
         int _select;
         int _selectPause;
+        TimeSpan _timer;
         public enum StateFight { firstState, FightState };
 
         StateFight _state;
@@ -19,6 +20,7 @@ namespace Projet_C_
         public int Select { get => _select; set => _select = value; }
         public StateFight State { get => _state; set => _state = value; }
         public int SelectPause { get => _selectPause; set => _selectPause = value; }
+        public TimeSpan Timer { get => _timer; set => _timer = value; }
 
         public Input()
         {
@@ -42,7 +44,12 @@ namespace Projet_C_
                     break;
 
                 case ConsoleKey.Escape:
-                    Console.WriteLine("Echape pressée");
+                    //Console.WriteLine("Echape pressée");
+                    DateTime dateTime = DateTime.Now;
+                    Timer = dateTime - GameManager.Instance.StartDateTime;
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                          ");
                     GameManager.Instance.PauseManager.MainPause() ;
                     break;
 
@@ -78,6 +85,10 @@ namespace Projet_C_
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (key.Key)
             {
+                case ConsoleKey.Escape:
+                    GameManager.Instance.Draw.DrawMap();
+                    GameManager.Instance.MainLoop();
+                    break;
                 case ConsoleKey.Enter:
                     switch(SelectPause)
                     {
@@ -99,6 +110,9 @@ namespace Projet_C_
                     {
                         SelectPause = 1;
                     }
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                          ");
                     GameManager.Instance.Draw.Pause(SelectPause);
                     break;
                 case ConsoleKey.DownArrow :
@@ -110,6 +124,9 @@ namespace Projet_C_
                     {
                         SelectPause = 1;
                     }
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                          ");
                     GameManager.Instance.Draw.Pause(SelectPause);
                     break;
 
