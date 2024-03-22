@@ -9,7 +9,6 @@ namespace Projet_C_
     public sealed class GameManager
     {
         Parser _parser;
-        Input _input;
         Player _player;
         Draw _draw;
         List<CharacterType> _listTypes;
@@ -36,26 +35,25 @@ namespace Projet_C_
         public Player Player { get => _player; private set => _player = value; }
         public List<CharacterType> ListCharacterTypes { get => _listTypes; private set => _listTypes = value; }
         public Draw Draw { get => _draw; private set => _draw = value; }
-        public Input Input { get => _input; private set => _input = value; }
         public Dictionary<string, Map> Maps { get => _maps; set => _maps = value; }
         public Parser Parser { get => _parser; set => _parser = value; }
         
 
         public GameManager() {
             Parser = new Parser();
-            Input = new Input();
-            Player = new Player();
+
             ListCharacterTypes = new List<CharacterType>();
             Maps = new Dictionary<string, Map>();
 
             InitMap();
             InitType();
             InitCharacter();
+            
+            Player = new Player(Maps["map1"].PlayerPos);
+            Draw = new Draw();
 
-            Draw = new Draw(Maps["map1"], Player);
-
-            Draw.DrawMap();
-            Player.Move += Draw.DrawMap;
+            //Draw.DrawMap();
+            //Player.Move += Draw.DrawMap;
 
             Console.CursorVisible = false;
         }
@@ -65,9 +63,8 @@ namespace Projet_C_
             string[] names = { "map1", "boat" };
             foreach (string name in names)
             {
-                Map map = new Map();
-                var text = Parser.FileToText("..\\..\\..\\" + name +".txt");
-                map.MapList = text;
+                var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");
+                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos);
                 Maps.Add(name, map);
             }
         }
@@ -99,33 +96,9 @@ namespace Projet_C_
         {
             while (true)
             {
-                switch (DisplayState)
-                {
-                    case Display.Menu:
-                        break;
-                    case Display.Map:
-                        Input.InputTest();
-                        if (Player.LeftPos == 10)
-                        {
-                            Draw.Map = Maps["boat"];
-                            DisplayState = Display.Transition;
-                        }
-                        break;
-                    case Display.Transition:
-                        Draw.DrawMap();
-                        Thread.Sleep(2000);
-                        Draw.Map = Maps["map1"];
-                        DisplayState = Display.Map;
-                        Draw.DrawMap();
-                        break;
-                    case Display.Fight:
-
-                        break;
-                    case Display.Inventary:
-                        break;
-                    case Display.Pause:
-                        break;
-                }
+                DisplayState.Instance.EnterState();
+                DisplayState.Instance.Update();
+                DisplayState.Instance.ExitState();
             }
         }
     }

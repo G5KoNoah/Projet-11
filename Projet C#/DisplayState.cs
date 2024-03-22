@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    public class DisplayState
+    public sealed class DisplayState
     {
         bool _exit;
         bool _enter;
@@ -44,23 +45,32 @@ namespace Projet_C_
         public bool Exit { get => _exit; set => _exit = value; }
         public bool Enter { get => _enter; set => _enter = value; }
 
-        public DisplayState() {
+        public DisplayState() 
+        {
             State = Display.Map;
             Exit = false;
             Enter = true;
         }
 
-        private void EnterState()
+        public void EnterState()
         {
             if (Enter)
             {
+                Draw draw = GameManager.Instance.Draw;
+                var maps = GameManager.Instance.Maps;
+                Player player = GameManager.Instance.Player;
                 switch (State)
                 {
                     case Display.Menu:
                         break;
                     case Display.Map:
+                        draw.Map = maps["map1"];
+                        draw.DrawMap();
+                        player.Move += draw.DrawMap;
                         break;
-                    case Display.Transition: 
+                    case Display.Transition:
+                        draw.Map = maps["boat"];
+                        draw.DrawMap();
                         break;
                     case Display.Fight:
                         break;
@@ -69,6 +79,63 @@ namespace Projet_C_
                     case Display.Pause: 
                         break;
                 }
+                Enter = false;
+            }
+        }
+
+        public void Update()
+        {
+            Player player = GameManager.Instance.Player;
+            Input.Instance.InputGame(State);
+            switch (State)
+            {
+                case Display.Menu:
+                    break;
+                case Display.Map:
+                    if (player.LeftPos == 10)
+                    {
+                        State = Display.Transition;
+                        Exit = true;
+                    }
+                    break;
+                case Display.Transition:
+                    Thread.Sleep(2000);
+                    State = Display.Map;
+                    Exit = true;
+                    break;
+                case Display.Fight:
+                    break;
+                case Display.Inventary:
+                    break;
+                case Display.Pause:
+                    break;
+            }
+        }
+
+        public void ExitState()
+        {
+            if (Exit)
+            {
+                Draw draw = GameManager.Instance.Draw;
+                Player player = GameManager.Instance.Player;
+                switch (State)
+                {
+                    case Display.Menu:
+                        break;
+                    case Display.Map:
+                        player.Move -= draw.DrawMap;
+                        break;
+                    case Display.Transition:
+                        break;
+                    case Display.Fight:
+                        break;
+                    case Display.Inventary:
+                        break;
+                    case Display.Pause:
+                        break;
+                }
+                Enter = true;
+                Exit = false;
             }
         }
     }

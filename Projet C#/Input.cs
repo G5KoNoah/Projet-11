@@ -8,64 +8,57 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    public class Input
+    public sealed class Input
     {
         Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>> _inputByState;
         public Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>> InputByState { get => _inputByState; set => _inputByState = value; }
+
+        private static Input instance = null;
+        private static readonly object padlock = new object();
+
+        public static Input Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new Input();
+                    }
+                    return instance;
+                }
+            }
+        }
         public Input()
         {
             Player player = GameManager.Instance.Player;
-            InputByState = new Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>>();
-
-            InputByState[DisplayState.Display.Map][ConsoleKey.LeftArrow] = () => player.MoveLeft(-1);
-            InputByState[DisplayState.Display.Map][ConsoleKey.UpArrow] = () => player.MoveTop(-1);
-            InputByState[DisplayState.Display.Map][ConsoleKey.RightArrow] = () => player.MoveLeft(1);
-            InputByState[DisplayState.Display.Map][ConsoleKey.DownArrow] = () => player.MoveTop(1);
-
-            InputByState[DisplayState.Display.Fight][ConsoleKey.UpArrow] = () => { };
-            InputByState[DisplayState.Display.Fight][ConsoleKey.DownArrow] = () => { };
+            InputByState = new Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>>
+{
+                { DisplayState.Display.Map, new Dictionary<ConsoleKey, Action>
+                    {
+                        { ConsoleKey.LeftArrow, () => { player.MoveLeft(-1); }},
+                        { ConsoleKey.RightArrow, () => { player.MoveLeft(1); }},
+                        { ConsoleKey.UpArrow, () => { player.MoveTop(-1); }},
+                        { ConsoleKey.DownArrow, () => { player.MoveTop(1); }}
+                    }
+                },
+                { DisplayState.Display.Fight, new Dictionary<ConsoleKey, Action>
+                    {
+                        { ConsoleKey.UpArrow, () => {  }},
+                        { ConsoleKey.DownArrow, () => {  }}
+                    }
+                }
+            };
         }
 
-        public void Input
-        
-
-        public void InputTest()
+        public void InputGame(DisplayState.Display currentState)
         {
-            Player player = GameManager.Instance.Player;
-            ConsoleKeyInfo  key = Console.ReadKey(true);
-            switch (key.Key)
+            ConsoleKey key = Console.ReadKey(true).Key;
+            if (InputByState.ContainsKey(currentState) && InputByState[currentState].ContainsKey(key))
             {
-                case ConsoleKey.Enter:
-                    Console.WriteLine("Entrer pressée");
-                    
-                    break;
-
-                case ConsoleKey.Escape:
-                    Console.WriteLine("Echape pressée");
-                    break;
-
-                case ConsoleKey.LeftArrow:
-                    player.MoveLeft(-1);
-                    break;
-
-                case ConsoleKey.UpArrow:
-                    player.MoveTop(-1);
-
-                    break;
-
-                case ConsoleKey.RightArrow:
-                    player.MoveLeft(1);
-                    break;
-
-                case ConsoleKey.DownArrow:
-                    player.MoveTop(1);
-                    break;
-
-                default:
-                    break;
+                InputByState[currentState][key].Invoke();
             }
-        }
-
-        
+        }  
     }
 }

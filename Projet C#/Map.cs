@@ -10,12 +10,15 @@ namespace Projet_C_
     public class Map
     {
         List<string> _map;
+        (int, int) _playerPos;
 
         public List<string> MapList { get => _map; set => _map = value; }
+        public (int, int) PlayerPos { get => _playerPos; set => _playerPos = value; }
 
-        public Map()
+        public Map(List<string> mapList, (int, int) playerPos)
         {
-            MapList = new List<string>();
+            MapList = mapList;
+            PlayerPos = playerPos;
         }
 
     }

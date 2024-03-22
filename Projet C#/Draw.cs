@@ -10,20 +10,17 @@ namespace Projet_C_
     public class Draw
     {
         Map _map;
-        Player _player;
-
         public Map Map { get => _map; set => _map = value; }
-        public Player Player { get => _player; set => _player = value; }
-
-        public Draw(Map map, Player player)
+        public Draw()
         {
-            Map = map;
-            Player = player;
+            Map = null;
         }
 
         public void DrawMap()
         {
             //Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Player player = GameManager.Instance.Player;
             List<string> lMap = Map.MapList;
            
             for (int i = 0; i < lMap.Count; i++)
@@ -61,7 +58,8 @@ namespace Projet_C_
                             break;
 
                     }
-                    if (i == Player.TopPos && j == Player.LeftPos)
+                    
+                    if (i == player.TopPos && j == player.LeftPos)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('P');
@@ -80,7 +78,6 @@ namespace Projet_C_
                         
 
             }
-            Console.SetCursorPosition(0, 0);
         }
     }
 }
