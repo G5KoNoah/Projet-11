@@ -101,7 +101,7 @@ namespace Projet_C_
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
                             {
-                                Select = 4;
+                                Select = GameManager.Instance.FightManager.Choix.Length;
                             }
                             else
                             {
@@ -111,7 +111,7 @@ namespace Projet_C_
                             GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                             break;
                         case ConsoleKey.DownArrow:
-                            if (Select == 4)
+                            if (Select == GameManager.Instance.FightManager.Choix.Length)
                             {
                                 Select = 1;
                             }
