@@ -60,46 +60,22 @@ namespace Projet_C_
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
-                    switch (select)
+
+                    for (int i = 0; i < GameManager.Instance.FightManager.Choix.Length; i++)
                     {
-                        case 1:
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        if (i + 1 == select)
+                        {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             attaquer                                                                                                   ");
+                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                ");
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             fuire                                                                                                      ");
-                            Console.WriteLine("             objet                                                                                                      ");
-                            Console.WriteLine("             personnage                                                                                                 ");
-                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                ");
+                        }
 
-                        case 2:
-                            Console.WriteLine("             attaquer                      ");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             fuire                         ");
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             objet                         ");
-                            Console.WriteLine("             personnage                    ");
-                            break;
-
-
-                        case 3:
-                            Console.WriteLine("             attaquer                     ");
-                            Console.WriteLine("             fuire                   ");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             objet                  ");
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             personnage               ");
-                            break;
-
-                        case 4:
-                            Console.WriteLine("             attaquer               ");
-                            Console.WriteLine("             fuire               ");
-                            Console.WriteLine("             objet            ");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             personnage            ");
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            break;
                     }
-
                     break;
 
                 case Input.StateFight.FightState:
@@ -120,6 +96,26 @@ namespace Projet_C_
 
                     }
                                       
+                    break;
+
+                case Input.StateFight.ObjectState:
+
+                    for (int i = 0; i < player.ListTools.Count; i++)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        if (i + 1 == select)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("             " + player.ListTools[i].Name + "                ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        }
+                        else
+                        {
+                            Console.WriteLine("             " + player.ListTools[i].Name + "                ");
+                        }
+
+                    }
+
                     break;
 
                 case Input.StateFight.PersoState:

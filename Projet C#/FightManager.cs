@@ -10,9 +10,14 @@ namespace Projet_C_
     {
 
         Character _character;
-        public FightManager() { }
+        string[] _choix;
+        public FightManager() {
+            Choix = new string[] { "attaquer", "fuire", "objet", "personnage" };
+        }
+
 
         public Character Character { get => _character; set => _character = value; }
+        public string[] Choix { get => _choix; set => _choix = value; }
 
         public void MainLoop(Player player ,Enemy enemy)
         {

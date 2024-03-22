@@ -130,9 +130,15 @@ namespace Projet_C_
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
             Spell attaque2 = new Spell(1, "Attaque 2", 1.5f, 50.0f, ListCharacterTypes[2]);
 
+            Tools tools1 = new Tools("potion","santé",2,3,2,3,5,8);
+            Tools tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);
+
             luffy.Spells.Add(redHawk);
             luffy.Spells.Add(attaque2);
             _enemy.Character.Spells.Add(redHawk);
+
+            Player.ListTools.Add(tools1);
+            Player.ListTools.Add(tools2);
         }
 
         public void MainLoop()
