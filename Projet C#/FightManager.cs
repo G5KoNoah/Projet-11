@@ -21,7 +21,7 @@ namespace Projet_C_
                 if (enemy.Character.PV == 0)
                 {
                     Console.WriteLine("c'est finit");
-                    player.ListCharacter[0].GainExperience(1000);
+                    player.ListCharacter["Luffy"].GainExperience(1000);
                 }
             }
             

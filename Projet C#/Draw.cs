@@ -95,7 +95,7 @@ namespace Projet_C_
         public void Fight(Player player, Enemy enemy, int select)
         {
             Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
+            Console.WriteLine("              " + player.ListCharacter["Luffy"].DefaultStats.Name + "  "+ player.ListCharacter["Luffy"].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
             Console.WriteLine("           ---------------                           ---------------                                                    ");
             Console.WriteLine("          |               |                         |               |                                                   ");
             Console.WriteLine("          |               |                         |               |                                                   ");
@@ -106,7 +106,7 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---                                                          ");
             Console.WriteLine("                  |                                         |                                                           ");
             Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("              " + player.ListCharacter[0].PV + "                              " + enemy.Character.PV+ "                                                                  ");
+            Console.WriteLine("              " + player.ListCharacter["Luffy"].PV + "                              " + enemy.Character.PV+ "                                                                  ");
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
@@ -161,7 +161,7 @@ namespace Projet_C_
                     {
                         case 1:
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 2");
                             Console.WriteLine("             spell 3");
@@ -169,7 +169,7 @@ namespace Projet_C_
 
                         case 2:
 
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Green;                           
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Black;
@@ -177,7 +177,7 @@ namespace Projet_C_
                             break;
 
                         case 3:
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].Spells[0].Name);
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             spell 3");

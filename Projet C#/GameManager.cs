@@ -16,9 +16,15 @@ namespace Projet_C_
         Map _MapBoat;
         Player _Player;
         Draw _Draw;
-        List<CharacterType> _ListCharacterTypes;
+
+
         List<TypeJson> _ListTypeJson;
-        List<Character> _characters;
+        Dictionary<string, CharacterType> _characterTypes;
+
+        List<CharacterJson> _characterJson;
+        Dictionary<string, CharacterStats> _characterStats;
+        Dictionary<string, Character> _characterPlayer;
+
         List<Map> _ListMap;
         List<Tools> _tools;
         Enemy _enemy;
@@ -45,25 +51,31 @@ namespace Projet_C_
         }
 
         public Player Player { get => _Player; private set => _Player = value; }
-        public List<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; private set => _ListCharacterTypes = value; }
 
         public Draw Draw { get => _Draw; private set => _Draw = value; }
         public Input Input { get => _Input; private set => _Input = value; }
         public List<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
-        public List<Character> Characters { get => _characters; set => _characters = value; }
         public List<Tools> Tools { get => _tools; set => _tools = value; }
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
         public DateTime StartDateTime { get => _startDateTime; private set => _startDateTime = value; }
         public PauseManager PauseManager { get => _pauseManager; set => _pauseManager = value; }
         public List<TypeJson> ListTypeJson { get => _ListTypeJson; set => _ListTypeJson = value; }
+        public List<CharacterJson> CharacterJson { get => _characterJson; set => _characterJson = value; }
+        public Dictionary<string, CharacterType> CharacterTypes { get => _characterTypes; set => _characterTypes = value; }
+        public Dictionary<string, CharacterStats> CharacterStats { get => _characterStats; set => _characterStats = value; }
+        public Dictionary<string, Character> CharacterPlayer { get => _characterPlayer; set => _characterPlayer = value; }
 
         public GameManager() {
             Input = new Input();
-            ListCharacterTypes = new List<CharacterType>();  
+
+            CharacterStats = new Dictionary<string, CharacterStats>();
+            CharacterTypes = new Dictionary<string, CharacterType>();
+            CharacterPlayer = new Dictionary<string, Character>();
+
             ListMap = new List<Map>();
-            Characters = new List<Character>();
+
             Tools = new List<Tools>();
-            Player = new Player(Characters, Tools);
+            Player = new Player(CharacterPlayer, Tools);
             _enemy = new Enemy();
             FightManager = new FightManager();
             PauseManager = new PauseManager();
@@ -72,11 +84,12 @@ namespace Projet_C_
             InitMap();
             InitTypeJson();
             InitType();
+            InitCharacterJson();
             InitCharacter();
 
             Draw.DrawMap();
 
-            CharacterStats stats = new CharacterStats("oui", ListCharacterTypes[0],2,1,2,1,2,1);
+            CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"],2,1,2,1,2,1);
 
             Character cTest = new Character(stats,1);
             _enemy.Character = cTest;
@@ -127,30 +140,46 @@ namespace Projet_C_
         {
             foreach(TypeJson type in ListTypeJson)
             {
-                ListCharacterTypes.Add(new CharacterType(type.Name, type.PV, type.PT, type.Attack, type.Defense, type.AttackSpeed, type.Precision));
+                CharacterTypes[type.Name] =  new CharacterType(type.Name, type.PV, type.PT, type.Attack, type.Defense, type.AttackSpeed, type.Precision);
             }
 
-            ListCharacterTypes[0].Weakness = ListCharacterTypes[1];
-            ListCharacterTypes[1].Weakness = ListCharacterTypes[2];
-            ListCharacterTypes[2].Weakness = ListCharacterTypes[0];
+            CharacterTypes["speed"].Weakness = CharacterTypes["range"];
+            CharacterTypes["range"].Weakness = CharacterTypes["strength"];
+            CharacterTypes["strength"].Weakness = CharacterTypes["speed"];
         }
 
+        public void InitCharacterJson()
+        {
+            string filePath = "..\\..\\..\\character.json";
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+
+                CharacterJson = JsonSerializer.Deserialize<List<CharacterJson>>(jsonContent);
+
+            }
+            else
+            {
+                Console.WriteLine("Le fichier JSON n'existe pas.");
+            }
+        }
         public void InitCharacter()
         {
 
             //Init CharacterStats
-
-            CharacterStats luffyStats = new CharacterStats("Luffy", ListCharacterTypes[2], 200, 80, 30, 30, 80, 60);
-            CharacterStats crocoStats = new CharacterStats("Croco", ListCharacterTypes[1], 200.0f, 80.0f, 30.0f, 30.0f, 80.0f, 60.0f);
+            foreach(CharacterJson character in CharacterJson)
+            {
+                CharacterStats[character.Name] = new CharacterStats(character.Name, CharacterTypes[character.CharacterType], character.PV, character.PT, character.Attack, character.Defense, character.AttackSpeed, character.Precision);
+            }
             //Init Character
 
-            Character luffy = new Character(luffyStats, 1);
-            Characters.Add(luffy);
+            Character luffy = new Character(CharacterStats["Luffy"], 1);
+            CharacterPlayer["Luffy"] = luffy;
 
-            Character croco = new Character(crocoStats, 1);
-            Characters.Add(croco);
+            Character croco = new Character(CharacterStats["Croco"], 1);
+            CharacterPlayer["Croco"] = croco;
 
-            Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
+            Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["strength"]);
 
             luffy.Spells.Add(redHawk);
         }
