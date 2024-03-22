@@ -116,7 +116,7 @@ namespace Projet_C_
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             attaquer                                                                                                   ");
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             fuire                                                                                                      ");
+                            Console.WriteLine("             fuir                                                                                                      ");
                             Console.WriteLine("             objet                                                                                                      ");
                             Console.WriteLine("             personnage                                                                                                 ");
                             break;
@@ -124,7 +124,7 @@ namespace Projet_C_
                         case 2:
                             Console.WriteLine("             attaquer");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuir");
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             objet");
                             Console.WriteLine("             personnage");
@@ -133,7 +133,7 @@ namespace Projet_C_
 
                         case 3:
                             Console.WriteLine("             attaquer");
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuir");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             objet");
                             Console.ForegroundColor = ConsoleColor.Black;
@@ -142,7 +142,7 @@ namespace Projet_C_
 
                         case 4:
                             Console.WriteLine("             attaquer");
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuir");
                             Console.WriteLine("             objet");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             personnage");

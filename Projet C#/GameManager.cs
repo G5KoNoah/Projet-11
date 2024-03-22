@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Projet_C_
@@ -16,6 +17,7 @@ namespace Projet_C_
         Player _Player;
         Draw _Draw;
         List<CharacterType> _ListCharacterTypes;
+        List<TypeJson> _ListTypeJson;
         List<Character> _characters;
         List<Map> _ListMap;
         List<Tools> _tools;
@@ -53,6 +55,7 @@ namespace Projet_C_
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
         public DateTime StartDateTime { get => _startDateTime; private set => _startDateTime = value; }
         public PauseManager PauseManager { get => _pauseManager; set => _pauseManager = value; }
+        public List<TypeJson> ListTypeJson { get => _ListTypeJson; set => _ListTypeJson = value; }
 
         public GameManager() {
             Input = new Input();
@@ -67,6 +70,7 @@ namespace Projet_C_
             _Random = new Random();
             StartDateTime = DateTime.Now;
             InitMap();
+            InitTypeJson();
             InitType();
             InitCharacter();
 
@@ -104,12 +108,27 @@ namespace Projet_C_
 
 
         }
+        public void InitTypeJson()
+        {
+            string filePath = "..\\..\\..\\type.json";
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
 
+                ListTypeJson = JsonSerializer.Deserialize<List<TypeJson>>(jsonContent);
+
+            }
+            else
+            {
+                Console.WriteLine("Le fichier JSON n'existe pas.");
+            }
+        }
         public void InitType()
         {
-            ListCharacterTypes.Add(new CharacterType("speed", 1.0f, 1.0f, 1.0f, 1.0f, 1.2f, 0.8f));
-            ListCharacterTypes.Add(new CharacterType("range", 0.8f, 1.2f, 0.8f, 0.8f, 0.8f, 1.2f));
-            ListCharacterTypes.Add(new CharacterType("strength", 1.2f, 0.8f, 1.2f, 1.2f, 1.0f, 1.0f));
+            foreach(TypeJson type in ListTypeJson)
+            {
+                ListCharacterTypes.Add(new CharacterType(type.Name, type.PV, type.PT, type.Attack, type.Defense, type.AttackSpeed, type.Precision));
+            }
 
             ListCharacterTypes[0].Weakness = ListCharacterTypes[1];
             ListCharacterTypes[1].Weakness = ListCharacterTypes[2];
