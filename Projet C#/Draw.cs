@@ -41,7 +41,41 @@ namespace Projet_C_
             }
             return lFileText;
         }
+        public void Pause( int select)
+        {
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("                                                 " + GameManager.Instance.StartDateTime.Day + "                                                                           ") ;
+            switch (select)
+            {
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("             Explore                                                                                                   ");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("             Quit                                                                                                      ");
+                    break;
 
+                case 2:
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("             Explore                                                                                                   ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("             Quit                                                                                                      ");
+                    break;
+
+
+
+            }
+            for (int i = 0; i < 14; i++)
+            {
+                for (int j = 0; j < 120; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+            }
+            Console.SetCursorPosition(0, 0);
+
+        }
         public void Fight(Player player, Enemy enemy, int select)
         {
             Console.BackgroundColor = ConsoleColor.Red;

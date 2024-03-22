@@ -11,23 +11,26 @@ namespace Projet_C_
     public class Input
     {
         int _select;
+        int _selectPause;
         public enum StateFight { firstState, FightState };
 
         StateFight _state;
 
         public int Select { get => _select; set => _select = value; }
         public StateFight State { get => _state; set => _state = value; }
+        public int SelectPause { get => _selectPause; set => _selectPause = value; }
 
         public Input()
         {
 
             Select = 1;
+            SelectPause = 1;
             State = StateFight.firstState;
 
 
 
         }
-        public void InputTest()
+        public void InputGame()
         {
             Player player = GameManager.Instance.Player;
             ConsoleKeyInfo  key = Console.ReadKey(true);
@@ -40,6 +43,7 @@ namespace Projet_C_
 
                 case ConsoleKey.Escape:
                     Console.WriteLine("Echape pressée");
+                    GameManager.Instance.PauseManager.MainPause() ;
                     break;
 
                 case ConsoleKey.LeftArrow:
@@ -68,6 +72,51 @@ namespace Projet_C_
             }
         }
 
+        public void InputPause()
+        {
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.Enter:
+                    switch(SelectPause)
+                    {
+                        case 1:
+                            GameManager.Instance.Draw.DrawMap();
+                            GameManager.Instance.MainLoop();
+                            break;
+                        case 2:
+                            Environment.Exit(0);
+                            break;
+                    }
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (SelectPause == 1)
+                    {
+                        SelectPause = 2;
+                    }
+                    else
+                    {
+                        SelectPause = 1;
+                    }
+                    GameManager.Instance.Draw.Pause(SelectPause);
+                    break;
+                case ConsoleKey.DownArrow :
+                    if (SelectPause == 1)
+                    {
+                        SelectPause = 2;
+                    }
+                    else
+                    {
+                        SelectPause = 1;
+                    }
+                    GameManager.Instance.Draw.Pause(SelectPause);
+                    break;
+
+            }
+
+
+        }
         public void InputFight(Player player, Enemy enemy) {
 
             ConsoleKeyInfo key = Console.ReadKey(true);

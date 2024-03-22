@@ -10,15 +10,17 @@ namespace Projet_C_
     {
         Input _Input;
         FightManager _fightManager;
+        PauseManager _pauseManager;
         Map _MapIsland;
         Map _MapBoat;
         Player _Player;
         Draw _Draw;
-        IList<CharacterType> _ListCharacterTypes;
+        List<CharacterType> _ListCharacterTypes;
         List<Character> _characters;
-        IList<Map> _ListMap;
+        List<Map> _ListMap;
         List<Tools> _tools;
         Enemy _enemy;
+        DateTime _startDateTime;
 
         Random _Random;
 
@@ -41,14 +43,16 @@ namespace Projet_C_
         }
 
         public Player Player { get => _Player; private set => _Player = value; }
-        public IList<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; private set => _ListCharacterTypes = value; }
+        public List<CharacterType> ListCharacterTypes { get => _ListCharacterTypes; private set => _ListCharacterTypes = value; }
 
         public Draw Draw { get => _Draw; private set => _Draw = value; }
         public Input Input { get => _Input; private set => _Input = value; }
-        public IList<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
+        public List<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
         public List<Character> Characters { get => _characters; set => _characters = value; }
         public List<Tools> Tools { get => _tools; set => _tools = value; }
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
+        public DateTime StartDateTime { get => _startDateTime; private set => _startDateTime = value; }
+        public PauseManager PauseManager { get => _pauseManager; set => _pauseManager = value; }
 
         public GameManager() {
             Input = new Input();
@@ -59,7 +63,9 @@ namespace Projet_C_
             Player = new Player(Characters, Tools);
             _enemy = new Enemy();
             FightManager = new FightManager();
+            PauseManager = new PauseManager();
             _Random = new Random();
+            StartDateTime = DateTime.Now;
             InitMap();
             InitType();
             InitCharacter();
@@ -134,7 +140,7 @@ namespace Projet_C_
         {
             while (true)
             {
-                Input.InputTest();
+                Input.InputGame();
 
                 //if (Player.LeftPos == 6)
                 //{
