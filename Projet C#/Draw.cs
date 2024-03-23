@@ -56,7 +56,7 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---                                                          ");
             Console.WriteLine("                  |                                         |                                                           ");
             Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("              " + character.PV + "                                        " + enemy.Character.PV + "                                                        "); ;
+            Console.WriteLine("              " + character.PV + "                                        " + enemy.Character.PV + "                                                            "); ;
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
@@ -67,12 +67,12 @@ namespace Projet_C_
                         if (i + 1 == select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                ");
+                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                                                         ");
                             Console.ForegroundColor = ConsoleColor.Black;
                         }
                         else
                         {
-                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                ");
+                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                                                         ");
                         }
 
                     }
@@ -148,6 +148,15 @@ namespace Projet_C_
                     }
                 Console.WriteLine();
                 }
+            Console.SetCursorPosition(0, 0);
+
+        }
+
+        public void DrawInventory()
+        {
+            Console.SetCursorPosition(50, 5);
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Inventaire");
             Console.SetCursorPosition(0, 0);
 
         }

@@ -94,6 +94,13 @@ namespace Projet_C_
             ListMap.Add(mapBoat);
 
 
+            Map mapInventory = new Map();
+            var text3 = Draw.FileToText("..\\..\\..\\inventory.txt");
+            mapInventory.MapList = text3;
+
+            ListMap.Add(mapInventory);
+
+
         }
 
         public void InitType()
@@ -146,11 +153,13 @@ namespace Projet_C_
             while (true)
             {
                 Input.InputTest();
+                Draw.DrawInventory();
                 if (Player.LeftPos == 6)
                 {
-                    //Draw.Map = ListMap[1];
+                    Draw.Map = ListMap[2];
+                    
                     //Draw.Fight(Player, _enemy);
-                    FightManager.MainLoop(Player, _enemy);
+                    //FightManager.MainLoop(Player, _enemy);
                 }
             }
         }
