@@ -157,6 +157,12 @@ namespace Projet_C_
             Console.SetCursorPosition(50, 5);
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Inventaire");
+            Console.SetCursorPosition(0,10);
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            for (int i = 0; i < GameManager.Instance.Player.ListTools.Count; i++)
+            {
+                Console.WriteLine(" - " + GameManager.Instance.Player.ListTools[i].Name);
+            }
             Console.SetCursorPosition(0, 0);
 
         }
