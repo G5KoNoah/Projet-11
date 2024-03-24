@@ -135,7 +135,7 @@ namespace Projet_C_
             Characters.Add(croco);
 
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
-            Spell attaque2 = new Spell(1, "Attaque 2", 1.5f, 50.0f, ListCharacterTypes[2]);
+            Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, ListCharacterTypes[2]);
 
             Tools tools1 = new Tools("potion","santé",2,3,2,3,5,8);
             Tools tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);

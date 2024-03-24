@@ -44,23 +44,28 @@ namespace Projet_C_
 
         public void Fight(Player player, Enemy enemy, int select, Character character)
         {
+            GameManager.Instance.Draw.DrawMap();
+            Console.SetCursorPosition(0, 0);
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("              " + character.DefaultStats.Name + "  "+ character.DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
-            Console.WriteLine("           ---------------                           ---------------                                                    ");
-            Console.WriteLine("          |               |                         |               |                                                   ");
-            Console.WriteLine("          |               |                         |               |                                                   ");
-            Console.WriteLine("          |               |                         |               |                                                   ");
-            Console.WriteLine("           ---------------                           ---------------                                                    ");
-            Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("                 ---                                       ---                                                          ");
-            Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("                  |                                         |                                                           ");
+            //Console.WriteLine("           ---------------                           ---------------                                                    ");
+            //Console.WriteLine("          |               |                         |               |                                                   ");
+            //Console.WriteLine("          |               |                         |               |                                                   ");
+            //Console.WriteLine("          |               |                         |               |                                                   ");
+            //Console.WriteLine("           ---------------                           ---------------                                                    ");
+            //Console.WriteLine("                  |                                         |                                                           ");
+            //Console.WriteLine("                  |                                         |                                                           ");
+            //Console.WriteLine("                 ---                                       ---                                                          ");
+            //Console.WriteLine("                  |                                         |                                                           ");
+            //Console.WriteLine("                  |                                         |                                                           ");
+            //Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(0,12);
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.WriteLine("              " + character.PV + "                                        " + enemy.Character.PV + "                                                            "); ;
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
+                    Console.SetCursorPosition(0, 13);
 
                     for (int i = 0; i < GameManager.Instance.FightManager.Choix.Length; i++)
                     {
@@ -140,15 +145,15 @@ namespace Projet_C_
                     break;
             }
 
-                for (int i = 0; i < 14; i++)
-                {
+                //for (int i = 0; i < 14; i++)
+                //{
 
-                    for (int j = 0; j < 120; j++)
-                    {
-                        Console.Write(' ');
-                    }
-                Console.WriteLine();
-                }
+                //    for (int j = 0; j < 120; j++)
+                //    {
+                //        Console.Write(' ');
+                //    }
+                //Console.WriteLine();
+                //}
             Console.SetCursorPosition(0, 0);
 
         }
