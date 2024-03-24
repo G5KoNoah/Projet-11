@@ -44,7 +44,7 @@ namespace Projet_C_
 
         public void Fight(Player player, Enemy enemy, int select, Character character)
         {
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("              " + character.DefaultStats.Name + "  "+ character.DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
             Console.WriteLine("           ---------------                           ---------------                                                    ");
             Console.WriteLine("          |               |                         |               |                                                   ");
@@ -56,6 +56,7 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---                                                          ");
             Console.WriteLine("                  |                                         |                                                           ");
             Console.WriteLine("                  |                                         |                                                           ");
+            Console.BackgroundColor = ConsoleColor.Yellow;
             Console.WriteLine("              " + character.PV + "                                        " + enemy.Character.PV + "                                                            "); ;
             switch (GameManager.Instance.Input.State)
             {

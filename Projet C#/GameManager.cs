@@ -95,7 +95,7 @@ namespace Projet_C_
 
 
             Map mapInventory = new Map();
-            var text3 = Draw.FileToText("..\\..\\..\\inventory.txt");
+            var text3 = Draw.FileToText("..\\..\\..\\fight.txt");
             mapInventory.MapList = text3;
 
             ListMap.Add(mapInventory);
@@ -153,13 +153,16 @@ namespace Projet_C_
             while (true)
             {
                 Input.InputTest();
-                Draw.DrawInventory();
+                
                 if (Player.LeftPos == 6)
                 {
-                    Draw.Map = ListMap[2];
                     
+                    Draw.Map = ListMap[2];
+                    Draw.DrawMap();
+                    //Draw.DrawInventory();
+
                     //Draw.Fight(Player, _enemy);
-                    //FightManager.MainLoop(Player, _enemy);
+                    FightManager.MainLoop(Player, _enemy);
                 }
             }
         }
