@@ -9,16 +9,16 @@ namespace Projet_C_
     public class Player
     {
         Dictionary<string, Character> _character;
-        List<Tools> _tools;
+        List<Objects> _tools;
         int _LeftPos;
         int _TopPos;
 
         public Dictionary<string, Character> ListCharacter { get => _character; }
-        public List<Tools> ListTools { get => _tools; }
+        public List<Objects> ListTools { get => _tools; }
 
         public int LeftPos { get => _LeftPos; private set => _LeftPos = value; }
         public int TopPos { get => _TopPos; private set => _TopPos = value; }
-        public Player(Dictionary<string, Character> characters, List<Tools> tools)
+        public Player(Dictionary<string, Character> characters, List<Objects> tools)
         {
             _character = characters;
             _tools = tools;

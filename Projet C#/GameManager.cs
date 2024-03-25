@@ -26,7 +26,7 @@ namespace Projet_C_
         Dictionary<string, Character> _characterPlayer;
 
         List<Map> _ListMap;
-        List<Tools> _tools;
+        List<Objects> _tools;
         Enemy _enemy;
         DateTime _startDateTime;
 
@@ -55,7 +55,7 @@ namespace Projet_C_
         public Draw Draw { get => _Draw; private set => _Draw = value; }
         public Input Input { get => _Input; private set => _Input = value; }
         public List<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
-        public List<Tools> Tools { get => _tools; set => _tools = value; }
+        public List<Objects> Tools { get => _tools; set => _tools = value; }
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
         public DateTime StartDateTime { get => _startDateTime; private set => _startDateTime = value; }
         public PauseManager PauseManager { get => _pauseManager; set => _pauseManager = value; }
@@ -74,7 +74,7 @@ namespace Projet_C_
 
             ListMap = new List<Map>();
 
-            Tools = new List<Tools>();
+            Tools = new List<Objects>();
             Player = new Player(CharacterPlayer, Tools);
             _enemy = new Enemy();
             FightManager = new FightManager();
@@ -188,8 +188,8 @@ namespace Projet_C_
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
             Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, CharacterTypes["strength"]);
 
-            Tools tools1 = new Tools("potion","santé",2,3,2,3,5,8);
-            Tools tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);
+            Objects tools1 = new Tools("potion","santé",2,3,2,3,5,8);
+            Objects tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);
 
             luffy.Spells.Add(redHawk);
             luffy.Spells.Add(attaque2);
