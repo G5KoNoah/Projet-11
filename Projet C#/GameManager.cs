@@ -120,6 +120,13 @@ namespace Projet_C_
             ListMap.Add(mapBoat);
 
 
+            Map mapInventory = new Map();
+            var text3 = Draw.FileToText("..\\..\\..\\fight.txt");
+            mapInventory.MapList = text3;
+
+            ListMap.Add(mapInventory);
+
+
         }
         public void InitTypeJson()
         {
@@ -179,10 +186,18 @@ namespace Projet_C_
             Character croco = new Character(CharacterStats["Croco"], 1);
             CharacterPlayer["Croco"] = croco;
 
-            Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["strength"]);
+            Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, ListCharacterTypes[2]);
+            Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, ListCharacterTypes[2]);
+
+            Tools tools1 = new Tools("potion","santé",2,3,2,3,5,8);
+            Tools tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);
 
             luffy.Spells.Add(redHawk);
+            luffy.Spells.Add(attaque2);
             //_enemy.Character.Spells.Add(redHawk);
+
+            Player.ListTools.Add(tools1);
+            Player.ListTools.Add(tools2);
         }
 
         public void MainLoop()
@@ -199,7 +214,11 @@ namespace Projet_C_
                 //}
                 if (Draw.Map.MapList[Player.TopPos][Player.LeftPos] == '$' && _Random.Next(1,10) == 1)
                 {
-                    //Draw.Map = ListMap[1];
+                    
+                    Draw.Map = ListMap[2];
+                    Draw.DrawMap();
+                    //Draw.DrawInventory();
+
                     //Draw.Fight(Player, _enemy);
                     Console.WriteLine("Un ennemi est apparu !!!!");
                     Thread.Sleep(2000);

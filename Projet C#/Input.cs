@@ -13,7 +13,7 @@ namespace Projet_C_
         int _select;
         int _selectPause;
         TimeSpan _timer;
-        public enum StateFight { firstState, FightState };
+        public enum StateFight { firstState, FightState, PersoState, ObjectState };
 
         StateFight _state;
 
@@ -134,7 +134,8 @@ namespace Projet_C_
 
 
         }
-        public void InputFight(Player player, Enemy enemy) {
+            public void InputFight(Player player, Enemy enemy, Character character)
+            {
 
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (State)
@@ -148,24 +149,36 @@ namespace Projet_C_
                             {
                                 case 1:
                                     State = StateFight.FightState;
-                                    GameManager.Instance.Draw.Fight(player, enemy, Select);
+                                    GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                                    break;
+
+                                case 3:
+                                    State = StateFight.ObjectState;
+                                    Select = 1;
+                                    GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                                    break;
+
+                                case 4:
+                                    State = StateFight.PersoState;
+                                    Select = 1;
+                                    GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                                     break;
                             }
                             break;
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
                             {
-                                Select = 4;
+                                Select = GameManager.Instance.FightManager.Choix.Length;
                             }
                             else
                             {
                                 Select -= 1;
                             }
 
-                            GameManager.Instance.Draw.Fight(player, enemy, Select);
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                             break;
                         case ConsoleKey.DownArrow:
-                            if (Select == 4)
+                            if (Select == GameManager.Instance.FightManager.Choix.Length)
                             {
                                 Select = 1;
                             }
@@ -173,7 +186,7 @@ namespace Projet_C_
                             {
                                 Select += 1;
                             }
-                            GameManager.Instance.Draw.Fight(player, enemy, Select);
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
 
                             break;
                         default:
@@ -187,31 +200,43 @@ namespace Projet_C_
                     {
                         case ConsoleKey.Enter:
 
-                            switch (Select)
-                            {
-                                case 1:
-                                    enemy.Character.TakeDamage(player.ListCharacter["Luffy"].SpellAttack(0, enemy.Character.DefaultStats.Type));
-                                    GameManager.Instance.Draw.Fight(player, enemy, Select);
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            enemy.Character.TakeDamage(character.SpellAttack(Select - 1));
+                            Console.SetCursorPosition(35, 10);
+                            Console.WriteLine( "-> - " + character.SpellAttack(Select - 1));
+                            
+                            Thread.Sleep(1000);
+                            Console.SetCursorPosition(0, 0);
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                            
+                            Random aleatoire = new Random();
+                            int spell = aleatoire.Next(0, enemy.Character.Spells.Count);
+                            character.TakeDamage(enemy.Character.SpellAttack(spell));
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.SetCursorPosition(35, 10);
+                            Console.WriteLine(" - " + enemy.Character.SpellAttack(spell) + "<-");
+
+                            Thread.Sleep(1000);
+                            Console.SetCursorPosition(0, 0);
+                            State = StateFight.firstState;
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
 
 
-
-                                    break;
-                            }
                             break;
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
                             {
-                                Select = 3;
+                                Select = character.Spells.Count;
                             }
                             else
                             {
                                 Select -= 1;
                             }
 
-                            GameManager.Instance.Draw.Fight(player, enemy, Select);
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                             break;
                         case ConsoleKey.DownArrow:
-                            if (Select == 3)
+                            if (Select == character.Spells.Count)
                             {
                                 Select = 1;
                             }
@@ -219,7 +244,84 @@ namespace Projet_C_
                             {
                                 Select += 1;
                             }
-                            GameManager.Instance.Draw.Fight(player, enemy, Select);
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+
+                case StateFight.ObjectState:
+
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.Enter:
+                            
+                            break;
+                        case ConsoleKey.UpArrow:
+                            if (Select == 1)
+                            {
+                                Select = player.ListTools.Count;
+                            }
+                            else
+                            {
+                                Select -= 1;
+                            }
+
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                            break;
+                        case ConsoleKey.DownArrow:
+                            if (Select == player.ListTools.Count)
+                            {
+                                Select = 1;
+                            }
+                            else
+                            {
+                                Select += 1;
+                            }
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case StateFight.PersoState:
+
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.Enter:
+                            character = player.ListCharacter[Select - 1];
+                            Select = 1;
+                            State = StateFight.firstState;
+                            GameManager.Instance.FightManager.Character = character;
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                            break;
+                        case ConsoleKey.UpArrow:
+                            if (Select == 1)
+                            {
+                                Select = player.ListCharacter.Count;
+                            }
+                            else
+                            {
+                                Select -= 1;
+                            }
+
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
+                            break;
+                        case ConsoleKey.DownArrow:
+                            if (Select == player.ListCharacter.Count)
+                            {
+                                Select = 1;
+                            }
+                            else
+                            {
+                                Select += 1;
+                            }
+                            GameManager.Instance.Draw.Fight(player, enemy, Select, character);
 
                             break;
                         default:
