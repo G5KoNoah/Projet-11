@@ -59,13 +59,13 @@ namespace Projet_C_
             //Console.WriteLine("                  |                                         |                                                           ");
             //Console.WriteLine("                  |                                         |                                                           ");
             //Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(0,12);
+            Console.SetCursorPosition(0,14);
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.WriteLine("              " + character.PV + "                                        " + enemy.Character.PV + "                                                            "); ;
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
-                    Console.SetCursorPosition(0, 13);
+                    //Console.SetCursorPosition(0, 13);
 
                     for (int i = 0; i < GameManager.Instance.FightManager.Choix.Length; i++)
                     {
