@@ -41,7 +41,7 @@ namespace Projet_C_
             }
             return lFileText;
         }
-        public void Pause( int select)
+        public void Pause(int select)
         {
 
 
@@ -51,7 +51,7 @@ namespace Projet_C_
             Console.WriteLine("                                                                                                                        ");
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("                                 ONE PIECE                                                                              ") ;
+            Console.WriteLine("                                 ONE PIECE                                                                              ");
             Console.WriteLine("                                                                                                                        ");
             Console.WriteLine("                                                                                                                        ");
             Console.WriteLine("                                                                                                                        ");
@@ -90,7 +90,7 @@ namespace Projet_C_
                 Console.WriteLine();
             }
             Console.SetCursorPosition(0, 0);
-
+        }
         public void Fight(Player player, Enemy enemy, int select, Character character)
         {
             GameManager.Instance.Draw.DrawMap();
@@ -181,12 +181,12 @@ namespace Projet_C_
                         if (i+1 == select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListCharacter[i].DefaultStats.Name + "                ");
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].DefaultStats.Name + "                ");
                             Console.ForegroundColor = ConsoleColor.Black;
                         }
                         else
                         {
-                            Console.WriteLine("             " + player.ListCharacter[i].DefaultStats.Name + "                ");
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].DefaultStats.Name + "                ");
                         }
                         
                     }

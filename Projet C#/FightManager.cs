@@ -22,7 +22,7 @@ namespace Projet_C_
         public void MainLoop(Player player ,Enemy enemy)
         {
 
-            Character = player.ListCharacter[0];
+            Character = player.ListCharacter["Luffy"];
             GameManager.Instance.Draw.Fight(player, enemy, GameManager.Instance.Input.Select, Character);
             while (true)
             {

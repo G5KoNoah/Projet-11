@@ -80,7 +80,7 @@ namespace Projet_C_
             }
         }
 
-        public float SpellAttack(int spell, CharacterType type)
+        public float SpellAttack(int spell)
         {
             onAttack?.Invoke();
             float damage = _spells[spell].AttackRation * Attack;

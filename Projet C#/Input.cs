@@ -294,7 +294,8 @@ namespace Projet_C_
                     switch (key.Key)
                     {
                         case ConsoleKey.Enter:
-                            character = player.ListCharacter[Select - 1];
+                            //character = player.ListCharacter[Select - 1];
+                            character = player.ListCharacter["Luffy"];
                             Select = 1;
                             State = StateFight.firstState;
                             GameManager.Instance.FightManager.Character = character;
