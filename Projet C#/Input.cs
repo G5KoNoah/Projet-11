@@ -201,9 +201,9 @@ namespace Projet_C_
                         case ConsoleKey.Enter:
 
                             Console.BackgroundColor = ConsoleColor.Blue;
-                            enemy.Character.TakeDamage(character.SpellAttack(Select - 1));
+                            enemy.Character.TakeDamage(character.SpellAttack(Select - 1, enemy.Character.DefaultStats.Type));
                             Console.SetCursorPosition(35, 10);
-                            Console.WriteLine( "-> - " + character.SpellAttack(Select - 1));
+                            Console.WriteLine( "-> - " + character.SpellAttack(Select - 1, enemy.Character.DefaultStats.Type));
                             
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(0, 0);
@@ -211,10 +211,10 @@ namespace Projet_C_
                             
                             Random aleatoire = new Random();
                             int spell = aleatoire.Next(0, enemy.Character.Spells.Count);
-                            character.TakeDamage(enemy.Character.SpellAttack(spell));
+                            character.TakeDamage(enemy.Character.SpellAttack(spell, character.DefaultStats.Type));
                             Console.BackgroundColor = ConsoleColor.Blue;
                             Console.SetCursorPosition(35, 10);
-                            Console.WriteLine(" - " + enemy.Character.SpellAttack(spell) + "<-");
+                            Console.WriteLine(" - " + enemy.Character.SpellAttack(spell, character.DefaultStats.Type) + "<-");
 
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(0, 0);
