@@ -11,23 +11,28 @@ namespace Projet_C_
     public class Input
     {
         int _select;
+        int _selectPause;
+        TimeSpan _timer;
         public enum StateFight { firstState, FightState };
 
         StateFight _state;
 
         public int Select { get => _select; set => _select = value; }
         public StateFight State { get => _state; set => _state = value; }
+        public int SelectPause { get => _selectPause; set => _selectPause = value; }
+        public TimeSpan Timer { get => _timer; set => _timer = value; }
 
         public Input()
         {
 
             Select = 1;
+            SelectPause = 1;
             State = StateFight.firstState;
 
 
 
         }
-        public void InputTest()
+        public void InputGame()
         {
             Player player = GameManager.Instance.Player;
             ConsoleKeyInfo  key = Console.ReadKey(true);
@@ -39,7 +44,13 @@ namespace Projet_C_
                     break;
 
                 case ConsoleKey.Escape:
-                    Console.WriteLine("Echape pressée");
+                    //Console.WriteLine("Echape pressée");
+                    DateTime dateTime = DateTime.Now;
+                    Timer = dateTime - GameManager.Instance.StartDateTime;
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                          ");
+                    GameManager.Instance.PauseManager.MainPause() ;
                     break;
 
                 case ConsoleKey.LeftArrow:
@@ -68,7 +79,62 @@ namespace Projet_C_
             }
         }
 
-        public async void InputFight(Player player, Enemy enemy) {
+        public void InputPause()
+        {
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.Escape:
+                    GameManager.Instance.Draw.DrawMap();
+                    GameManager.Instance.MainLoop();
+                    break;
+                case ConsoleKey.Enter:
+                    switch(SelectPause)
+                    {
+                        case 1:
+                            GameManager.Instance.Draw.DrawMap();
+                            GameManager.Instance.MainLoop();
+                            break;
+                        case 2:
+                            Environment.Exit(0);
+                            break;
+                    }
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (SelectPause == 1)
+                    {
+                        SelectPause = 2;
+                    }
+                    else
+                    {
+                        SelectPause = 1;
+                    }
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                         ");
+                    GameManager.Instance.Draw.Pause(SelectPause);
+                    break;
+                case ConsoleKey.DownArrow :
+                    if (SelectPause == 1)
+                    {
+                        SelectPause = 2;
+                    }
+                    else
+                    {
+                        SelectPause = 1;
+                    }
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("     " + Timer.Hours + " : " + Timer.Minutes + " : " + Timer.Seconds + "                                                                                                          ");
+                    GameManager.Instance.Draw.Pause(SelectPause);
+                    break;
+
+            }
+
+
+        }
+        public void InputFight(Player player, Enemy enemy) {
 
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (State)
@@ -124,15 +190,11 @@ namespace Projet_C_
                             switch (Select)
                             {
                                 case 1:
-                                    enemy.Character.TakeDamage(player.ListCharacter[0].SpellAttack(0));
-                                    //Console.WriteLine(player.ListCharacter[0].SpellAttack(0));
-                                    
-                                    Random aleatoire = new Random();
-                                    int spell = aleatoire.Next(0, 2);
-                                    player.ListCharacter[0].TakeDamage(enemy.Character.SpellAttack(spell));
-                                    
-                                    State = StateFight.firstState;                
+                                    enemy.Character.TakeDamage(player.ListCharacter["Luffy"].SpellAttack(0, enemy.Character.DefaultStats.Type));
                                     GameManager.Instance.Draw.Fight(player, enemy, Select);
+
+
+
                                     break;
                             }
                             break;

@@ -12,7 +12,6 @@ namespace Projet_C_
         Map _Map;
         Player _Player;
 
-        
 
         public Map Map { get => _Map; set => _Map = value; }
         public Player Player { get => _Player; set => _Player = value; }
@@ -21,6 +20,7 @@ namespace Projet_C_
         {
             _Map = map;
             _Player = player;
+
             
         }
 
@@ -41,11 +41,61 @@ namespace Projet_C_
             }
             return lFileText;
         }
+        public void Pause( int select)
+        {
 
+
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("                                 ONE PIECE                                                                              ") ;
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+            Console.WriteLine("                                                                                                                        ");
+
+
+            switch (select)
+            {
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("             Explore                                                                                                    ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("             Quit                                                                                                       ");
+                    break;
+
+                case 2:
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("             Explore                                                                                             ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.WriteLine("                                                                                                                        ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("             Quit                                                                                                ");
+                    break;
+
+
+
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 120; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+            }
+            Console.SetCursorPosition(0, 0);
+
+        }
         public void Fight(Player player, Enemy enemy, int select)
         {
             Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine("              " + player.ListCharacter[0].DefaultStats.Name + "  "+ player.ListCharacter[0].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
+            Console.WriteLine("              " + player.ListCharacter["Luffy"].DefaultStats.Name + "  "+ player.ListCharacter["Luffy"].DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
             Console.WriteLine("           ---------------                           ---------------                                                    ");
             Console.WriteLine("          |               |                         |               |                                                   ");
             Console.WriteLine("          |               |                         |               |                                                   ");
@@ -56,7 +106,7 @@ namespace Projet_C_
             Console.WriteLine("                 ---                                       ---                                                          ");
             Console.WriteLine("                  |                                         |                                                           ");
             Console.WriteLine("                  |                                         |                                                           ");
-            Console.WriteLine("              " + player.ListCharacter[0].PV + "                              " + enemy.Character.PV+ "                                                                  ");
+            Console.WriteLine("              " + player.ListCharacter["Luffy"].PV + "                              " + enemy.Character.PV+ "                                                                  ");
             switch (GameManager.Instance.Input.State)
             {
                 case Input.StateFight.firstState:
@@ -66,7 +116,7 @@ namespace Projet_C_
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             attaquer                                                                                                   ");
                             Console.ForegroundColor = ConsoleColor.Black;
-                            Console.WriteLine("             fuire                                                                                                      ");
+                            Console.WriteLine("             fuir                                                                                                      ");
                             Console.WriteLine("             objet                                                                                                      ");
                             Console.WriteLine("             personnage                                                                                                 ");
                             break;
@@ -74,7 +124,7 @@ namespace Projet_C_
                         case 2:
                             Console.WriteLine("             attaquer");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuir");
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             objet");
                             Console.WriteLine("             personnage");
@@ -83,7 +133,7 @@ namespace Projet_C_
 
                         case 3:
                             Console.WriteLine("             attaquer");
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuir");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             objet");
                             Console.ForegroundColor = ConsoleColor.Black;
@@ -92,7 +142,7 @@ namespace Projet_C_
 
                         case 4:
                             Console.WriteLine("             attaquer");
-                            Console.WriteLine("             fuire");
+                            Console.WriteLine("             fuir");
                             Console.WriteLine("             objet");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             personnage");
@@ -108,21 +158,21 @@ namespace Projet_C_
                     {
                         case 1:
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 2");
                             Console.WriteLine("             spell 3");
                             break;
                         case 2:
 
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].Spells[0].Name);
                             Console.ForegroundColor = ConsoleColor.Green;                           
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("             spell 3");
                             break;
                         case 3:
-                            Console.WriteLine("             " + player.ListCharacter[0].Spells[0].Name);
+                            Console.WriteLine("             " + player.ListCharacter["Luffy"].Spells[0].Name);
                             Console.WriteLine("             spell 2");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("             spell 3");
@@ -185,6 +235,10 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.DarkCyan;
                             //Console.Write('O');
                             break;
+                        case '&':
+                            Console.BackgroundColor= ConsoleColor.Black;
+                            break;
+
 
                     }
                     if (i == Player.TopPos && j == Player.LeftPos)
