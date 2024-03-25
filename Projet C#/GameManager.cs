@@ -60,7 +60,7 @@ namespace Projet_C_
 
         public void InitMap()
         {
-            string[] names = { "map1", "boat" };
+            string[] names = { "map1", "boat", "fight" };
             foreach (string name in names)
             {
                 var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");

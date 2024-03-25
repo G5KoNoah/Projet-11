@@ -86,6 +86,7 @@ namespace Projet_C_
         public void Update()
         {
             Player player = GameManager.Instance.Player;
+            Draw draw = GameManager.Instance.Draw;
             Input.Instance.InputGame(State);
             switch (State)
             {
@@ -97,13 +98,21 @@ namespace Projet_C_
                         State = Display.Transition;
                         Exit = true;
                     }
-                    break;
+                    if (draw.Map.MapList[player.TopPos][player.LeftPos] == '$' && new Random().Next(1, 10) == 1)
+                    {
+                        Console.WriteLine("Un ennemi est apparu !!!!");
+                        Thread.Sleep(2000);
+                        State = Display.Fight;
+                        Exit = true;
+                    }
+                        break;
                 case Display.Transition:
                     Thread.Sleep(2000);
                     State = Display.Map;
                     Exit = true;
                     break;
                 case Display.Fight:
+                    FightManager.MainLoop(player);
                     break;
                 case Display.Inventary:
                     break;

@@ -9,6 +9,7 @@ namespace Projet_C_
     public class Player
     {
         List<Character> _characters;
+        Character _currentCharacter;
         List<Tools> _tools;
         int _leftPos;
         int _topPos;
@@ -18,12 +19,15 @@ namespace Projet_C_
 
         public int LeftPos { get => _leftPos; private set => _leftPos = value; }
         public int TopPos { get => _topPos; private set => _topPos = value; }
+        public Character CurrentCharacter { get => _currentCharacter; set => _currentCharacter = value; }
+
         public Player((int, int) pos)
         {
             ListCharacter = new List<Character>(); ;
             ListTools = new List<Tools>(); ;
             LeftPos = pos.Item1;
             TopPos = pos.Item2;
+            CurrentCharacter = ListCharacter[0];
         }
 
         public event Action Move;
