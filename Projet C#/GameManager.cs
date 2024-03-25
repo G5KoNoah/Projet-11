@@ -182,7 +182,7 @@ namespace Projet_C_
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["strength"]);
 
             luffy.Spells.Add(redHawk);
-            _enemy.Character.Spells.Add(redHawk);
+            //_enemy.Character.Spells.Add(redHawk);
         }
 
         public void MainLoop()

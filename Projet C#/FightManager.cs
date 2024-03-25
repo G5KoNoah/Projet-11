@@ -26,7 +26,7 @@ namespace Projet_C_
 
                 
 
-                if (player.ListCharacter[0].PV == 0)
+                if (player.ListCharacter["Luffy"].PV == 0)
                 {
                     Console.WriteLine("c'est finit loose");
                     
