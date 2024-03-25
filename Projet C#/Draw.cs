@@ -97,17 +97,6 @@ namespace Projet_C_
             Console.SetCursorPosition(0, 0);
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("              " + character.DefaultStats.Name + "  "+ character.DefaultStats.Type.Name + "                              " + enemy.Character.DefaultStats.Name + "  " + enemy.Character.DefaultStats.Type.Name + "                                                   ");
-            //Console.WriteLine("           ---------------                           ---------------                                                    ");
-            //Console.WriteLine("          |               |                         |               |                                                   ");
-            //Console.WriteLine("          |               |                         |               |                                                   ");
-            //Console.WriteLine("          |               |                         |               |                                                   ");
-            //Console.WriteLine("           ---------------                           ---------------                                                    ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.WriteLine("                 ---                                       ---                                                          ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.BackgroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(0,14);
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.WriteLine("              " + character.PV + "                                        " + enemy.Character.PV + "                                                            "); ;
@@ -168,41 +157,30 @@ namespace Projet_C_
                         {
                             Console.WriteLine("             " + player.ListTools[i].Name + "                ");
                         }
-
                     }
-
                     break;
 
                 case Input.StateFight.PersoState:
-
-                    for (int i = 0; i < player.ListCharacter.Count; i++ )
+                    foreach (KeyValuePair<string, Character> element in player.ListCharacter)
                     {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        if (i+1 == select)
+                        if(element.Value.PV != 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListCharacter["Luffy"].DefaultStats.Name + "                ");
-                            Console.ForegroundColor = ConsoleColor.Black;
-                        }
-                        else
-                        {
-                            Console.WriteLine("             " + player.ListCharacter["Luffy"].DefaultStats.Name + "                ");
+                            if (element.Value == player.ListCharacter.ElementAt(select - 1).Value)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("             " + element.Value.DefaultStats.Name + "                ");
+                                Console.ForegroundColor = ConsoleColor.Black;
+                            }
+                            else
+                            {
+                                Console.WriteLine("             " + element.Value.DefaultStats.Name + "                ");
+                            }
                         }
                         
                     }
 
                     break;
             }
-
-                //for (int i = 0; i < 14; i++)
-                //{
-
-                //    for (int j = 0; j < 120; j++)
-                //    {
-                //        Console.Write(' ');
-                //    }
-                //Console.WriteLine();
-                //}
             Console.SetCursorPosition(0, 0);
 
         }

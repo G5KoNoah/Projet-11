@@ -207,8 +207,16 @@ namespace Projet_C_
                             
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(0, 0);
+                            if (enemy.Character.PV == 0)
+                            {
+                                Console.WriteLine("c'est finit");
+
+                            }
+                            
+
                             GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                             
+
                             Random aleatoire = new Random();
                             int spell = aleatoire.Next(0, enemy.Character.Spells.Count);
                             character.TakeDamage(enemy.Character.SpellAttack(spell));
@@ -219,6 +227,12 @@ namespace Projet_C_
                             Thread.Sleep(1000);
                             Console.SetCursorPosition(0, 0);
                             State = StateFight.firstState;
+                            
+                            if (character.PV == 0)
+                            {
+                                State = StateFight.PersoState;
+
+                            }
                             GameManager.Instance.Draw.Fight(player, enemy, Select, character);
 
 
@@ -290,12 +304,15 @@ namespace Projet_C_
                     break;
 
                 case StateFight.PersoState:
+                    
+                    
 
                     switch (key.Key)
                     {
+                         
                         case ConsoleKey.Enter:
-                            //character = player.ListCharacter[Select - 1];
-                            character = player.ListCharacter["Luffy"];
+                            
+                            character = player.ListCharacter.ElementAt(Select - 1).Value;
                             Select = 1;
                             State = StateFight.firstState;
                             GameManager.Instance.FightManager.Character = character;

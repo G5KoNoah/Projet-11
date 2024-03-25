@@ -194,13 +194,14 @@ namespace Projet_C_
             luffy.Spells.Add(redHawk);
             luffy.Spells.Add(attaque2);
 
-            CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 2, 1, 2, 1, 2, 1);
-            Character cTest = new Character(stats, 1);
+            CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 2, 1, 200, 1, 2, 1);
+            Character cTest = new Character(stats, 100);
             _enemy.Character = cTest;
             _enemy.Character.Spells.Add(redHawk);
 
             Player.ListTools.Add(tools1);
             Player.ListTools.Add(tools2);
+            Player.NbPersoLife = Player.ListCharacter.Count;
         }
 
         public void MainLoop()
@@ -223,14 +224,14 @@ namespace Projet_C_
                     //Draw.DrawInventory();
 
                     //Draw.Fight(Player, _enemy);
-                    Console.WriteLine("Un ennemi est apparu !!!!");
-                    Thread.Sleep(2000);
+                    //Console.WriteLine("Un ennemi est apparu !!!!");
+                    
                     FightManager.MainLoop(Player, _enemy);
 
                 }else if(Draw.Map.MapList[Player.TopPos][Player.LeftPos] == '&')
                 {
-                    Console.WriteLine("Fight the boss !!!!");
-                    Thread.Sleep(2000);
+                    Draw.Map = ListMap[2];
+                    Draw.DrawMap();
                     FightManager.MainLoop(Player, _enemy);
                 }
             }
