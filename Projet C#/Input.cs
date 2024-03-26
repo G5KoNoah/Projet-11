@@ -263,7 +263,7 @@ namespace Projet_C_
                         case ConsoleKey.UpArrow:
                             if (Select == 1)
                             {
-                                Select = player.ListTools.Count;
+                                Select = player.Objects.Count;
                             }
                             else
                             {
@@ -273,7 +273,7 @@ namespace Projet_C_
                             GameManager.Instance.Draw.Fight(player, enemy, Select, character);
                             break;
                         case ConsoleKey.DownArrow:
-                            if (Select == player.ListTools.Count)
+                            if (Select == player.Objects.Count)
                             {
                                 Select = 1;
                             }

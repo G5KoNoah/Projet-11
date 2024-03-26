@@ -10,16 +10,17 @@ namespace Projet_C_
     {
 
         CharacterStats _defaultStats;
+
         int _level;
         int _needXP;
 
         List<Spell> _spells = new List<Spell> { };
-
         public int Level { get => _level; }
         public int NeedXP {  get => _needXP; }
 
         public List<Spell> Spells { get => _spells;  }
-        public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
+        public CharacterStats DefaultStats { get => _defaultStats; protected set => _defaultStats = value; }
+
 
         public event Action LevelUp;
         public event Action OnDamage;
@@ -92,6 +93,20 @@ namespace Projet_C_
                 damage *= 0.5f; 
             }
             return (float)Math.Round(damage);
+        }
+
+        public void ItemSet(int boostPv, int boostPt, int boostAttack)
+        {
+            PV *= boostPv;
+            PT *= boostPt;
+            Attack *= boostAttack;
+        }
+
+        public void ItemDelete(int boostPv, int boostPt, int boostAttack)
+        {
+            PV /= boostPv;
+            PT /= boostPt;
+            Attack /= boostAttack;
         }
     }
 }

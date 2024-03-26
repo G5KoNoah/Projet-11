@@ -11,21 +11,29 @@ namespace Projet_C_
         int _boostPv;
         int _boostPt;
         int _boostAttack;
-        int _useTurn;
 
         public int BoostPv { get => _boostPv; set => _boostPv = value; }
         public int BoostPt { get => _boostPt; set => _boostPt = value; }
         public int BoostAttack { get => _boostAttack; set => _boostAttack = value; }
-        public int UseTurn { get => _useTurn; set => _useTurn = value; }
 
-        public Food(string name, int useTurn,int boostPv, int boostPt, int boostAttack) : base(name)
+
+        public Food(string name, int turn, int boostPv, int boostPt, int boostAttack) : base(name, turn)
         {
-            UseTurn = useTurn;
             BoostPv = boostPv;
             BoostPt = boostPt;
             BoostAttack = boostAttack;
         }
 
+        public override void Use(Character character)
+        {
+            base.Use(character);
+            ObjectCharacter.ItemSet(BoostPv, BoostPt, BoostAttack);
+        }
 
+        public override void DeleteStats()
+        {
+            base.DeleteStats();
+            ObjectCharacter.ItemDelete(BoostPv, BoostPt, BoostAttack);
+        }
     }
 }

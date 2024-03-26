@@ -26,7 +26,7 @@ namespace Projet_C_
         Dictionary<string, Character> _characterPlayer;
 
         List<Map> _ListMap;
-        List<Objects> _tools;
+        Dictionary<string, Objects> _objects;
         Enemy _enemy;
         DateTime _startDateTime;
 
@@ -55,7 +55,7 @@ namespace Projet_C_
         public Draw Draw { get => _Draw; private set => _Draw = value; }
         public Input Input { get => _Input; private set => _Input = value; }
         public List<Map> ListMap { get => _ListMap; private set => _ListMap = value; }
-        public List<Objects> Tools { get => _tools; set => _tools = value; }
+        public Dictionary<string, Objects> Objects { get => _objects; set => _objects = value; }
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
         public DateTime StartDateTime { get => _startDateTime; private set => _startDateTime = value; }
         public PauseManager PauseManager { get => _pauseManager; set => _pauseManager = value; }
@@ -74,8 +74,8 @@ namespace Projet_C_
 
             ListMap = new List<Map>();
 
-            Tools = new List<Objects>();
-            Player = new Player(CharacterPlayer, Tools);
+            Objects = new Dictionary<string, Objects>();
+            Player = new Player(CharacterPlayer, Objects);
             _enemy = new Enemy();
             FightManager = new FightManager();
             PauseManager = new PauseManager();
@@ -188,8 +188,8 @@ namespace Projet_C_
             Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
             Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, CharacterTypes["strength"]);
 
-            Objects tools1 = new Tools("potion","santé",2,3,2,3,5,8);
-            Objects tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);
+            Food tools1 = new Food("potion",2,3,5,8);
+            Food tools2 = new Food("poison", 2, 3, 5, 8);
 
             luffy.Spells.Add(redHawk);
             luffy.Spells.Add(attaque2);
@@ -199,8 +199,8 @@ namespace Projet_C_
             _enemy.Character = cTest;
             _enemy.Character.Spells.Add(redHawk);
 
-            Player.ListTools.Add(tools1);
-            Player.ListTools.Add(tools2);
+            Player.Objects[tools1.Name] = tools1;
+            Player.Objects[tools2.Name] = tools2;
         }
 
         public void MainLoop()

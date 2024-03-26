@@ -155,18 +155,18 @@ namespace Projet_C_
 
                 case Input.StateFight.ObjectState:
 
-                    for (int i = 0; i < player.ListTools.Count; i++)
+                    for (int i = 0; i < player.Objects.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         if (i + 1 == select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListTools[i].Name + "                ");
+                            Console.WriteLine("             " + player.Objects + "                ");
                             Console.ForegroundColor = ConsoleColor.Black;
                         }
                         else
                         {
-                            Console.WriteLine("             " + player.ListTools[i].Name + "                ");
+                            Console.WriteLine("             " + player.Objects + "                ");
                         }
 
                     }
@@ -214,9 +214,9 @@ namespace Projet_C_
             Console.WriteLine("Inventaire");
             Console.SetCursorPosition(0,10);
             Console.BackgroundColor = ConsoleColor.Yellow;
-            for (int i = 0; i < GameManager.Instance.Player.ListTools.Count; i++)
+            for (int i = 0; i < GameManager.Instance.Player.Objects.Count; i++)
             {
-                Console.WriteLine(" - " + GameManager.Instance.Player.ListTools[i].Name);
+                Console.WriteLine(" - " + GameManager.Instance.Player.Objects);
             }
             Console.SetCursorPosition(0, 0);
 
