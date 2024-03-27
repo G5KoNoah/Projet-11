@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,23 +9,103 @@ namespace Projet_C_
 {
     public class FightManager
     {
-        public FightManager() { }
-        public void MainLoop(Player player)
+        string[] _choice;
+
+        int _select;
+
+        Enemy _enemy;
+        public enum StateFight { 
+            Start, 
+            Attack = 1, 
+            ChangePerso = 4, 
+            Tools = 3,
+            Flee = 2
+        };
+        StateFight _currentState;
+        public StateFight CurrentState { get => _currentState; set => _currentState = value; }
+        public string[] Choice { get => _choice; set => _choice = value; }
+        public int Select { get => _select; set => _select = value; }
+        public Enemy Enemy { get => _enemy; set => _enemy = value; }
+
+        public event Action<Player, Character> SelectChange;
+        public FightManager() {
+            CurrentState = StateFight.Start;
+            Choice = new string[] { "attaquer", "fuire", "objets", "personnages" };
+            Select = 1;
+        }
+
+        public void ModifySelect(int nb)
         {
+            int max = 0;
+            var player = GameManager.Instance.Player;
+            switch (CurrentState)
+            {
+                case StateFight.Start:
+                    max = Choice.Length;
+                    break;
+                case StateFight.Attack:
+                    max = player.CurrentCharacter.Spells.Count; 
+                    break;
+                case StateFight.ChangePerso:
+                    max = player.ListCharacter.Count; 
+                    break;
+                case StateFight.Tools:
+                    max = player.ListTools.Count; 
+                    break;
 
+            }
+            if (Select == 1 && nb == -1)
+            {
+                Select = max;
+            }
+            else if(Select == max && nb == 1)
+            {
+                Select = 1;
+            }
+            else
+            {
+                Select += nb;
+            }
+            SelectChange?.Invoke(player, Enemy.Character);
+        }
 
-            //GameManager.Instance.Draw.Fight(player, enemy, 1);
-            //while (true)
-            //{
-            //    GameManager.Instance.Input.InputFight(player, enemy);
-
-            //    if (enemy.Character.PV == 0)
-            //    {
-            //        Console.WriteLine("c'est finit");
-            //        player.ListCharacter["Luffy"].GainExperience(1000);
-            //    }
-            //}
-
+        public void ValideSelect()
+        {
+            var draw = GameManager.Instance.Draw;
+            var player = GameManager.Instance.Player;
+            switch (CurrentState)
+            {
+                case StateFight.Start:
+                    CurrentState = (StateFight)Select;
+                    Select = 1;
+                    break;
+                case StateFight.Attack:
+                    float damage = player.CurrentCharacter.SpellAttack(Select - 1);
+                    Enemy.Character.TakeDamage(damage);
+                    draw.Damage(damage, false);
+                    Thread.Sleep(1000);
+                    if(Enemy.Character.PV > 0)
+                    {
+                        int spell = new Random().Next(0, Enemy.Character.Spells.Count);
+                        damage = Enemy.Character.SpellAttack(spell);
+                        player.CurrentCharacter.TakeDamage(damage);
+                        draw.Damage(damage, true);
+                        Thread.Sleep(1000);
+                    }
+                    
+                    CurrentState = StateFight.Start;
+                    Select = 1;
+                    break;
+                case StateFight.ChangePerso:
+                    player.CurrentCharacter = player.ListCharacter.ElementAt(Select - 1).Value;
+                    Select = 1;
+                    CurrentState = StateFight.Start;
+                    break;
+                case StateFight.Tools:
+                    
+                    break;
+            }
+            SelectChange?.Invoke(player, Enemy.Character);
         }
     }
 }

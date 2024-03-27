@@ -26,7 +26,7 @@ namespace Projet_C_
         public string Name { get => _name; set => _name = value; }
         public CharacterType Type { get => _type; set => _type = value; }
 
-        public CharacterStats(string name, CharacterType type, int PV, int PT, int attack, int defense, int attackSpeed, int precision)
+        public CharacterStats(string name, CharacterType type, float PV, float PT, float attack, float defense, float attackSpeed, float precision)
         {
             _name = name;
             _type = type;

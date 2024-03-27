@@ -1,0 +1,29 @@
+﻿[
+  {
+    "Name": "speed",
+    "PV": 1.0,
+    "PT": 1.0,
+    "Attack": 1.0,
+    "Defense": 1.0,
+    "AttackSpeed": 1.2,
+    "Precision": 0.8
+  },
+  {
+    "Name": "range",
+    "PV": 0.8,
+    "PT": 1.2,
+    "Attack": 0.8,
+    "Defense": 1.8,
+    "AttackSpeed": 0.8,
+    "Precision": 1.2
+  },
+  {
+    "Name": "strength",
+    "PV": 1.2,
+    "PT": 0.8,
+    "Attack": 1.2,
+    "Defense": 1.2,
+    "AttackSpeed": 1.0,
+    "Precision": 1.0
+  }
+]

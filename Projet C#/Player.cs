@@ -8,35 +8,35 @@ namespace Projet_C_
 {
     public class Player
     {
-        List<Character> _characters;
+        Dictionary<string, Character> _characters;
         Character _currentCharacter;
         List<Tools> _tools;
         int _leftPos;
         int _topPos;
 
-        public List<Character> ListCharacter { get => _characters; private set => _characters = value; }
+        public Dictionary<string, Character> ListCharacter { get => _characters; private set => _characters = value; }
         public List<Tools> ListTools { get => _tools; private set => _tools = value; }
 
         public int LeftPos { get => _leftPos; private set => _leftPos = value; }
         public int TopPos { get => _topPos; private set => _topPos = value; }
         public Character CurrentCharacter { get => _currentCharacter; set => _currentCharacter = value; }
 
-        public Player((int, int) pos)
+        public Player(Dictionary<string, Character> characters, List<Tools> tools, (int, int) pos)
         {
-            ListCharacter = new List<Character>(); ;
-            ListTools = new List<Tools>(); ;
+            ListCharacter = characters;
+            ListTools = tools;
             LeftPos = pos.Item1;
             TopPos = pos.Item2;
-            CurrentCharacter = ListCharacter[0];
+            CurrentCharacter = characters["Luffy"];
         }
 
-        public event Action Move;
+        public event Action<bool> Move;
         public void MoveLeft(int nb)
         {
             List<string> collisions = GameManager.Instance.Maps["map1"].MapList;
             if (collisions[TopPos][LeftPos + nb] != '|') {
                 LeftPos += nb;
-                Move?.Invoke();
+                Move?.Invoke(true);
             }
             
         }
@@ -46,7 +46,7 @@ namespace Projet_C_
             if (collisions[TopPos + nb][LeftPos] != '|')
             {
                 TopPos += nb;
-                Move?.Invoke();
+                Move?.Invoke(true);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,45 +7,38 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
-    public class Character
+    public class Character : Stats
     {
 
         CharacterStats _defaultStats;
         int _level;
         int _needXP;
 
-        float _PV;
-        float _PT;
-        float _attack;
-        float _defense;
-        float _attackSpeed;
-        float _precision;
+        List<Spell> _spells = new List<Spell> { };
 
         public int Level { get => _level; }
-        public int NeedXP {  get => _needXP; }
-        public float PV { get => _PV; }
-        public float PT { get => _PT; }
-        public float Attack { get => _attack; }
-        public float Defense { get => _defense; }
-        public float AttackSpeed { get => _attackSpeed; }
-        public float Precision { get => _precision; }
+        public int NeedXP { get => _needXP; }
+
+        public List<Spell> Spells { get => _spells; }
         public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
 
         public event Action LevelUp;
+        public event Action OnDamage;
+        public event Action OnDeath;
+        public event Action onAttack;
 
-
-        public Character(CharacterStats stats, int level = 1) 
+        public Character(CharacterStats stats, int level = 1)
         {
-            DefaultStats = stats; 
+            DefaultStats = stats;
             _level = level;
             _needXP = 100 * level;
 
-            _PV = DefaultStats.PV;
-            _PT = DefaultStats.PT;
-            _attack = DefaultStats.Attack;
-            _defense = DefaultStats.Defense;
-            _attackSpeed = DefaultStats.AttackSpeed;
-            _precision = DefaultStats.Precision;
+            PV = DefaultStats.PV;
+            PT = DefaultStats.PT;
+            Attack = DefaultStats.Attack;
+            Defense = DefaultStats.Defense;
+            AttackSpeed = DefaultStats.AttackSpeed;
+            Precision = DefaultStats.Precision;
 
             StatsLevel();
         }
@@ -52,24 +46,54 @@ namespace Projet_C_
         public void GainExperience(int experience)
         {
             _needXP -= experience;
-            if (_needXP < 0)
+            while (_needXP < 0)
             {
-                int xp = _needXP;
                 _level += 1;
                 _needXP += 100 * _level;
                 LevelUp?.Invoke();
                 StatsLevel();
+                foreach (Spell spell in Spells)
+                {
+                    spell.StatsLevel();
+                }
             }
         }
         public void StatsLevel()
         {
-            _PV += 1 * _level;
-            _PT += 1 * _level;
-            _attack += 1 * _level;
-            _attackSpeed += 1 * _level;
-            _defense += 1 * _level;
-            _precision += 1 * _level;
+            PV += 5 * _level;
+            PT += 5 * _level;
+            Attack = (float)Math.Round(Attack * (1.0f + (0.01f * _level - 0.01f)));
+            AttackSpeed += 5 * _level;
+            Defense += 5 * _level;
+            Precision += 5 * _level;
         }
 
+        public void TakeDamage(float damage)
+        {
+            OnDamage?.Invoke();
+
+            PV -= damage;
+            if (PV < 0)
+            {
+                OnDeath?.Invoke();
+                PV = 0;
+
+            }
+        }
+
+        public float SpellAttack(int spell)
+        {
+            onAttack?.Invoke();
+            float damage = _spells[spell].AttackRation * Attack;
+            if (_spells[spell].Type == DefaultStats.Type.Weakness)
+            {
+                damage *= 2;
+            }
+            else if (_spells[spell].Type.Weakness == DefaultStats.Type)
+            {
+                damage *= 0.5f;
+            }
+            return (float)Math.Round(damage);
+        }
     }
 }

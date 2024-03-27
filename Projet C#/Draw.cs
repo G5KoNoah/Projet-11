@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static Projet_C_.FightManager;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet_C_
@@ -16,7 +18,7 @@ namespace Projet_C_
             Map = null;
         }
 
-        public void DrawMap()
+        public void DrawMap(bool drawPlayer)
         {
             //Console.Clear();
             
@@ -45,9 +47,6 @@ namespace Projet_C_
                         case '/':
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
-                        
-
-
                         case '1':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             //Console.Write('O');
@@ -59,7 +58,7 @@ namespace Projet_C_
 
                     }
                     
-                    if (i == player.TopPos && j == player.LeftPos)
+                    if (i == player.TopPos && j == player.LeftPos && drawPlayer)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('P');
@@ -75,121 +74,118 @@ namespace Projet_C_
             }
             Console.SetCursorPosition(0, 0);
         }
-        public void Fight(Player player, Enemy enemy, int select)
+        public void Fight(Player player, Character enemy)
         {
+            var fightManager = GameManager.Instance.FightManager;
             var currentCharacter = player.CurrentCharacter;
-            DrawMap();
-            Console.SetCursorPosition(0, 0);
+            DrawMap(false);
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.WriteLine("              " + currentCharacter.DefaultStats.Name + "  " + currentCharacter.DefaultStats.Type.Name + "                              " + enemy.currentCharacter.DefaultStats.Name + "  " + enemy.currentCharacter.DefaultStats.Type.Name + "                                                   ");
-            //Console.WriteLine("           ---------------                           ---------------                                                    ");
-            //Console.WriteLine("          |               |                         |               |                                                   ");
-            //Console.WriteLine("          |               |                         |               |                                                   ");
-            //Console.WriteLine("          |               |                         |               |                                                   ");
-            //Console.WriteLine("           ---------------                           ---------------                                                    ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.WriteLine("                 ---                                       ---                                                          ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.WriteLine("                  |                                         |                                                           ");
-            //Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(0, 14);
+            Console.SetCursorPosition(14, 0);
+            Console.WriteLine(currentCharacter.DefaultStats.Name + "  " + currentCharacter.DefaultStats.Type.Name);
+            Console.SetCursorPosition(59, 0);
+            Console.WriteLine(enemy.DefaultStats.Name + "  " + enemy.DefaultStats.Type.Name);
             Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("              " + currentCharacter.PV + "                                        " + enemy.Character.PV + "                                                            "); ;
-            switch (GameManager.Instance.Input.State)
+            Console.SetCursorPosition(14, 14);
+            Console.WriteLine(currentCharacter.PV);
+            Console.SetCursorPosition(59, 14);
+            Console.WriteLine(enemy.PV);
+            switch (fightManager.CurrentState)
             {
-                case Input.StateFight.firstState:
-                    //Console.SetCursorPosition(0, 13);
-
-                    for (int i = 0; i < GameManager.Instance.FightManager.Choix.Length; i++)
+                case FightManager.StateFight.Start:
+                    for (int i = 0; i < fightManager.Choice.Length; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
-                        if (i + 1 == select)
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == fightManager.Select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                                                         ");
-                            Console.ForegroundColor = ConsoleColor.Black;
                         }
-                        else
-                        {
-                            Console.WriteLine("             " + GameManager.Instance.FightManager.Choix[i] + "                                                         ");
-                        }
-
+                        Console.WriteLine(fightManager.Choice[i]);
                     }
                     break;
 
-                case Input.StateFight.FightState:
-
-                    for (int i = 0; i < character.Spells.Count; i++)
+                case FightManager.StateFight.Attack:
+                    for (int i = 0; i < currentCharacter.Spells.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
-                        if (i + 1 == select)
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == fightManager.Select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + character.Spells[i].Name + "                ");
-                            Console.ForegroundColor = ConsoleColor.Black;
                         }
-                        else
-                        {
-                            Console.WriteLine("             " + character.Spells[i].Name + "                ");
-                        }
-
+                        Console.WriteLine(currentCharacter.Spells[i].Name);
                     }
 
                     break;
 
-                case Input.StateFight.ObjectState:
-
+                case FightManager.StateFight.Tools:
                     for (int i = 0; i < player.ListTools.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
-                        if (i + 1 == select)
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == fightManager.Select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListTools[i].Name + "                ");
-                            Console.ForegroundColor = ConsoleColor.Black;
                         }
-                        else
-                        {
-                            Console.WriteLine("             " + player.ListTools[i].Name + "                ");
-                        }
-
+                        Console.WriteLine(player.ListTools[i].Name);
                     }
 
                     break;
 
-                case Input.StateFight.PersoState:
-
+                case FightManager.StateFight.ChangePerso:
                     for (int i = 0; i < player.ListCharacter.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
-                        if (i + 1 == select)
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == fightManager.Select)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("             " + player.ListCharacter[i].DefaultStats.Name + "                ");
-                            Console.ForegroundColor = ConsoleColor.Black;
                         }
-                        else
-                        {
-                            Console.WriteLine("             " + player.ListCharacter[i].DefaultStats.Name + "                ");
-                        }
-
+                        Console.WriteLine(player.ListCharacter.ElementAt(i).Value.DefaultStats.Name);
                     }
 
                     break;
             }
 
-            //for (int i = 0; i < 14; i++)
-            //{
-
-            //    for (int j = 0; j < 120; j++)
-            //    {
-            //        Console.Write(' ');
-            //    }
-            //Console.WriteLine();
-            //}
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
 
+        }
+
+        public void Damage(float damage, bool isEnemy)
+        {
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(35, 10);
+            if (isEnemy)
+            {
+                Console.WriteLine(" - " + damage + "<-");
+            }
+            else
+            {
+                Console.WriteLine("-> - " + damage);
+            }
+        }
+
+        public void Pause()
+        {
+            DrawMap(false);
+            Console.SetCursorPosition(33, 3);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("ONE PIECE");
+
+            var choices = GameManager.Instance.Choice;
+            for (int i = 0; i < choices.Length; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                if (i + 1 == GameManager.Instance.Select)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                Console.SetCursorPosition(13, 8 + 3 * i);
+                Console.WriteLine(choices[i]);
+            }
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, 0);
         }
     }
 }

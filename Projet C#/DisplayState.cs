@@ -22,7 +22,7 @@ namespace Projet_C_
         }
 
         Display _displayState;
-        private Display State { get => _displayState; set => _displayState = value; }
+        public Display State { get => _displayState; set => _displayState = value; }
 
         private static DisplayState instance = null;
         private static readonly object padlock = new object();
@@ -56,27 +56,36 @@ namespace Projet_C_
         {
             if (Enter)
             {
-                Draw draw = GameManager.Instance.Draw;
+                var draw = GameManager.Instance.Draw;
                 var maps = GameManager.Instance.Maps;
-                Player player = GameManager.Instance.Player;
+                var player = GameManager.Instance.Player;
+                var fightManager = GameManager.Instance.FightManager;
                 switch (State)
                 {
                     case Display.Menu:
                         break;
                     case Display.Map:
                         draw.Map = maps["map1"];
-                        draw.DrawMap();
+                        draw.DrawMap(true);
                         player.Move += draw.DrawMap;
                         break;
                     case Display.Transition:
                         draw.Map = maps["boat"];
-                        draw.DrawMap();
+                        draw.DrawMap(false);
                         break;
                     case Display.Fight:
+                        draw.Map = maps["fight"];
+                        fightManager.Enemy = GameManager.Instance.Enemy;
+                        fightManager.CurrentState = FightManager.StateFight.Start;
+                        fightManager.SelectChange += draw.Fight;
+                        fightManager.ModifySelect(0);
                         break;
                     case Display.Inventary:
                         break;
-                    case Display.Pause: 
+                    case Display.Pause:
+                        draw.Map = maps["break"];
+                        GameManager.Instance.SelectChange += draw.Pause;
+                        GameManager.Instance.ModifySelect(0);
                         break;
                 }
                 Enter = false;
@@ -87,6 +96,7 @@ namespace Projet_C_
         {
             Player player = GameManager.Instance.Player;
             Draw draw = GameManager.Instance.Draw;
+            var fightManager = GameManager.Instance.FightManager;
             Input.Instance.InputGame(State);
             switch (State)
             {
@@ -112,7 +122,11 @@ namespace Projet_C_
                     Exit = true;
                     break;
                 case Display.Fight:
-                    FightManager.MainLoop(player);
+                    if (fightManager.CurrentState == FightManager.StateFight.Flee)
+                    {
+                        State = Display.Map;
+                        Exit = true;
+                    }
                     break;
                 case Display.Inventary:
                     break;
@@ -127,6 +141,7 @@ namespace Projet_C_
             {
                 Draw draw = GameManager.Instance.Draw;
                 Player player = GameManager.Instance.Player;
+                var fightManager = GameManager.Instance.FightManager;
                 switch (State)
                 {
                     case Display.Menu:
@@ -137,6 +152,7 @@ namespace Projet_C_
                     case Display.Transition:
                         break;
                     case Display.Fight:
+                        fightManager.SelectChange += draw.Fight;
                         break;
                     case Display.Inventary:
                         break;
