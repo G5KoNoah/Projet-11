@@ -97,6 +97,7 @@ namespace Projet_C_
 
             MenuChoice.Add("Commencer");
             MenuChoice.Add("Continuer");
+            MenuChoice.Add("Quitter");
 
             NumMap = 1;
 
@@ -208,14 +209,33 @@ namespace Projet_C_
         public void ValideSelect()
         {
             var displayState = DisplayState.Instance;
-            switch (Select)
+
+            switch (displayState.State)
             {
-                case 1:
-                    displayState.State = DisplayState.Display.Map;
-                    displayState.Exit = true;
+                case DisplayState.Display.Menu:
+                    switch (Select)
+                    {
+                        case 1:
+                            displayState.State = DisplayState.Display.Map;
+                            displayState.Exit = true;
+                            break;
+                        case 3:
+                            Environment.Exit(0);
+                            break;
+                    }
+
                     break;
-                case 2:
-                    Environment.Exit(0);
+                case DisplayState.Display.Pause:
+                    switch (Select)
+                    {
+                        case 1:
+                            displayState.State = DisplayState.Display.Map;
+                            displayState.Exit = true;
+                            break;
+                        case 2:
+                            Environment.Exit(0);
+                            break;
+                    }
                     break;
             }
             SelectChange?.Invoke();
