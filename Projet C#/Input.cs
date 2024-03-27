@@ -34,6 +34,7 @@ namespace Projet_C_
         {
             var player = GameManager.Instance.Player;
             var fightManager = GameManager.Instance.FightManager;
+            var inventoryManager = GameManager.Instance.InventoryManager;
             InputByState = new Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>>
 {
                 { DisplayState.Display.Map, new Dictionary<ConsoleKey, Action>
@@ -46,6 +47,11 @@ namespace Projet_C_
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Pause;
                             displayState.Exit = true;
+                        }},
+                        { ConsoleKey.I, () => {
+                            var displayState = DisplayState.Instance;
+                            displayState.State = DisplayState.Display.Inventory;
+                            displayState.Exit = true;
                         }}
                     }
                 },
@@ -54,6 +60,23 @@ namespace Projet_C_
                         { ConsoleKey.UpArrow, () => { fightManager.ModifySelect(-1); }},
                         { ConsoleKey.DownArrow, () => { fightManager.ModifySelect(1); }},
                         { ConsoleKey.Enter, () => { fightManager.ValideSelect(); }}
+                    }
+                },
+                { DisplayState.Display.Inventory, new Dictionary<ConsoleKey, Action>
+                    {
+                        { ConsoleKey.UpArrow, () => { inventoryManager.ModifySelect(-1); }},
+                        { ConsoleKey.DownArrow, () => { inventoryManager.ModifySelect(1); }},
+                        { ConsoleKey.Enter, () => { inventoryManager.ValideSelect(); }},
+                        { ConsoleKey.Escape, () => {
+                            var displayState = DisplayState.Instance;
+                            displayState.State = DisplayState.Display.Pause;
+                            displayState.Exit = true;
+                        }},
+                        { ConsoleKey.I, () => {
+                            var displayState = DisplayState.Instance;
+                            displayState.State = DisplayState.Display.Map;
+                            displayState.Exit = true;
+                        }}
                     }
                 },
                 { DisplayState.Display.Pause, new Dictionary<ConsoleKey, Action>

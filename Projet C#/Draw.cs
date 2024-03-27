@@ -5,6 +5,8 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static Projet_C_.FightManager;
+using static Projet_C_.InventoryManager;
+
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet_C_
@@ -120,7 +122,7 @@ namespace Projet_C_
                     break;
 
                 case FightManager.StateFight.Tools:
-                    for (int i = 0; i < player.ListTools.Count; i++)
+                    for (int i = 0; i < player.Objects.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.SetCursorPosition(13, 15 + i);
@@ -128,7 +130,7 @@ namespace Projet_C_
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                         }
-                        Console.WriteLine(player.ListTools[i].Name);
+                        Console.WriteLine(player.Objects.ElementAt(i).Value.Name);
                     }
 
                     break;
@@ -158,6 +160,78 @@ namespace Projet_C_
 
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
+
+
+        }
+
+        public void Inventory(Player player)
+        {
+            DrawMap(false);
+            var inventoryManager = GameManager.Instance.InventoryManager;
+            switch (inventoryManager.CurrentState)
+            {
+                case InventoryManager.StateInventory.Start:
+                    for (int i = 0; i < inventoryManager.Choice.Length; i++)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == inventoryManager.Select)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        Console.WriteLine(inventoryManager.Choice[i]);
+                    }
+                    break;
+
+                case InventoryManager.StateInventory.Object:
+                    for (int i = 0; i < player.ListCharacter.Count; i++)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == inventoryManager.Select)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        Console.WriteLine(player.Objects.ElementAt(i).Value.Name);
+                    }
+
+                    break;
+                case InventoryManager.StateInventory.Character:
+                    for (int i = 0; i < player.ListCharacter.Count; i++)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.SetCursorPosition(13, 15 + i);
+                        if (i + 1 == inventoryManager.Select)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        Console.WriteLine(player.ListCharacter.ElementAt(i).Value.DefaultStats.Name);
+                    }
+
+                    break;
+                case InventoryManager.StateInventory.CharacterDetails:
+                    Console.SetCursorPosition(13, 15);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.DefaultStats.Name);
+                    Console.SetCursorPosition(13, 16);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Level);
+                    Console.SetCursorPosition(25, 16);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.NeedXP);
+                    Console.SetCursorPosition(13, 17);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PV);
+                    Console.SetCursorPosition(25, 17);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPv);
+                    Console.SetCursorPosition(13, 18);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PT);
+                    Console.SetCursorPosition(25, 18);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPt);
+
+
+                    break;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, 0);
+
 
         }
 
