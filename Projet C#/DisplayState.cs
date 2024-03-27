@@ -47,7 +47,7 @@ namespace Projet_C_
 
         public DisplayState() 
         {
-            State = Display.Menu;
+            State = Display.Map;
             Exit = false;
             Enter = true;
         }
