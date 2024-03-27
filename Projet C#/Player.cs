@@ -58,8 +58,11 @@ namespace Projet_C_
             if(Objects.ContainsKey(name))
             {
                 UseItem?.Invoke();
-                CurrentObjects[name] = Objects[name];
-                CurrentObjects[name].Use(character);
+                if (Objects[name].UseTurn != -1)
+                {
+                    CurrentObjects[name] = Objects[name];
+                }
+                Objects[name].Use(character);
                 Objects.Remove(name);
             }
 
@@ -73,7 +76,7 @@ namespace Projet_C_
                 {
                     CurrentObjects.Remove(item.Key);
                     item.Value.DeleteStats();
-                }else if(item.Value.UseTurn != -1)
+                }else 
                 {
                     item.Value.UseTurn--;
                 }
