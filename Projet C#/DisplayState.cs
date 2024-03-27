@@ -17,7 +17,7 @@ namespace Projet_C_
             Map,
             Transition,
             Fight,
-            Inventary,
+            Inventory,
             Pause
         }
 
@@ -60,6 +60,7 @@ namespace Projet_C_
                 var maps = GameManager.Instance.Maps;
                 var player = GameManager.Instance.Player;
                 var fightManager = GameManager.Instance.FightManager;
+                var inventoryManager = GameManager.Instance.InventoryManager;
                 switch (State)
                 {
                     case Display.Menu:
@@ -80,7 +81,12 @@ namespace Projet_C_
                         fightManager.SelectChange += draw.Fight;
                         fightManager.ModifySelect(0);
                         break;
-                    case Display.Inventary:
+                    case Display.Inventory:
+                        draw.Map = maps["inventory"];
+                        draw.DrawMap(false);
+                        inventoryManager.CurrentState = InventoryManager.StateInventory.Start;
+                        inventoryManager.SelectChange += draw.Inventory;
+                        inventoryManager.ModifySelect(0);
                         break;
                     case Display.Pause:
                         draw.Map = maps["break"];
@@ -97,6 +103,7 @@ namespace Projet_C_
             Player player = GameManager.Instance.Player;
             Draw draw = GameManager.Instance.Draw;
             var fightManager = GameManager.Instance.FightManager;
+            var inventoryManager = GameManager.Instance.InventoryManager;
             Input.Instance.InputGame(State);
             switch (State)
             {
@@ -128,7 +135,7 @@ namespace Projet_C_
                         Exit = true;
                     }
                     break;
-                case Display.Inventary:
+                case Display.Inventory:
                     break;
                 case Display.Pause:
                     break;
@@ -142,6 +149,7 @@ namespace Projet_C_
                 Draw draw = GameManager.Instance.Draw;
                 Player player = GameManager.Instance.Player;
                 var fightManager = GameManager.Instance.FightManager;
+                var inventoryManager = GameManager.Instance.InventoryManager;
                 switch (State)
                 {
                     case Display.Menu:
@@ -154,7 +162,7 @@ namespace Projet_C_
                     case Display.Fight:
                         fightManager.SelectChange += draw.Fight;
                         break;
-                    case Display.Inventary:
+                    case Display.Inventory:
                         break;
                     case Display.Pause:
                         break;

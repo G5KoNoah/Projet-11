@@ -68,8 +68,8 @@ namespace Projet_C_
         public void StatsLevel()
         {
             
-            PV = DefaultStats.PV + 5 * Level;
-            PT = DefaultStats.PT + 5 * Level;
+            PV = (float)Math.Round(DefaultStats.PV + 5 * Level);
+            PT = (float)Math.Round(DefaultStats.PT + 5 * Level);
             Attack = (float)Math.Round(DefaultStats.Attack * (1.0f + (0.01f * Level - 0.01f)));
             AttackSpeed = DefaultStats.AttackSpeed + 5   * Level;
             Defense = DefaultStats.Defense + 5 * Level;

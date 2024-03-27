@@ -12,6 +12,7 @@ namespace Projet_C_
     {
         Parser _parser;
         FightManager _fightManager;
+        InventoryManager _inventoryManager;
         Player _player;
         Draw _draw;
         Dictionary<string, Map> _maps;
@@ -58,12 +59,14 @@ namespace Projet_C_
         public int Select { get => _select; set => _select = value; }
         public string[] Choice { get => _choice; set => _choice = value; }
         public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
+        public InventoryManager InventoryManager { get => _inventoryManager; set => _inventoryManager = value; }
 
         public event Action SelectChange;
 
         public GameManager() {
             Parser = new Parser();
             FightManager = new FightManager();
+            InventoryManager = new InventoryManager();
             Maps = new Dictionary<string, Map>();
 
             CharacterStats = new Dictionary<string, CharacterStats>();
@@ -92,7 +95,7 @@ namespace Projet_C_
 
         public void InitMap()
         {
-            string[] names = { "map1", "boat", "fight", "break" };
+            string[] names = { "map1", "boat", "fight", "break", "inventory" };
             foreach (string name in names)
             {
                 var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");
