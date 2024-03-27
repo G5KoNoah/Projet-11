@@ -19,6 +19,7 @@ namespace Projet_C_
             Start,
             Object,
             Character,
+            ObjectDetails,
             CharacterDetails
         };
         StateInventory _currentState;
@@ -53,7 +54,9 @@ namespace Projet_C_
                 case StateInventory.CharacterDetails:
                     max = player.ListCharacter.Count;
                     break;
-
+                case StateInventory.ObjectDetails:
+                    max = player.Objects.Count;
+                    break;
 
             }
             if (Select == 1 && nb == -1)
@@ -82,6 +85,9 @@ namespace Projet_C_
                     break;
                 case StateInventory.Character:
                     CurrentState = StateInventory.CharacterDetails;
+                    break;
+                case StateInventory.Object:
+                    CurrentState = StateInventory.ObjectDetails;
                     break;
 
             }

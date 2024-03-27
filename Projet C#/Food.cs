@@ -17,7 +17,7 @@ namespace Projet_C_
         public float BoostAttack { get => _boostAttack; set => _boostAttack = value; }
 
 
-        public Food(string name, int turn, float boostPv, float boostPt, float boostAttack) : base(name, turn)
+        public Food(string name, string desc, int turn, float boostPv, float boostPt, float boostAttack) : base(name, desc, turn)
         {
             BoostPv = boostPv;
             BoostPt = boostPt;

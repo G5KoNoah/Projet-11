@@ -213,19 +213,33 @@ namespace Projet_C_
                     Console.SetCursorPosition(13, 15);
                     Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.DefaultStats.Name);
                     Console.SetCursorPosition(13, 16);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Level);
+                    Console.WriteLine("Level : "+ player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Level);
                     Console.SetCursorPosition(25, 16);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.NeedXP);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.NeedXP + " XP pour le prochain niveau");
                     Console.SetCursorPosition(13, 17);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PV);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PV );
                     Console.SetCursorPosition(25, 17);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPv);
+                    Console.WriteLine("/ " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPv + " HP");
                     Console.SetCursorPosition(13, 18);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PT);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PT );
                     Console.SetCursorPosition(25, 18);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPt);
+                    Console.WriteLine("/ " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPt +" PT");
+                    Console.SetCursorPosition(13, 19);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Attack + " Dégâts d'Attaque");
+                    Console.SetCursorPosition(13, 20);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Defense + " Défense");
+                    Console.SetCursorPosition(13, 21);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.AttackSpeed + " Vitesse d'Attack");
+                    Console.SetCursorPosition(13, 22);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Precision + " Précision");
 
 
+                    break;
+                case InventoryManager.StateInventory.ObjectDetails:
+                    Console.SetCursorPosition(13, 15);
+                    Console.WriteLine(player.Objects.ElementAt(inventoryManager.Select-1).Value.Name);
+                    Console.SetCursorPosition(13, 17);
+                    Console.WriteLine(player.Objects.ElementAt(inventoryManager.Select - 1).Value.Description);
                     break;
             }
 

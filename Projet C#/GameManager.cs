@@ -151,8 +151,10 @@ namespace Projet_C_
                 Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
                 Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, CharacterTypes["strength"]);
 
-                Food potionHeal = new Food("steak HP", -1, 0.5f, 0, 1);
-                Food potionAttack = new Food("steak Attack", 2, 0, 0, 1.5f);
+
+
+                Food potionHeal = new Food("steak HP","Viande très bonne donnant de la vie à celui qui la mange.", -1, 0.5f, 0, 1);
+                Food potionAttack = new Food("steak Attack"," Viande apagnan Nattan bebou mange s'est pour donner de l'attaque", 2, 0, 0, 1.5f);
 
                 Objects[potionHeal.Name] = potionHeal;
                 Objects[potionAttack.Name] = potionAttack;
