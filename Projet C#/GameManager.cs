@@ -26,6 +26,8 @@ namespace Projet_C_
         int _select;
         string[] _choice;
 
+        int _numMap;
+
         private static GameManager instance = null;
         private static readonly object padlock = new object();
 
@@ -45,7 +47,6 @@ namespace Projet_C_
         }
 
         public Player Player { get => _player; private set => _player = value; }
-
         public Dictionary<string, CharacterStats> CharacterStats { get => _characterStats; set => _characterStats = value; }
         public Dictionary<string, CharacterType> CharacterTypes { get => _characterTypes; set => _characterTypes = value; }
         public Dictionary<string, Character> CharacterPlayer { get => _characterPlayer; set => _characterPlayer = value; }
@@ -57,6 +58,7 @@ namespace Projet_C_
         public Enemy Enemy { get => _enemy; set => _enemy = value; }
         public int Select { get => _select; set => _select = value; }
         public string[] Choice { get => _choice; set => _choice = value; }
+        public int NumMap { get => _numMap; set => _numMap = value; }
 
         public event Action SelectChange;
 
@@ -82,12 +84,14 @@ namespace Projet_C_
             Select = 1;
             Choice = new string[] { "Explore", "Quit" };
 
+            NumMap = 1;
+
             Console.CursorVisible = false;
         }
 
         public void InitMap()
         {
-            string[] names = { "map1", "boat", "fight", "break" };
+            string[] names = { "map1", "boat", "fight", "break", "map2" };
             foreach (string name in names)
             {
                 var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");

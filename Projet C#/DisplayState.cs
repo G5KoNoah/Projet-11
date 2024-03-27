@@ -65,7 +65,7 @@ namespace Projet_C_
                     case Display.Menu:
                         break;
                     case Display.Map:
-                        draw.Map = maps["map1"];
+                        draw.Map = maps["map" + (char)(GameManager.Instance.NumMap + '0')];
                         draw.DrawMap(true);
                         player.Move += draw.DrawMap;
                         break;
@@ -97,20 +97,31 @@ namespace Projet_C_
             Player player = GameManager.Instance.Player;
             Draw draw = GameManager.Instance.Draw;
             var fightManager = GameManager.Instance.FightManager;
+            var maps = GameManager.Instance.Maps;
             Input.Instance.InputGame(State);
             switch (State)
             {
                 case Display.Menu:
                     break;
                 case Display.Map:
-                    if (player.LeftPos == 10)
+                    if (draw.Map.MapList[player.TopPos][player.LeftPos] == '2')
                     {
+                        if (GameManager.Instance.NumMap == 1)
+                        {
+                            GameManager.Instance.NumMap = 2;
+                        }
+                        else
+                        {
+                            GameManager.Instance.NumMap = 1;
+                        }
+                        (player.LeftPos, player.TopPos) = maps["map" + (char)(GameManager.Instance.NumMap + '0')].PlayerPos;
                         State = Display.Transition;
                         Exit = true;
                     }
                     if (draw.Map.MapList[player.TopPos][player.LeftPos] == '$' && new Random().Next(1, 10) == 1)
                     {
                         Console.WriteLine("Un ennemi est apparu !!!!");
+                        Console.SetCursorPosition(0, 0);
                         Thread.Sleep(2000);
                         State = Display.Fight;
                         Exit = true;
@@ -152,7 +163,7 @@ namespace Projet_C_
                     case Display.Transition:
                         break;
                     case Display.Fight:
-                        fightManager.SelectChange += draw.Fight;
+                        fightManager.SelectChange -= draw.Fight;
                         break;
                     case Display.Inventary:
                         break;

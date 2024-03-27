@@ -17,8 +17,8 @@ namespace Projet_C_
         public Dictionary<string, Character> ListCharacter { get => _characters; private set => _characters = value; }
         public List<Tools> ListTools { get => _tools; private set => _tools = value; }
 
-        public int LeftPos { get => _leftPos; private set => _leftPos = value; }
-        public int TopPos { get => _topPos; private set => _topPos = value; }
+        public int LeftPos { get => _leftPos; set => _leftPos = value; }
+        public int TopPos { get => _topPos; set => _topPos = value; }
         public Character CurrentCharacter { get => _currentCharacter; set => _currentCharacter = value; }
 
         public Player(Dictionary<string, Character> characters, List<Tools> tools, (int, int) pos)

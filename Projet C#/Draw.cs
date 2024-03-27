@@ -49,11 +49,12 @@ namespace Projet_C_
                             break;
                         case '1':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
-                            //Console.Write('O');
                             break;
                         case '8':
                             Console.BackgroundColor = ConsoleColor.DarkCyan;
-                            //Console.Write('O');
+                            break;
+                        case '2':
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
 
                     }
@@ -164,6 +165,8 @@ namespace Projet_C_
             {
                 Console.WriteLine("-> - " + damage);
             }
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, 0);
         }
 
         public void Pause()
