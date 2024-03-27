@@ -148,9 +148,9 @@ namespace Projet_C_
 
                 luffy.Spells.Add(redHawk);
                 luffy.Spells.Add(attaque2);
-
-                CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 2, 1, 2, 1, 2, 1);
-                Character cTest = new Character(stats, 1);
+                croco.Spells.Add(redHawk);
+                CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 100, 100, 2000, 1000, 2000, 100);
+                Character cTest = new Character(stats, 1000);
                 Enemy.Character = cTest;
                 Enemy.Character.Spells.Add(redHawk);
 

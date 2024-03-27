@@ -56,6 +56,10 @@ namespace Projet_C_
                         case '2':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
+                        case '2':
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //Console.Write('O');
+                            break;
 
                     }
                     
@@ -140,7 +144,15 @@ namespace Projet_C_
                         Console.SetCursorPosition(13, 15 + i);
                         if (i + 1 == fightManager.Select)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            if(player.ListCharacter.ElementAt(i).Value.PV == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+                            
                         }
                         Console.WriteLine(player.ListCharacter.ElementAt(i).Value.DefaultStats.Name);
                     }
@@ -151,6 +163,27 @@ namespace Projet_C_
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
 
+        }
+
+        
+
+
+        public void Win(Player player, Character enemy)
+        {
+            Console.SetCursorPosition(0, 0);
+            Fight(player, enemy);
+            Console.SetCursorPosition(30, 20);
+            Console.WriteLine("vous avez gagnez !!");
+            Console.SetCursorPosition(0, 0);
+        }
+
+        public void Loose(Player player, Character enemy)
+        {
+            Console.SetCursorPosition(0, 0);
+            Fight(player, enemy);
+            Console.SetCursorPosition(30, 20);
+            Console.WriteLine("vous avez perdu !!");
+            Console.SetCursorPosition(0, 0);
         }
 
         public void Damage(float damage, bool isEnemy)
@@ -189,6 +222,36 @@ namespace Projet_C_
             }
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
+        }
+
+
+        public void Dialogue()
+        {
+            int ligne = 20;
+            string dialogue = "Salut mec !!!";
+            Console.SetCursorPosition(15, ligne);
+            Console.BackgroundColor = ConsoleColor.Black;
+            for(int i = 0;i < 5; i++)
+            {
+                for(int j = 0; j< 40; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+                ligne++;
+                Console.SetCursorPosition(15, ligne);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(25, 20);
+            for(int i = 0; i < dialogue.Length; i++)
+            {
+                Console.Write(dialogue[i]);
+                Thread.Sleep(70);
+            }
+            
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, 0);
+            
         }
     }
 }
