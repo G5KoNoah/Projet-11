@@ -143,7 +143,15 @@ namespace Projet_C_
                         Console.SetCursorPosition(13, 15 + i);
                         if (i + 1 == fightManager.Select)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            if(player.ListCharacter.ElementAt(i).Value.PV == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+                            
                         }
                         Console.WriteLine(player.ListCharacter.ElementAt(i).Value.DefaultStats.Name);
                     }
@@ -154,6 +162,25 @@ namespace Projet_C_
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
 
+        }
+
+
+        public void Win(Player player, Character enemy)
+        {
+            Console.SetCursorPosition(0, 0);
+            Fight(player, enemy);
+            Console.SetCursorPosition(30, 20);
+            Console.WriteLine("vous avez gagnez !!");
+            Console.SetCursorPosition(0, 0);
+        }
+
+        public void Loose(Player player, Character enemy)
+        {
+            Console.SetCursorPosition(0, 0);
+            Fight(player, enemy);
+            Console.SetCursorPosition(30, 20);
+            Console.WriteLine("vous avez perdu !!");
+            Console.SetCursorPosition(0, 0);
         }
 
         public void Damage(float damage, bool isEnemy)

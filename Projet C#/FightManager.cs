@@ -91,16 +91,59 @@ namespace Projet_C_
                         player.CurrentCharacter.TakeDamage(damage);
                         draw.Damage(damage, true);
                         Thread.Sleep(1000);
+                        
+                        if (player.CurrentCharacter.PV == 0)
+                        {
+                            int nbLoose = 0;
+                            for (int i = 0; i < player.ListCharacter.Count; i++)
+                            {
+                                if(player.ListCharacter.ElementAt(i).Value.PV == 0)
+                                {
+                                    nbLoose++;
+                                }
+                            }
+                            if(nbLoose == player.ListCharacter.Count)
+                            {
+                                draw.Loose(player, Enemy.Character);
+                                Thread.Sleep(2000);
+                                DisplayState.Instance.State = DisplayState.Display.Map;
+                                DisplayState.Instance.Exit = true;
+                            }
+
+                            CurrentState = StateFight.ChangePerso;
+                        }
+                        else
+                        {
+                            CurrentState = StateFight.Start;
+                        }
+                        Select = 1;
+
+                        
                     }
-                    
-                    CurrentState = StateFight.Start;
-                    Select = 1;
+                    else
+                    {
+
+                        draw.Win(player, Enemy.Character);
+                        
+                        Thread.Sleep(2000);
+                        
+                        DisplayState.Instance.State = DisplayState.Display.Map;
+                        DisplayState.Instance.Exit = true;
+
+
+                    }
                     break;
+
                 case StateFight.ChangePerso:
-                    player.CurrentCharacter = player.ListCharacter.ElementAt(Select - 1).Value;
-                    Select = 1;
-                    CurrentState = StateFight.Start;
+                    if(player.ListCharacter.ElementAt(Select - 1).Value.PV != 0)
+                    {
+                        player.CurrentCharacter = player.ListCharacter.ElementAt(Select - 1).Value;
+                        Select = 1;
+                        CurrentState = StateFight.Start;
+                        
+                    }
                     break;
+
                 case StateFight.Tools:
                     
                     break;
