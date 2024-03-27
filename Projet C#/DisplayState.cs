@@ -64,6 +64,8 @@ namespace Projet_C_
                 switch (State)
                 {
                     case Display.Menu:
+                        draw.Map = maps["Start"];
+                        draw.DrawMap(false);
                         break;
                     case Display.Map:
                         draw.Map = maps["map" + (char)(GameManager.Instance.NumMap + '0')];
