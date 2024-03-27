@@ -103,7 +103,7 @@ namespace Projet_C_
                 case Display.Menu:
                     break;
                 case Display.Map:
-                    if (player.LeftPos == 10)
+                    if (draw.Map.MapList[player.TopPos][player.LeftPos] == '2')
                     {
                         State = Display.Transition;
                         Exit = true;

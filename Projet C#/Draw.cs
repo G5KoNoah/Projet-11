@@ -55,6 +55,10 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.DarkCyan;
                             //Console.Write('O');
                             break;
+                        case '2':
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            //Console.Write('O');
+                            break;
 
                     }
                     
