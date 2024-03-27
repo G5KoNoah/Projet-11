@@ -59,6 +59,10 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
 
+                        case '3':
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            break;
+
                     }
                     
                     if (i == player.TopPos && j == player.LeftPos && drawPlayer)
@@ -292,6 +296,25 @@ namespace Projet_C_
             }
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
+        }
+
+        public void Menu()
+        {
+            var choices = GameManager.Instance.MenuChoice;
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            for (int i = 0; i < choices.Count;i++)
+            {
+                if( i + 1 == GameManager.Instance.Select)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                Console.SetCursorPosition(45 , 15 + i + 1);
+                Console.WriteLine(choices[i]);
+            }
         }
 
 
