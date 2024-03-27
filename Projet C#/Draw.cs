@@ -60,18 +60,37 @@ namespace Projet_C_
                             break;
 
                     }
-                    
-                    if (i == player.TopPos && j == player.LeftPos && drawPlayer)
+                    if (drawPlayer)
                     {
+                        bool letterDraw = false;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write('P');
+                        foreach (var PNJ in Map.PosPNJ)
+                        {
+                            if (i == PNJ.Item2 && j == PNJ.Item1)
+                            {
+                                Console.Write('T');
+                                letterDraw = true;
+                            }
+                        }
+                        if (i == player.TopPos && j == player.LeftPos)
+                        {
+                            Console.Write('P');
+                            letterDraw = true;
+                        }
+                        if (i == Map.ObjectPos.Item2 && j == Map.ObjectPos.Item1)
+                        {
+                            Console.Write('C');
+                            letterDraw = true;
+                        }
+                        if (letterDraw == false)
+                        {
+                            Console.Write(' ');
+                        }
                     }
                     else
                     {
                         Console.Write(' ');
                     }
-              
-
                 }
                 Console.WriteLine();
             }
@@ -142,15 +161,11 @@ namespace Projet_C_
                         Console.SetCursorPosition(13, 15 + i);
                         if (i + 1 == fightManager.Select)
                         {
-                            if(player.ListCharacter.ElementAt(i).Value.PV == 0)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                            }
-                            
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        if (player.ListCharacter.ElementAt(i).Value.PV == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
                         }
                         Console.WriteLine(player.ListCharacter.ElementAt(i).Value.DefaultStats.Name);
                     }

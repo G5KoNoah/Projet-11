@@ -155,5 +155,14 @@ namespace Projet_C_
             
             SelectChange?.Invoke(player, Enemy.Character);
         }
+
+        public void SelectBack()
+        {
+            if (CurrentState != StateFight.Start) {
+                CurrentState = StateFight.Start;
+                Select = 1;
+                SelectChange?.Invoke(GameManager.Instance.Player, Enemy.Character);
+            }
+        }
     }
 }

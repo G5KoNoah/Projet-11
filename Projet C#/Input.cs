@@ -59,6 +59,7 @@ namespace Projet_C_
                     {
                         { ConsoleKey.UpArrow, () => { fightManager.ModifySelect(-1); }},
                         { ConsoleKey.DownArrow, () => { fightManager.ModifySelect(1); }},
+                        { ConsoleKey.LeftArrow, () => { fightManager.SelectBack(); }},
                         { ConsoleKey.Enter, () => { fightManager.ValideSelect(); }}
                     }
                 },
@@ -96,11 +97,15 @@ namespace Projet_C_
 
         public void InputGame(DisplayState.Display currentState)
         {
-            ConsoleKey key = Console.ReadKey(true).Key;
-            if (InputByState.ContainsKey(currentState) && InputByState[currentState].ContainsKey(key))
+            if(currentState != DisplayState.Display.Transition)
             {
-                InputByState[currentState][key].Invoke();
+                ConsoleKey key = Console.ReadKey(true).Key;
+                if (InputByState.ContainsKey(currentState) && InputByState[currentState].ContainsKey(key))
+                {
+                    InputByState[currentState][key].Invoke();
+                }
             }
+            
         }  
     }
 }

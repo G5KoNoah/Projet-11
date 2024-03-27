@@ -10,9 +10,13 @@ namespace Projet_C_
     {
         List<string> _mapOrCharacter;
         (int, int) _pLayerPos;
+        List<(int, int)> _posPNJ;
+        (int, int) _objectPos;
 
         public List<string> MapOrCharacter { get => _mapOrCharacter; set => _mapOrCharacter = value; }
         public (int, int) PLayerPos { get => _pLayerPos; set => _pLayerPos = value; }
+        public List<(int, int)> PosPNJ { get => _posPNJ; set => _posPNJ = value; }
+        public (int, int) ObjectPos { get => _objectPos; set => _objectPos = value; }
     }
     public class Parser
     {
@@ -40,6 +44,7 @@ namespace Projet_C_
         {
             InfoText infoText = new InfoText();
             infoText.MapOrCharacter = new List<string>();
+            infoText.PosPNJ = new List<(int, int)>();
             StreamReader oFile = new StreamReader(sFilePath);
             if (oFile != null)
             {
@@ -47,7 +52,7 @@ namespace Projet_C_
                 string state = "";
                 while (line != null)
                 {
-                    if (line.StartsWith("Player") || line.StartsWith("Map") || line.StartsWith("Character"))
+                    if (line.StartsWith("Player") || line.StartsWith("Map") || line.StartsWith("PNJ") || line.StartsWith("Object"))
                     {
                         state = line;
                         line = oFile.ReadLine();
@@ -61,8 +66,20 @@ namespace Projet_C_
                             int.TryParse(pos[1], out int top);
                             infoText.PLayerPos = (left, top);
                             break;
-                        case "Map" or "Character":
+                        case "Map":
                             infoText.MapOrCharacter.Add(line);
+                            break;
+                        case "PNJ":
+                            var posPNJ = line.Split(' ');
+                            int.TryParse(posPNJ[0], out int leftPNJ);
+                            int.TryParse(posPNJ[1], out int topPNJ);
+                            infoText.PosPNJ.Add((leftPNJ, topPNJ));
+                            break;
+                        case "Object":
+                            var posObject = line.Split(' ');
+                            int.TryParse(posObject[0], out int leftObject);
+                            int.TryParse(posObject[1], out int topObject);
+                            infoText.ObjectPos = (leftObject, topObject);
                             break;
                     }
                     

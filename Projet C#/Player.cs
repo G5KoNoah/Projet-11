@@ -37,7 +37,7 @@ namespace Projet_C_
         public event Action UseItem;
         public void MoveLeft(int nb)
         {
-            List<string> collisions = GameManager.Instance.Maps["map1"].MapList;
+            List<string> collisions = GameManager.Instance.Maps["map" + (char)(GameManager.Instance.NumMap + '0')].MapList;
             if (collisions[TopPos][LeftPos + nb] != '|') {
                 LeftPos += nb;
                 Move?.Invoke(true);
@@ -46,7 +46,7 @@ namespace Projet_C_
         }
         public void MoveTop(int nb)
         {
-            List<string> collisions = GameManager.Instance.Maps["map1"].MapList;
+            List<string> collisions = GameManager.Instance.Maps["map" + (char)(GameManager.Instance.NumMap + '0')].MapList;
             if (collisions[TopPos + nb][LeftPos] != '|')
             {
                 TopPos += nb;

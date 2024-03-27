@@ -103,7 +103,7 @@ namespace Projet_C_
             foreach (string name in names)
             {
                 var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");
-                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos);
+                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos, infoText.PosPNJ, infoText.ObjectPos);
                 Maps.Add(name, map);
             }
         }
