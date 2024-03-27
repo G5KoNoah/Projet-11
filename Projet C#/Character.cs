@@ -11,16 +11,22 @@ namespace Projet_C_
     {
 
         CharacterStats _defaultStats;
+        CharacterStats _maxStats;
         int _level;
         int _needXP;
+        float _maxPv;
+        float _maxPt;
 
         List<Spell> _spells = new List<Spell> { };
 
-        public int Level { get => _level; }
-        public int NeedXP { get => _needXP; }
+        public int Level { get => _level; private set => _level = value; }
+        public int NeedXP { get => _needXP; private set => _needXP = value; }
 
         public List<Spell> Spells { get => _spells; }
         public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
+        public CharacterStats MaxStats { get => _maxStats; set => _maxStats = value; }
+        public float MaxPv { get => _maxPv; set => _maxPv = value; }
+        public float MaxPt { get => _maxPt; set => _maxPt = value; }
 
         public event Action LevelUp;
         public event Action OnDamage;
@@ -30,6 +36,7 @@ namespace Projet_C_
         public Character(CharacterStats stats, int level = 1)
         {
             DefaultStats = stats;
+            MaxStats = stats;
             _level = level;
             _needXP = 100 * level;
 
@@ -48,8 +55,8 @@ namespace Projet_C_
             _needXP -= experience;
             while (_needXP < 0)
             {
-                _level += 1;
-                _needXP += 100 * _level;
+                Level += 1;
+                NeedXP += 100 * _level;
                 LevelUp?.Invoke();
                 StatsLevel();
                 foreach (Spell spell in Spells)
@@ -60,12 +67,15 @@ namespace Projet_C_
         }
         public void StatsLevel()
         {
-            PV += 5 * _level;
-            PT += 5 * _level;
-            Attack = (float)Math.Round(Attack * (1.0f + (0.01f * _level - 0.01f)));
-            AttackSpeed += 5 * _level;
-            Defense += 5 * _level;
-            Precision += 5 * _level;
+            
+            PV = DefaultStats.PV + 5 * Level;
+            PT = DefaultStats.PT + 5 * Level;
+            Attack = (float)Math.Round(DefaultStats.Attack * (1.0f + (0.01f * Level - 0.01f)));
+            AttackSpeed = DefaultStats.AttackSpeed + 5   * Level;
+            Defense = DefaultStats.Defense + 5 * Level;
+            Precision = DefaultStats.Precision + 5 * Level;
+            MaxPv = PV;
+            MaxPt = PT;
         }
 
         public void TakeDamage(float damage)
@@ -94,6 +104,29 @@ namespace Projet_C_
                 damage *= 0.5f;
             }
             return (float)Math.Round(damage);
+        }
+
+        public void ItemSet(float boostPv, float boostPt, float boostAttack)
+        {
+
+            PV += boostPv * MaxPv;
+            PT += boostPt * MaxPt;
+            if(PV>MaxPv)
+            {
+                PV = MaxPv;
+            }
+            if( PT>MaxPt)
+            {
+                PT = MaxPt;
+            }
+            Attack *= boostAttack ;
+        }
+
+        public void ItemDelete(float boostPv, float boostPt, float boostAttack)
+        {
+            PV /= boostPv;
+            PT /= boostPt;
+            Attack /= boostAttack;
         }
     }
 }

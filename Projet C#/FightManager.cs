@@ -50,7 +50,7 @@ namespace Projet_C_
                     max = player.ListCharacter.Count; 
                     break;
                 case StateFight.Tools:
-                    max = player.ListTools.Count; 
+                    max = player.Objects.Count; 
                     break;
 
             }
@@ -80,6 +80,7 @@ namespace Projet_C_
                     Select = 1;
                     break;
                 case StateFight.Attack:
+                    player.ItemTime();
                     float damage = player.CurrentCharacter.SpellAttack(Select - 1);
                     Enemy.Character.TakeDamage(damage);
                     draw.Damage(damage, false);
@@ -95,6 +96,7 @@ namespace Projet_C_
                     
                     CurrentState = StateFight.Start;
                     Select = 1;
+                    
                     break;
                 case StateFight.ChangePerso:
                     player.CurrentCharacter = player.ListCharacter.ElementAt(Select - 1).Value;
@@ -102,9 +104,13 @@ namespace Projet_C_
                     CurrentState = StateFight.Start;
                     break;
                 case StateFight.Tools:
+                    player.Item(player.Objects.ElementAt(Select-1).Value.Name, player.CurrentCharacter);
                     
+                    CurrentState = StateFight.Start;
+                    Select = 1;
                     break;
             }
+            
             SelectChange?.Invoke(player, Enemy.Character);
         }
     }

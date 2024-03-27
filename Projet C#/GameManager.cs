@@ -16,7 +16,7 @@ namespace Projet_C_
         Draw _draw;
         Dictionary<string, Map> _maps;
 
-        List<Tools> _tools;
+        Dictionary<string, Object> _objects;
 
         Dictionary<string, CharacterStats> _characterStats;
         Dictionary<string, CharacterType> _characterTypes;
@@ -49,7 +49,7 @@ namespace Projet_C_
         public Dictionary<string, CharacterStats> CharacterStats { get => _characterStats; set => _characterStats = value; }
         public Dictionary<string, CharacterType> CharacterTypes { get => _characterTypes; set => _characterTypes = value; }
         public Dictionary<string, Character> CharacterPlayer { get => _characterPlayer; set => _characterPlayer = value; }
-        public List<Tools> Tools { get => _tools; set => _tools = value; }
+       
         public Draw Draw { get => _draw; private set => _draw = value; }
         public Dictionary<string, Map> Maps { get => _maps; set => _maps = value; }
         public Parser Parser { get => _parser; set => _parser = value; }
@@ -57,6 +57,7 @@ namespace Projet_C_
         public Enemy Enemy { get => _enemy; set => _enemy = value; }
         public int Select { get => _select; set => _select = value; }
         public string[] Choice { get => _choice; set => _choice = value; }
+        public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
 
         public event Action SelectChange;
 
@@ -69,14 +70,18 @@ namespace Projet_C_
             CharacterTypes = new Dictionary<string, CharacterType>();
             CharacterPlayer = new Dictionary<string, Character>();
             
-            Tools = new List<Tools>();
+            Objects = new Dictionary<string, Object>();
             Enemy = new Enemy();
 
             InitMap();
             InitType();
             InitCharacter();
             
-            Player = new Player(CharacterPlayer, Tools, Maps["map1"].PlayerPos);
+            Player = new Player(CharacterPlayer, Maps["map1"].PlayerPos);
+
+            Player.Objects.Add(Objects["steak HP"].Name, Objects["steak HP"]); 
+            Player.Objects.Add(Objects["steak Attack"].Name, Objects["steak Attack"]);
+
             Draw = new Draw();
 
             Select = 1;
@@ -139,8 +144,11 @@ namespace Projet_C_
                 Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
                 Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, CharacterTypes["strength"]);
 
-                Tools tools1 = new Tools("potion", "santé", 2, 3, 2, 3, 5, 8);
-                Tools tools2 = new Tools("poison", "santé bof", 2, 3, 2, 3, 5, 8);
+                Food potionHeal = new Food("steak HP", -1, 0.5f, 0, 1);
+                Food potionAttack = new Food("steak Attack", 2, 0, 0, 1.5f);
+
+                Objects[potionHeal.Name] = potionHeal;
+                Objects[potionAttack.Name] = potionAttack;
 
                 luffy.Spells.Add(redHawk);
                 luffy.Spells.Add(attaque2);
@@ -150,8 +158,8 @@ namespace Projet_C_
                 Enemy.Character = cTest;
                 Enemy.Character.Spells.Add(redHawk);
 
-                Tools.Add(tools1);
-                Tools.Add(tools2);
+
+
             }
         }
 

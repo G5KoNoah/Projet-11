@@ -119,7 +119,7 @@ namespace Projet_C_
                     break;
 
                 case FightManager.StateFight.Tools:
-                    for (int i = 0; i < player.ListTools.Count; i++)
+                    for (int i = 0; i < player.Objects.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.SetCursorPosition(13, 15 + i);
@@ -127,7 +127,7 @@ namespace Projet_C_
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                         }
-                        Console.WriteLine(player.ListTools[i].Name);
+                        Console.WriteLine(player.Objects.ElementAt(i).Value.Name);
                     }
 
                     break;
@@ -149,6 +149,7 @@ namespace Projet_C_
 
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
+
 
         }
 

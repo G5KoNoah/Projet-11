@@ -10,27 +10,31 @@ namespace Projet_C_
     {
         Dictionary<string, Character> _characters;
         Character _currentCharacter;
-        List<Tools> _tools;
+        Dictionary<string, Object> _objects;
+        Dictionary<string, Object> _currentObjects;
         int _leftPos;
         int _topPos;
 
         public Dictionary<string, Character> ListCharacter { get => _characters; private set => _characters = value; }
-        public List<Tools> ListTools { get => _tools; private set => _tools = value; }
 
         public int LeftPos { get => _leftPos; private set => _leftPos = value; }
         public int TopPos { get => _topPos; private set => _topPos = value; }
         public Character CurrentCharacter { get => _currentCharacter; set => _currentCharacter = value; }
+        public Dictionary<string, Object> CurrentObjects { get => _currentObjects; set => _currentObjects = value; }
+        public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
 
-        public Player(Dictionary<string, Character> characters, List<Tools> tools, (int, int) pos)
+        public Player(Dictionary<string, Character> characters, (int, int) pos)
         {
             ListCharacter = characters;
-            ListTools = tools;
+            Objects = new Dictionary<string, Object> { };
             LeftPos = pos.Item1;
             TopPos = pos.Item2;
             CurrentCharacter = characters["Luffy"];
+            CurrentObjects = new Dictionary<string, Object> { };
         }
 
         public event Action<bool> Move;
+        public event Action UseItem;
         public void MoveLeft(int nb)
         {
             List<string> collisions = GameManager.Instance.Maps["map1"].MapList;
@@ -47,6 +51,50 @@ namespace Projet_C_
             {
                 TopPos += nb;
                 Move?.Invoke(true);
+            }
+        }
+
+        public void Item(string name, Character character)
+        {
+            if (Objects.ContainsKey(name))
+            {
+                UseItem?.Invoke();
+                if (Objects[name].UseTurn != -1)
+                {
+                    CurrentObjects[name] = Objects[name];
+                }
+                if (Objects[name].Use(character))
+                {
+                    Objects.Remove(name);
+                }
+
+            }
+
+        }
+
+        public void ItemTime()
+        {
+            foreach (var item in CurrentObjects)
+            {
+                if (item.Value.UseTurn == 0)
+                {
+                    CurrentObjects.Remove(item.Key);
+                    item.Value.DeleteStats();
+                }
+                else
+                {
+                    item.Value.UseTurn--;
+                }
+            }
+        }
+
+        public void ItemAllDestroy()
+        {
+            foreach (var item in CurrentObjects)
+            {
+
+                item.Value.DeleteStats();
+
             }
         }
     }
