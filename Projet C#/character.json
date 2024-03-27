@@ -1,22 +1,72 @@
 ﻿[
-  {
-    "Name": "Luffy",
-    "CharacterType": "strength",
-    "PV": 200.0,
-    "PT": 80,
-    "Attack": 30,
-    "Defense": 30,
-    "AttackSpeed": 80,
-    "Precision": 60
-  },
-  {
-    "Name": "Croco",
-    "CharacterType": "range",
-    "PV": 200,
-    "PT": 80,
-    "Attack": 30,
-    "Defense": 30,
-    "AttackSpeed": 80,
-    "Precision": 60
-  }
+    {
+        "Name": "Luffy",
+        "CharacterType": "strength",
+        "PV": 200.0,
+        "PT": 150,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    },
+    {
+        "Name": "Zoro",
+        "CharacterType": "speed",
+        "PV": 200,
+        "PT": 80,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    },
+    {
+        "Name": "Nami",
+        "CharacterType": "range",
+        "PV": 200,
+        "PT": 80,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    },
+    {
+        "Name": "Crocodile",
+        "CharacterType": "strength",
+        "PV": 200,
+        "PT": 80,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    },
+    {
+        "Name": "Soldat Fantassin",
+        "CharacterType": "range",
+        "PV": 200,
+        "PT": 80,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    },
+    {
+        "Name": "Soldat Géant",
+        "CharacterType": "strength",
+        "PV": 200,
+        "PT": 80,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    },
+    {
+        "Name": "Soldat épéiste",
+        "CharacterType": "speed",
+        "PV": 200,
+        "PT": 80,
+        "Attack": 30,
+        "Defense": 30,
+        "AttackSpeed": 80,
+        "Precision": 60
+    }
 ]

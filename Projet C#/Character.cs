@@ -82,7 +82,7 @@ namespace Projet_C_
         {
             OnDamage?.Invoke();
 
-            PV -= damage;
+            PV -= (float)Math.Round(damage * Defense/100);
             if (PV < 0)
             {
                 OnDeath?.Invoke();
@@ -94,15 +94,17 @@ namespace Projet_C_
         public float SpellAttack(int spell)
         {
             onAttack?.Invoke();
-            float damage = _spells[spell].AttackRation * Attack;
-            if (_spells[spell].Type == DefaultStats.Type.Weakness)
+            float damage = Spells[spell].AttackRation * Attack;
+            if (Spells[spell].Type == DefaultStats.Type.Weakness)
             {
                 damage *= 2;
             }
-            else if (_spells[spell].Type.Weakness == DefaultStats.Type)
+            else if (Spells[spell].Type.Weakness == DefaultStats.Type)
             {
                 damage *= 0.5f;
             }
+            PT -= Spells[spell].ConsumedPT;
+            if (new Random().Next(1, 100 - (int)Precision / 10) == 1) damage = 0;
             return (float)Math.Round(damage);
         }
 

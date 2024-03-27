@@ -148,8 +148,9 @@ namespace Projet_C_
                 Character croco = new Character(CharacterStats["Croco"], 1);
                 CharacterPlayer["Croco"] = croco;
 
-                Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
-                Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, CharacterTypes["strength"]);
+                Spell pistol = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["strength"]);
+                Spell redHawk = new Spell(1, "Gum Gum Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
+                Spell kong = new Spell(1, "Gum Gum Kong Gun", 2.5f, 100.0f, CharacterTypes["strength"]);
 
 
 
@@ -159,11 +160,12 @@ namespace Projet_C_
                 Objects[potionHeal.Name] = potionHeal;
                 Objects[potionAttack.Name] = potionAttack;
 
+                luffy.Spells.Add(pistol);
                 luffy.Spells.Add(redHawk);
-                luffy.Spells.Add(attaque2);
+                luffy.Spells.Add(kong);
                 croco.Spells.Add(redHawk);
                 CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 100, 100, 2000, 1000, 2000, 100);
-                Character cTest = new Character(stats, 1000);
+                Character cTest = new Character(CharacterStats["Croco"], 1);
                 Enemy.Character = cTest;
                 Enemy.Character.Spells.Add(redHawk);
 
