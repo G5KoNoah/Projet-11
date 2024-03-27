@@ -28,28 +28,28 @@ using System.Numerics;
 
 
 
-String line;
-try
-{
-    //Pass the file path and file name to the StreamReader constructor
-    StreamReader sr = new StreamReader("..\\..\\..\\Save.txt");
-    //Read the first line of text
-    line = sr.ReadLine();
-    Console.WriteLine(line);
-    line = sr.ReadLine();
-    Console.WriteLine(line);
+//String line;
+//try
+//{
+//    //Pass the file path and file name to the StreamReader constructor
+//    StreamReader sr = new StreamReader("..\\..\\..\\Save.txt");
+//    //Read the first line of text
+//    line = sr.ReadLine();
+//    Console.WriteLine(line);
+//    line = sr.ReadLine();
+//    Console.WriteLine(line);
 
-    sr.Close();
-    //Console.ReadLine();
-}
-catch (Exception e)
-{
-    Console.WriteLine("Exception: " + e.Message);
-}
-finally
-{
-    Console.WriteLine("Executing finally block.");
-}
+//    sr.Close();
+//    //Console.ReadLine();
+//}
+//catch (Exception e)
+//{
+//    Console.WriteLine("Exception: " + e.Message);
+//}
+//finally
+//{
+//    Console.WriteLine("Executing finally block.");
+//}
 
 
 Console.CursorVisible = false;
