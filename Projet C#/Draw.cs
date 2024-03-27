@@ -164,6 +164,8 @@ namespace Projet_C_
 
         }
 
+        
+
 
         public void Win(Player player, Character enemy)
         {
@@ -217,6 +219,36 @@ namespace Projet_C_
             }
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
+        }
+
+
+        public void Dialogue()
+        {
+            int ligne = 20;
+            string dialogue = "Salut mec !!!";
+            Console.SetCursorPosition(15, ligne);
+            Console.BackgroundColor = ConsoleColor.Black;
+            for(int i = 0;i < 5; i++)
+            {
+                for(int j = 0; j< 40; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+                ligne++;
+                Console.SetCursorPosition(15, ligne);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(25, 20);
+            for(int i = 0; i < dialogue.Length; i++)
+            {
+                Console.Write(dialogue[i]);
+                Thread.Sleep(70);
+            }
+            
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, 0);
+            
         }
     }
 }

@@ -108,6 +108,12 @@ namespace Projet_C_
                         State = Display.Transition;
                         Exit = true;
                     }
+
+
+                    if (draw.Map.MapList[player.TopPos][player.LeftPos] == '/')
+                    {
+                        draw.Dialogue();
+                    }
                     if (draw.Map.MapList[player.TopPos][player.LeftPos] == '$' && new Random().Next(1, 10) == 1)
                     {
                         Console.WriteLine("Un ennemi est apparu !!!!");
