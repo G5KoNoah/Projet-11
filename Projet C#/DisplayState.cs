@@ -132,7 +132,7 @@ namespace Projet_C_
                     }
 
                     
-                    if (player.TopPos == 14 && player.LeftPos == 72)
+                    if (draw.Map.MapList[player.TopPos][player.LeftPos] == 'A')
                     {
                         draw.Dialogue("Bonjour. Cette ile est dominé par un méchant. Tué le pour sauvé cette ile !");
                     }

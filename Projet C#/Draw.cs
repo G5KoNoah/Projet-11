@@ -40,6 +40,9 @@ namespace Projet_C_
                         case '.':
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             break;
+                        case 'A':
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            break;
                         case '*':
                             Console.BackgroundColor = ConsoleColor.Gray;
                             break;
@@ -70,7 +73,7 @@ namespace Projet_C_
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('P');
                     }
-                    else if (i == 14 && j == 72 && drawPlayer)
+                    else if (lMap[i][j] == 'A' && drawPlayer)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('A');
