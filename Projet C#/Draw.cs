@@ -70,6 +70,11 @@ namespace Projet_C_
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write('P');
                     }
+                    else if (i == 14 && j == 72 && drawPlayer)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write('A');
+                    }
                     else
                     {
                         Console.Write(' ');
@@ -318,10 +323,10 @@ namespace Projet_C_
         }
 
 
-        public void Dialogue()
+        public void Dialogue(string dialogue)
         {
             int ligne = 20;
-            string dialogue = "Salut mec !!!";
+            //string dialogue = "Salut mec !!!";
             Console.SetCursorPosition(15, ligne);
             Console.BackgroundColor = ConsoleColor.Black;
             for(int i = 0;i < 5; i++)
@@ -334,12 +339,19 @@ namespace Projet_C_
                 ligne++;
                 Console.SetCursorPosition(15, ligne);
             }
+            ligne = 20;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(25, 20);
+            Console.SetCursorPosition(15, ligne);
             for(int i = 0; i < dialogue.Length; i++)
             {
                 Console.Write(dialogue[i]);
                 Thread.Sleep(70);
+                if(i % 39 == 0 && i > 0)
+                {
+                    
+                    ligne++;
+                    Console.SetCursorPosition(15, ligne);
+                }
             }
             
             Console.ForegroundColor = ConsoleColor.Black;

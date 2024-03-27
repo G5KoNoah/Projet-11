@@ -131,10 +131,10 @@ namespace Projet_C_
                         Exit = true;
                     }
 
-
-                    if (draw.Map.MapList[player.TopPos][player.LeftPos] == '/')
+                    
+                    if (player.TopPos == 14 && player.LeftPos == 72)
                     {
-                        draw.Dialogue();
+                        draw.Dialogue("Bonjour. Cette ile est dominé par un méchant. Tué le pour sauvé cette ile !");
                     }
                     if (draw.Map.MapList[player.TopPos][player.LeftPos] == '$' && new Random().Next(1, 10) == 1)
                     {
