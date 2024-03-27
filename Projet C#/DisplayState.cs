@@ -47,7 +47,7 @@ namespace Projet_C_
 
         public DisplayState() 
         {
-            State = Display.Map;
+            State = Display.Menu;
             Exit = false;
             Enter = true;
         }
@@ -63,6 +63,8 @@ namespace Projet_C_
                 switch (State)
                 {
                     case Display.Menu:
+                        draw.Map = maps["Start"];
+                        draw.DrawMap(false);
                         break;
                     case Display.Map:
                         draw.Map = maps["map1"];
