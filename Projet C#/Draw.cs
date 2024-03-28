@@ -61,7 +61,12 @@ namespace Projet_C_
                         case '@':
                             Console.BackgroundColor = ConsoleColor.Black;
                             break;
-
+                        case ' ':
+                            Console.BackgroundColor = ConsoleColor.White;
+                            break;
+                        case '%':
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            break;
                     }
                     
                     if (i == player.TopPos && j == player.LeftPos && drawPlayer)
