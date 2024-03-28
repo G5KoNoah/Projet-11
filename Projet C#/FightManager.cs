@@ -113,6 +113,11 @@ namespace Projet_C_
                                         Thread.Sleep(2000);
                                         DisplayState.Instance.State = DisplayState.Display.Map;
                                         DisplayState.Instance.Exit = true;
+                                        if (Enemy.Character.DefaultStats.Name == "Crocodile")
+                                        {
+                                            player.LeftPos = 35;
+                                            player.TopPos = 10;
+                                        }
                                     }
 
                                     CurrentState = StateFight.ChangePerso;
@@ -138,6 +143,11 @@ namespace Projet_C_
 
                                 DisplayState.Instance.State = DisplayState.Display.Map;
                                 DisplayState.Instance.Exit = true;
+                                if(Enemy.Character.DefaultStats.Name == "Crocodile")
+                                {
+                                    player.LeftPos = 35;
+                                    player.TopPos = 10;
+                                }
 
 
                             }
@@ -170,6 +180,11 @@ namespace Projet_C_
 
                                     DisplayState.Instance.State = DisplayState.Display.Map;
                                     DisplayState.Instance.Exit = true;
+                                    if (Enemy.Character.DefaultStats.Name == "Crocodile")
+                                    {
+                                        player.LeftPos = 35;
+                                        player.TopPos = 10;
+                                    }
                                 }
                                 else
                                 {
@@ -195,6 +210,11 @@ namespace Projet_C_
                                     Thread.Sleep(2000);
                                     DisplayState.Instance.State = DisplayState.Display.Map;
                                     DisplayState.Instance.Exit = true;
+                                    if (Enemy.Character.DefaultStats.Name == "Crocodile")
+                                    {
+                                        player.LeftPos = 35;
+                                        player.TopPos = 10;
+                                    }
                                 }
 
                                 CurrentState = StateFight.ChangePerso;

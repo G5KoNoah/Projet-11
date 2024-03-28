@@ -75,9 +75,9 @@ namespace Projet_C_
             PV = (float)Math.Round(DefaultStats.PV + 5 * Level);
             PT = (float)Math.Round(DefaultStats.PT + 5 * Level);
             Attack = (float)Math.Round(DefaultStats.Attack * (1.0f + (0.01f * Level - 0.01f)));
-            AttackSpeed = DefaultStats.AttackSpeed + 5   * Level;
-            Defense = DefaultStats.Defense + 5 * Level;
-            Precision = DefaultStats.Precision + 5 * Level;
+            AttackSpeed = DefaultStats.AttackSpeed + 1   * Level;
+            Defense = DefaultStats.Defense + 1 * Level;
+            Precision = DefaultStats.Precision + 1 * Level;
             MaxPv = PV;
             MaxPt = PT;
         }

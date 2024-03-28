@@ -74,7 +74,7 @@ namespace Projet_C_
                 },
                 { DisplayState.Display.Fight, new Dictionary<ConsoleKey, Action>
                     {
-                        { ConsoleKey.UpArrow, () => { fightManager.ModifySelect(-1); Console.Beep(100, 50);}},
+                        { ConsoleKey.UpArrow, () => { fightManager.ModifySelect(-1); Console.Beep(100, 50);  }},
                         { ConsoleKey.DownArrow, () => { fightManager.ModifySelect(1); Console.Beep(100, 50);}},
                         { ConsoleKey.LeftArrow, () => { fightManager.SelectBack(); Console.Beep(100, 50);}},
                         { ConsoleKey.Enter, () => { fightManager.ValideSelect(); Console.Beep(200, 50);}}
