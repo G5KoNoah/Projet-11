@@ -323,6 +323,7 @@ namespace Projet_C_
                 Console.SetCursorPosition(45 , 15 + i + 1);
                 Console.WriteLine(choices[i]);
             }
+            Console.SetCursorPosition(0, 0);
         }
 
 
