@@ -33,6 +33,23 @@ namespace Projet_C_
             CurrentObjects = new Dictionary<string, Object> { };
         }
 
+        public void SavePlayer(PlayerData data)
+        {
+            LeftPos = data.LeftPos;
+            TopPos = data.TopPos;
+            ListCharacter = new Dictionary<string, Character> { };
+            foreach (var character in data.Characters) {
+                var personnage = new Character(character);
+                ListCharacter.Add(character.Name, personnage);
+            }
+            Objects = new Dictionary<string, Object> { };
+            foreach (var obj in data.Objects)
+            {
+                var tool = GameManager.Instance.Objects[obj.Name];
+                Objects.Add(tool.Name, tool);
+            }
+        }
+
         public event Action<bool> Move;
         public event Action UseItem;
         public void MoveLeft(int nb)

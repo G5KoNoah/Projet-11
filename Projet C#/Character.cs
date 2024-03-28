@@ -21,7 +21,7 @@ namespace Projet_C_
         public int Level { get => _level; private set => _level = value; }
         public int NeedXP { get => _needXP; private set => _needXP = value; }
 
-        public List<Spell> Spells { get => _spells; }
+        public List<Spell> Spells { get => _spells; private set => _spells = value; }
         public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
         public float MaxPv { get => _maxPv; set => _maxPv = value; }
         public float MaxPt { get => _maxPt; set => _maxPt = value; }
@@ -43,6 +43,20 @@ namespace Projet_C_
             Defense = DefaultStats.Defense;
             AttackSpeed = DefaultStats.AttackSpeed;
             Precision = DefaultStats.Precision;
+
+            StatsLevel();
+        }
+
+        public Character(CharacterData data)
+        {
+            DefaultStats = GameManager.Instance.CharacterStats[data.Name];
+            Level = data.Level;
+            NeedXP = data.NeedXP;
+            Spells = new List<Spell>();
+            foreach (var spell in data.Spells)
+            {
+                var attack = new Spell(spell);
+            }
 
             StatsLevel();
         }

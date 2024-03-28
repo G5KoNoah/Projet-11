@@ -38,6 +38,16 @@ namespace Projet_C_
             StatsLevel();
         }
 
+        public Spell(SpellData data)
+        {
+            _level = data.Level;
+            _needXP = data.NeedXP;
+            Name = data.Name;
+            Type = GameManager.Instance.CharacterTypes[data.Type];
+            ConsumedPT = data.Consumed;
+            StatsLevel();
+        }
+
         public void GainExperience(int experience)
         {
             _needXP -= experience;

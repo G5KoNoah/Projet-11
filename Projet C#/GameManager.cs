@@ -279,9 +279,13 @@ namespace Projet_C_
 
         void loadSave()
         {
-
-
-            var data = JsonSerializer.Deserialize<>(File.ReadAllText("..\\..\\..\\save.json"));
+            var data = JsonSerializer.Deserialize<Save>(File.ReadAllText("..\\..\\..\\save.json"));
+            Player.SavePlayer(data.Player);
+            NumMap = data.Map;
+            Draw.Map = Maps["map" + (char)(NumMap + '0')];
+            var displayState = DisplayState.Instance;
+            displayState.State = DisplayState.Display.Map;
+            displayState.Exit = true;
         }
 
         public void MainLoop()
