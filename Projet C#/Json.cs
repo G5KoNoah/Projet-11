@@ -26,4 +26,23 @@ namespace Projet_C_
         public string Name { get => _name; set => _name = value; }
         public string CharacterType { get => _characterType; set => _characterType = value; }
     }
+
+    public struct JsonObject
+    {
+        string _name;
+        string _typeObject;
+        string _description;
+        int _turn;
+        float _boostHp;
+        float _boostPt;
+        float _boostAttack;
+
+        public string Name { get => _name; set => _name = value; }
+        public string TypeObject { get => _typeObject; set => _typeObject = value; }
+        public string Description { get => _description; set => _description = value; }
+        public int Turn { get => _turn; set => _turn = value; }
+        public float BoostPt { get => _boostPt; set => _boostPt = value; }
+        public float BoostHp { get => _boostHp; set => _boostHp = value; }
+        public float BoostAttack { get => _boostAttack; set => _boostAttack = value; }
+    }
 }

@@ -40,21 +40,10 @@ namespace Projet_C_
             _level = level;
             _needXP = 100 * level;
 
-            ResetStats();
-            
-        }
-
-        public void ResetStats()
-        {
-            PV = DefaultStats.PV;
-            PT = DefaultStats.PT;
-            Attack = DefaultStats.Attack;
-            Defense = DefaultStats.Defense;
-            AttackSpeed = DefaultStats.AttackSpeed;
-            Precision = DefaultStats.Precision;
-
             StatsLevel();
         }
+
+
 
         public void GainExperience(int experience)
         {

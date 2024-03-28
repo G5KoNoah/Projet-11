@@ -81,7 +81,8 @@ namespace Projet_C_
                         
                         fightManager.Enemy = GameManager.Instance.EnemyList[new Random().Next(0, GameManager.Instance.EnemyList.Count -1)];
                         fightManager.Enemy.Character.Level = player.CurrentCharacter.Level;
-                        fightManager.Enemy.Character.ResetStats();
+                        fightManager.Enemy.Character.StatsLevel();
+                        fightManager.Enemy.Character.Spells[0].Level = 1;
                         fightManager.CurrentState = FightManager.StateFight.Start;
                         fightManager.SelectChange += draw.Fight;
                         fightManager.ModifySelect(0);

@@ -17,7 +17,7 @@ namespace Projet_C_
 
         float _consumedPT;
         float _attackRatio;
-        public int Level { get => _level; }
+        public int Level { get => _level; set=> _level = value}
         public int NeedXP { get => _needXP; }
         public float AttackRation { get => _attackRatio; }
         public string Name { get => _name; set => _name = value; }
