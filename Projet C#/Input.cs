@@ -39,28 +39,33 @@ namespace Projet_C_
 {
                 { DisplayState.Display.Menu, new Dictionary<ConsoleKey, Action>
                     {
-                        { ConsoleKey.UpArrow, () => { GameManager.Instance.ModifySelect(-1) ; }},
-                        { ConsoleKey.DownArrow, () => { GameManager.Instance.ModifySelect(1); }},
-                        { ConsoleKey.Enter, () => { GameManager.Instance.ValideSelect(); }},
+                        { ConsoleKey.UpArrow, () => { GameManager.Instance.ModifySelect(-1) ; Console.Beep(100, 50);}},
+                        { ConsoleKey.DownArrow, () => { GameManager.Instance.ModifySelect(1); Console.Beep(100, 50);}},
+                        { ConsoleKey.Enter, () => { GameManager.Instance.ValideSelect(); Console.Beep(100, 50);}},
                         { ConsoleKey.Escape, () => {
+                            Console.Beep(100, 50);
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Map;
                             displayState.Exit = true;
+
                         }}
+
                     }
                 },
                 { DisplayState.Display.Map, new Dictionary<ConsoleKey, Action>
                     {
-                        { ConsoleKey.LeftArrow, () => { player.MoveLeft(-1); }},
-                        { ConsoleKey.RightArrow, () => { player.MoveLeft(1); }},
-                        { ConsoleKey.UpArrow, () => { player.MoveTop(-1); }},
-                        { ConsoleKey.DownArrow, () => { player.MoveTop(1); }},
+                        { ConsoleKey.LeftArrow, () => { player.MoveLeft(-1);  Console.Beep(100, 50);}},
+                        { ConsoleKey.RightArrow, () => { player.MoveLeft(1); Console.Beep(100, 50);}},
+                        { ConsoleKey.UpArrow, () => { player.MoveTop(-1); Console.Beep(100, 50);}},
+                        { ConsoleKey.DownArrow, () => { player.MoveTop(1); Console.Beep(100, 50);}},
                         { ConsoleKey.Escape, () => {
+                            Console.Beep(200, 100);
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Pause;
                             displayState.Exit = true;
                         }},
                         { ConsoleKey.I, () => {
+                            Console.Beep(200, 100);
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Inventory;
                             displayState.Exit = true;
@@ -69,23 +74,25 @@ namespace Projet_C_
                 },
                 { DisplayState.Display.Fight, new Dictionary<ConsoleKey, Action>
                     {
-                        { ConsoleKey.UpArrow, () => { fightManager.ModifySelect(-1); }},
-                        { ConsoleKey.DownArrow, () => { fightManager.ModifySelect(1); }},
-                        { ConsoleKey.LeftArrow, () => { fightManager.SelectBack(); }},
-                        { ConsoleKey.Enter, () => { fightManager.ValideSelect(); }}
+                        { ConsoleKey.UpArrow, () => { fightManager.ModifySelect(-1); Console.Beep(100, 50);}},
+                        { ConsoleKey.DownArrow, () => { fightManager.ModifySelect(1); Console.Beep(100, 50);}},
+                        { ConsoleKey.LeftArrow, () => { fightManager.SelectBack(); Console.Beep(100, 50);}},
+                        { ConsoleKey.Enter, () => { fightManager.ValideSelect(); Console.Beep(200, 50);}}
                     }
                 },
                 { DisplayState.Display.Inventory, new Dictionary<ConsoleKey, Action>
                     {
-                        { ConsoleKey.UpArrow, () => { inventoryManager.ModifySelect(-1); }},
-                        { ConsoleKey.DownArrow, () => { inventoryManager.ModifySelect(1); }},
-                        { ConsoleKey.Enter, () => { inventoryManager.ValideSelect(); }},
+                        { ConsoleKey.UpArrow, () => { inventoryManager.ModifySelect(-1); Console.Beep(100, 50);}},
+                        { ConsoleKey.DownArrow, () => { inventoryManager.ModifySelect(1); Console.Beep(100, 50);}},
+                        { ConsoleKey.Enter, () => { inventoryManager.ValideSelect(); Console.Beep(200, 50);}},
                         { ConsoleKey.Escape, () => {
+                            Console.Beep(200, 100);
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Pause;
                             displayState.Exit = true;
                         }},
                         { ConsoleKey.I, () => {
+                            Console.Beep(200, 100);
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Map;
                             displayState.Exit = true;
@@ -94,10 +101,11 @@ namespace Projet_C_
                 },
                 { DisplayState.Display.Pause, new Dictionary<ConsoleKey, Action>
                     {
-                        { ConsoleKey.UpArrow, () => { GameManager.Instance.ModifySelect(-1); }},
-                        { ConsoleKey.DownArrow, () => { GameManager.Instance.ModifySelect(1); }},
-                        { ConsoleKey.Enter, () => { GameManager.Instance.ValideSelect(); }},
+                        { ConsoleKey.UpArrow, () => { GameManager.Instance.ModifySelect(-1); Console.Beep(100, 50);}},
+                        { ConsoleKey.DownArrow, () => { GameManager.Instance.ModifySelect(1); Console.Beep(100, 50);}},
+                        { ConsoleKey.Enter, () => { GameManager.Instance.ValideSelect();Console.Beep(200, 50); }},
                         { ConsoleKey.Escape, () => {
+                            Console.Beep(200, 100);
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Map;
                             displayState.Exit = true; 

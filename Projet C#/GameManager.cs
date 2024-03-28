@@ -35,6 +35,7 @@ namespace Projet_C_
 
         int _numMap;
 
+
         private static GameManager instance = null;
         private static readonly object padlock = new object();
 

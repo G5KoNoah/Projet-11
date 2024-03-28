@@ -3,7 +3,7 @@
   <Class Name="Projet_C_.Character" Collapsed="true">
     <Position X="2" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACIAAAAAAAAQAAAgYFBAAAAAcQBQgACygBAAAA=</HashCode>
+      <HashCode>AAAAAACIAAAAAAAAQAAAgYFBAAAAAcABQgACigBAAAA=</HashCode>
       <FileName>Character.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="Projet_C_.DisplayState" Collapsed="true">
     <Position X="11.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAABAAgAAgAAAAAAQAABEAgAAYAIABAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAACBIAgAAgAAAAAAQAABEAgAAYAIABAAAAAA=</HashCode>
       <FileName>DisplayState.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,7 +52,7 @@
   <Class Name="Projet_C_.GameManager" Collapsed="true">
     <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QGKgAiAAAQAEIhAAAICAmCAAhAFBCEGAQQAASQCAQAA=</HashCode>
+      <HashCode>QGKoACAAAQAEIhQAwICAmCAAhAFBCMGAQQAASQDAwAA=</HashCode>
       <FileName>GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,14 +73,14 @@
   <Class Name="Projet_C_.Map" Collapsed="true">
     <Position X="11.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQCAAAgABAAAAAAAQAAAAAAEAAAADAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAACAAAgABAAAAAAAQAAAAAAEAAAADAAAA=</HashCode>
       <FileName>Map.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Object" Collapsed="true">
     <Position X="4.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAEQAAAAAAAQAAAAEAAAAAAAAAgIAAEA=</HashCode>
+      <HashCode>AAAAIAAAAAAgAEQEAAAAAAQAAAAEAAAAAAAAAgIAAEA=</HashCode>
       <FileName>Object.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -94,14 +94,14 @@
   <Class Name="Projet_C_.Player" Collapsed="true">
     <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAIEAEQAAYAAAAAAQAAIAgQEAAAAAAEIBQAAAEAQAAQ=</HashCode>
+      <HashCode>CAIEAEQAAYAAAAAAQgAIAgQEAAAAAAEIBQAAAEAQAAQ=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_C_.Spell" Collapsed="true">
     <Position X="4.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAEQAQAAAAQQAAAEAAEADCQACAgAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAEQAQAAgAQQAAAEAAEADCQACAgAAAAA=</HashCode>
       <FileName>Spell.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -129,7 +129,7 @@
   <Struct Name="Projet_C_.InfoText" Collapsed="true">
     <Position X="13.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAgABAAEAAAAQAAAAAAAIAAABIAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAABAAEAAAAQAEAAAAAIAAABIAAA=</HashCode>
       <FileName>Parser.cs</FileName>
     </TypeIdentifier>
   </Struct>
