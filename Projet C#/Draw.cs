@@ -69,7 +69,7 @@ namespace Projet_C_
                         Console.ForegroundColor = ConsoleColor.Black;
                         foreach (var PNJ in Map.PosPNJ)
                         {
-                            if (i == PNJ.Item2 && j == PNJ.Item1)
+                            if (i == PNJ.Pos.Item2 && j == PNJ.Pos.Item1)
                             {
                                 Console.Write('A');
                                 letterDraw = true;

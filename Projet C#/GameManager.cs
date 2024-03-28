@@ -93,7 +93,7 @@ namespace Projet_C_
             Draw = new Draw();
 
             Select = 1;
-            Choice = new string[] { "Explore", "Quit" };
+            Choice = new string[] { "Explore", "Save", "Quit" };
 
             MenuChoice.Add("Commencer");
             MenuChoice.Add("Continuer");
@@ -110,7 +110,7 @@ namespace Projet_C_
             foreach (string name in names)
             {
                 var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");
-                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos, infoText.PosPNJ, infoText.ObjectPos);
+                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos, infoText.PNJ, infoText.ObjectPos);
                 Maps.Add(name, map);
             }
         }
@@ -219,6 +219,9 @@ namespace Projet_C_
                             displayState.State = DisplayState.Display.Map;
                             displayState.Exit = true;
                             break;
+                        case 2:
+                            loadSave();
+                            break;
                         case 3:
                             Environment.Exit(0);
                             break;
@@ -233,12 +236,52 @@ namespace Projet_C_
                             displayState.Exit = true;
                             break;
                         case 2:
+                            createSave();
+                            break;
+                        case 3:
                             Environment.Exit(0);
                             break;
                     }
                     break;
             }
             SelectChange?.Invoke();
+        }
+
+        void createSave()
+        {
+            var data = new
+            {
+                Map = NumMap,
+                Player = new
+                {
+                    LeftPos = Player.LeftPos,
+                    TopPos = Player.TopPos,
+                    Objects = Player.Objects.Select(o => new { Name = o.Value.Name, Number = 1 }).ToArray(),
+                    Characters = Player.ListCharacter.Select(c => new
+                    {
+                        Name = c.Value.DefaultStats.Name,
+                        Level = c.Value.Level,
+                        NeedXP = c.Value.NeedXP,
+                        Spells = c.Value.Spells.Select(s => new
+                        {
+                            Name = s.Name,
+                            Level = s.Level,
+                            NeedXP = s.NeedXP,
+                            Type = s.Type.Name,
+                            Consumed = s.ConsumedPT
+                        }).ToArray()
+                    }).ToArray()
+                }
+            };
+
+            File.WriteAllText("..\\..\\..\\save.json", JsonSerializer.Serialize(data));
+        }
+
+        void loadSave()
+        {
+
+
+            var data = JsonSerializer.Deserialize<>(File.ReadAllText("..\\..\\..\\save.json"));
         }
 
         public void MainLoop()

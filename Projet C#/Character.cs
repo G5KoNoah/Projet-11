@@ -11,7 +11,6 @@ namespace Projet_C_
     {
 
         CharacterStats _defaultStats;
-        CharacterStats _maxStats;
         int _level;
         int _needXP;
         float _maxPv;
@@ -24,7 +23,6 @@ namespace Projet_C_
 
         public List<Spell> Spells { get => _spells; }
         public CharacterStats DefaultStats { get => _defaultStats; set => _defaultStats = value; }
-        public CharacterStats MaxStats { get => _maxStats; set => _maxStats = value; }
         public float MaxPv { get => _maxPv; set => _maxPv = value; }
         public float MaxPt { get => _maxPt; set => _maxPt = value; }
 
@@ -36,7 +34,6 @@ namespace Projet_C_
         public Character(CharacterStats stats, int level = 1)
         {
             DefaultStats = stats;
-            MaxStats = stats;
             _level = level;
             _needXP = 100 * level;
 

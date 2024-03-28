@@ -6,16 +6,24 @@ using System.Threading.Tasks;
 
 namespace Projet_C_
 {
+    public struct PNJ
+    {
+        (int, int) _pos;
+        string _dialog;
+        public (int, int) Pos { get => _pos; set => _pos = value; }
+        public string Dialog { get => _dialog; set => _dialog = value; }
+    }
     public struct InfoText
     {
         List<string> _mapOrCharacter;
         (int, int) _pLayerPos;
-        List<(int, int)> _posPNJ;
+        List<PNJ> _PNJ;
+
         (int, int) _objectPos;
 
         public List<string> MapOrCharacter { get => _mapOrCharacter; set => _mapOrCharacter = value; }
         public (int, int) PLayerPos { get => _pLayerPos; set => _pLayerPos = value; }
-        public List<(int, int)> PosPNJ { get => _posPNJ; set => _posPNJ = value; }
+        public List<PNJ> PNJ { get => _PNJ; set => _PNJ = value; }
         public (int, int) ObjectPos { get => _objectPos; set => _objectPos = value; }
     }
     public class Parser
@@ -44,7 +52,7 @@ namespace Projet_C_
         {
             InfoText infoText = new InfoText();
             infoText.MapOrCharacter = new List<string>();
-            infoText.PosPNJ = new List<(int, int)>();
+            infoText.PNJ = new List<PNJ>();
             StreamReader oFile = new StreamReader(sFilePath);
             if (oFile != null)
             {
@@ -70,10 +78,13 @@ namespace Projet_C_
                             infoText.MapOrCharacter.Add(line);
                             break;
                         case "PNJ":
-                            var posPNJ = line.Split(' ');
+                            var posPNJ = line.Split('/');
                             int.TryParse(posPNJ[0], out int leftPNJ);
                             int.TryParse(posPNJ[1], out int topPNJ);
-                            infoText.PosPNJ.Add((leftPNJ, topPNJ));
+                            var pnj = new PNJ();
+                            pnj.Pos = (leftPNJ, topPNJ);
+                            pnj.Dialog = posPNJ[2];
+                            infoText.PNJ.Add(pnj);
                             break;
                         case "Object":
                             var posObject = line.Split(' ');

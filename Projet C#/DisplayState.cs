@@ -133,9 +133,9 @@ namespace Projet_C_
 
                     foreach (var PNJ in draw.Map.PosPNJ)
                     {
-                        if (PNJ.Item1 == player.LeftPos && PNJ.Item2 == player.TopPos)
+                        if (PNJ.Pos.Item1 == player.LeftPos && PNJ.Pos.Item2 == player.TopPos)
                         {
-                            draw.Dialogue("Salut");
+                            draw.Dialogue(PNJ.Dialog);
                         }
                     }
                     if (draw.Map.MapList[player.TopPos][player.LeftPos] == '$' && new Random().Next(1, 10) == 1)

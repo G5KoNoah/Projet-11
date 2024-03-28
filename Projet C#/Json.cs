@@ -26,4 +26,8 @@ namespace Projet_C_
         public string Name { get => _name; set => _name = value; }
         public string CharacterType { get => _characterType; set => _characterType = value; }
     }
+
+    public struct Save { 
+
+    }
 }

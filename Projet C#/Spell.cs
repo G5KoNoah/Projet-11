@@ -22,6 +22,7 @@ namespace Projet_C_
         public float AttackRation { get => _attackRatio; }
         public string Name { get => _name; set => _name = value; }
         public CharacterType Type { get => _type; private set => _type = value; }
+        public float ConsumedPT { get => _consumedPT; set => _consumedPT = value; }
 
         public event Action LevelUpSpell;
 
@@ -33,7 +34,7 @@ namespace Projet_C_
             Type = type;
             _attackRatio = attack;
 
-            _consumedPT = consumed;
+            ConsumedPT = consumed;
             StatsLevel();
         }
 
