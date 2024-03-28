@@ -146,7 +146,18 @@ namespace Projet_C_
                         State = Display.Fight;
                         Exit = true;
                     }
-                        break;
+                    if(draw.Map.ObjectPos.Item1 == player.LeftPos && draw.Map.ObjectPos.Item2 == player.TopPos)
+                    {
+                        //Object key = new Object("oui", 1);
+                        
+                        //player.Objects.Add();
+                        Console.WriteLine("objet récup");
+                    }
+                    if (player.LeftPos == 35 && player.TopPos == 9)
+                    {
+                        draw.Dialogue("Vous ne pouvez pas entrer, il vous faut une clé!!");
+                    }
+                    break;
                 case Display.Transition:
                     Thread.Sleep(2000);
                     State = Display.Map;

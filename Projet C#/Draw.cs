@@ -49,14 +49,11 @@ namespace Projet_C_
                         case '/':
                             Console.BackgroundColor = ConsoleColor.Red;
                             break;
-                        case '1':
+                        case '1' or '2':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
                         case '8':
                             Console.BackgroundColor = ConsoleColor.DarkCyan;
-                            break;
-                        case '2':
-                            Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
                         case '3':
                             Console.BackgroundColor = ConsoleColor.Black;
@@ -246,15 +243,9 @@ namespace Projet_C_
 
                     break;
             }
-
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
-
-
         }
-
-        
-
 
         public void Win(Player player, Character enemy)
         {
@@ -336,10 +327,10 @@ namespace Projet_C_
         public void Dialogue(string dialogue)
         {
             int ligne = 20;
-            //string dialogue = "Salut mec !!!";
+           
             Console.SetCursorPosition(15, ligne);
             Console.BackgroundColor = ConsoleColor.Black;
-            for(int i = 0;i < 5; i++)
+            for(int i = 0; i < 5; i++)
             {
                 for(int j = 0; j< 40; j++)
                 {
@@ -355,7 +346,7 @@ namespace Projet_C_
             for(int i = 0; i < dialogue.Length; i++)
             {
                 Console.Write(dialogue[i]);
-                Thread.Sleep(70);
+                Thread.Sleep(60);
                 if(i % 39 == 0 && i > 0)
                 {
                     
@@ -363,7 +354,6 @@ namespace Projet_C_
                     Console.SetCursorPosition(15, ligne);
                 }
             }
-            
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
             
