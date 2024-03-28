@@ -84,7 +84,8 @@ namespace Projet_C_
                     {
                         { ConsoleKey.UpArrow, () => { inventoryManager.ModifySelect(-1); Console.Beep(100, 50);}},
                         { ConsoleKey.DownArrow, () => { inventoryManager.ModifySelect(1); Console.Beep(100, 50);}},
-                        { ConsoleKey.Enter, () => { inventoryManager.ValideSelect(); Console.Beep(200, 50);}},
+                        { ConsoleKey.Enter, () => { inventoryManager.ValideSelect(); Console.Beep(100, 50);}},
+                        { ConsoleKey.LeftArrow, () => { inventoryManager.SelectBack(); Console.Beep(100, 50);}},
                         { ConsoleKey.Escape, () => {
                             Console.Beep(200, 100);
                             var displayState = DisplayState.Instance;

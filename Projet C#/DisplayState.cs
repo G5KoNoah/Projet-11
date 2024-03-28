@@ -160,12 +160,13 @@ namespace Projet_C_
                             charact.Value.StatsLevel();
                         }
                     }
-                    if(draw.Map.ObjectPos.Item1 == player.LeftPos && draw.Map.ObjectPos.Item2 == player.TopPos)
+                    foreach(var OBJ in draw.Map.Objects)
                     {
-                        //Object key = new Object("oui", 1);
-                        
-                        //player.Objects.Add();
-                        Console.WriteLine("objet récup");
+                        if (OBJ.Pos.Item1 == player.LeftPos && OBJ.Pos.Item2 == player.TopPos && OBJ.IsTake == false)
+                        {
+                            player.Objects.Add(OBJ.Name, GameManager.Instance.Objects[OBJ.Name]);
+                            OBJ.IsTake = true;
+                        }
                     }
                     if (player.LeftPos == 35 && player.TopPos == 9)
                     {
@@ -231,6 +232,8 @@ namespace Projet_C_
                 switch (State)
                 {
                     case Display.Menu:
+                        State = DisplayState.Display.Map;
+                        GameManager.Instance.SelectChange -= draw.Menu;
                         break;
                     case Display.Map:
                         player.Move -= draw.DrawMap;
@@ -243,6 +246,7 @@ namespace Projet_C_
                     case Display.Inventory:
                         break;
                     case Display.Pause:
+                        GameManager.Instance.SelectChange -= draw.Pause;
                         break;
                 }
                 Enter = true;
