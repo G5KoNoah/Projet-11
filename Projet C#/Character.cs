@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Projet_C_
 {
@@ -49,9 +50,10 @@ namespace Projet_C_
             foreach (var spell in data.Spells)
             {
                 var attack = new Spell(spell);
+                Spells.Add(attack);
             }
-
             StatsLevel();
+            PV = data.PV;
         }
 
         public void GainExperience(int experience)

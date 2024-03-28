@@ -38,7 +38,8 @@ namespace Projet_C_
             LeftPos = data.LeftPos;
             TopPos = data.TopPos;
             ListCharacter = new Dictionary<string, Character> { };
-            foreach (var character in data.Characters) {
+            foreach (var character in data.Characters) 
+            {
                 var personnage = new Character(character);
                 ListCharacter.Add(character.Name, personnage);
             }

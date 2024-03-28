@@ -342,6 +342,7 @@ namespace Projet_C_
                         Name = c.Value.DefaultStats.Name,
                         Level = c.Value.Level,
                         NeedXP = c.Value.NeedXP,
+                        PV = c.Value.PV,
                         Spells = c.Value.Spells.Select(s => new
                         {
                             Name = s.Name,

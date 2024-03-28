@@ -59,11 +59,13 @@ namespace Projet_C_
         string _name;
         int _level;
         int _needXP;
+        int _pv;
         SpellData[] _spells;
 
         public string Name { get => _name; set => _name = value; }
         public int Level { get => _level; set => _level = value; }
         public int NeedXP { get => _needXP; set => _needXP = value; }
+        public int PV { get => _pv; set => _pv = value; }
         public SpellData[] Spells { get => _spells; set => _spells = value; }
     }
 
