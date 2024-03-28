@@ -26,6 +26,8 @@ namespace Projet_C_
         Enemy _enemy;
         int _select;
         string[] _choice;
+        List<string> menuChoice = new List<string>();
+        
 
         int _numMap;
 
@@ -62,6 +64,7 @@ namespace Projet_C_
         public int NumMap { get => _numMap; set => _numMap = value; }
         public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
         public InventoryManager InventoryManager { get => _inventoryManager; set => _inventoryManager = value; }
+        public List<string> MenuChoice { get => menuChoice; set => menuChoice = value; }
 
         public event Action SelectChange;
 
@@ -91,6 +94,10 @@ namespace Projet_C_
 
             Select = 1;
             Choice = new string[] { "Explore", "Quit" };
+
+            MenuChoice.Add("Commencer");
+            MenuChoice.Add("Continuer");
+            MenuChoice.Add("Quitter");
 
             NumMap = 1;
 
@@ -172,11 +179,23 @@ namespace Projet_C_
 
         public void ModifySelect(int nb)
         {
+
+            int max = 0;
+           
+            switch (DisplayState.Instance.State)
+            {
+                case DisplayState.Display.Pause:
+                    max = Choice.Length;
+                    break;
+                case DisplayState.Display.Menu:
+                    max = MenuChoice.Count;
+                    break;
+            }
             if (Select == 1 && nb == -1)
             {
-                Select = Choice.Length;
+                Select = max;
             }
-            else if (Select == Choice.Length && nb == 1)
+            else if (Select == max && nb == 1)
             {
                 Select = 1;
             }
@@ -190,14 +209,33 @@ namespace Projet_C_
         public void ValideSelect()
         {
             var displayState = DisplayState.Instance;
-            switch (Select)
+
+            switch (displayState.State)
             {
-                case 1:
-                    displayState.State = DisplayState.Display.Map;
-                    displayState.Exit = true;
+                case DisplayState.Display.Menu:
+                    switch (Select)
+                    {
+                        case 1:
+                            displayState.State = DisplayState.Display.Map;
+                            displayState.Exit = true;
+                            break;
+                        case 3:
+                            Environment.Exit(0);
+                            break;
+                    }
+
                     break;
-                case 2:
-                    Environment.Exit(0);
+                case DisplayState.Display.Pause:
+                    switch (Select)
+                    {
+                        case 1:
+                            displayState.State = DisplayState.Display.Map;
+                            displayState.Exit = true;
+                            break;
+                        case 2:
+                            Environment.Exit(0);
+                            break;
+                    }
                     break;
             }
             SelectChange?.Invoke();

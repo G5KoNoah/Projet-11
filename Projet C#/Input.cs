@@ -37,6 +37,18 @@ namespace Projet_C_
             var inventoryManager = GameManager.Instance.InventoryManager;
             InputByState = new Dictionary<DisplayState.Display, Dictionary<ConsoleKey, Action>>
 {
+                { DisplayState.Display.Menu, new Dictionary<ConsoleKey, Action>
+                    {
+                        { ConsoleKey.UpArrow, () => { GameManager.Instance.ModifySelect(-1) ; }},
+                        { ConsoleKey.DownArrow, () => { GameManager.Instance.ModifySelect(1); }},
+                        { ConsoleKey.Enter, () => { GameManager.Instance.ValideSelect(); }},
+                        { ConsoleKey.Escape, () => {
+                            var displayState = DisplayState.Instance;
+                            displayState.State = DisplayState.Display.Map;
+                            displayState.Exit = true;
+                        }}
+                    }
+                },
                 { DisplayState.Display.Map, new Dictionary<ConsoleKey, Action>
                     {
                         { ConsoleKey.LeftArrow, () => { player.MoveLeft(-1); }},
@@ -92,6 +104,7 @@ namespace Projet_C_
                         }}
                     }
                 }
+                
             };
         }
 

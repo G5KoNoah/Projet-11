@@ -40,6 +40,9 @@ namespace Projet_C_
                         case '.':
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             break;
+                        case 'A':
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            break;
                         case '*':
                             Console.BackgroundColor = ConsoleColor.Gray;
                             break;
@@ -57,6 +60,10 @@ namespace Projet_C_
                             break;
                         case '2':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            break;
+
+                        case '3':
+                            Console.BackgroundColor = ConsoleColor.Black;
                             break;
 
                     }
@@ -86,6 +93,11 @@ namespace Projet_C_
                         {
                             Console.Write(' ');
                         }
+                    }
+                    else if (lMap[i][j] == 'A' && drawPlayer)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write('A');
                     }
                     else
                     {
@@ -309,11 +321,31 @@ namespace Projet_C_
             Console.SetCursorPosition(0, 0);
         }
 
+        public void Menu()
+        {
+            var choices = GameManager.Instance.MenuChoice;
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            for (int i = 0; i < choices.Count;i++)
+            {
+                if( i + 1 == GameManager.Instance.Select)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                Console.SetCursorPosition(45 , 15 + i + 1);
+                Console.WriteLine(choices[i]);
+            }
+            Console.SetCursorPosition(0, 0);
+        }
 
-        public void Dialogue()
+
+        public void Dialogue(string dialogue)
         {
             int ligne = 20;
-            string dialogue = "Salut mec !!!";
+            //string dialogue = "Salut mec !!!";
             Console.SetCursorPosition(15, ligne);
             Console.BackgroundColor = ConsoleColor.Black;
             for(int i = 0;i < 5; i++)
@@ -326,12 +358,19 @@ namespace Projet_C_
                 ligne++;
                 Console.SetCursorPosition(15, ligne);
             }
+            ligne = 20;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(25, 20);
+            Console.SetCursorPosition(15, ligne);
             for(int i = 0; i < dialogue.Length; i++)
             {
                 Console.Write(dialogue[i]);
                 Thread.Sleep(70);
+                if(i % 39 == 0 && i > 0)
+                {
+                    
+                    ligne++;
+                    Console.SetCursorPosition(15, ligne);
+                }
             }
             
             Console.ForegroundColor = ConsoleColor.Black;

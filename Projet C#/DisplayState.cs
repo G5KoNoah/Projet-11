@@ -47,7 +47,7 @@ namespace Projet_C_
 
         public DisplayState() 
         {
-            State = Display.Map;
+            State = Display.Menu;
             Exit = false;
             Enter = true;
         }
@@ -66,6 +66,9 @@ namespace Projet_C_
                     case Display.Menu:
                         draw.Map = maps["Start"];
                         draw.DrawMap(false);
+                        GameManager.Instance.SelectChange += draw.Menu;
+                        GameManager.Instance.ModifySelect(0);
+                        
                         break;
                     case Display.Map:
                         draw.Map = maps["map" + (char)(GameManager.Instance.NumMap + '0')];
