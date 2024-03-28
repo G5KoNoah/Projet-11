@@ -23,6 +23,8 @@ namespace Projet_C_
         Dictionary<string, CharacterType> _characterTypes;
         Dictionary<string, Character> _characterPlayer;
 
+        Dictionary<string, Spell> _spells;
+
         Enemy _enemy;
         List<Enemy> _enemyList;
         int _select;
@@ -64,6 +66,7 @@ namespace Projet_C_
         public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
         public InventoryManager InventoryManager { get => _inventoryManager; set => _inventoryManager = value; }
         public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
+        public Dictionary<string, Spell> Spells { get => _spells; set => _spells = value; }
 
         public event Action SelectChange;
 
@@ -77,6 +80,8 @@ namespace Projet_C_
             CharacterTypes = new Dictionary<string, CharacterType>();
             CharacterPlayer = new Dictionary<string, Character>();
             
+            Spells = new Dictionary<string, Spell>();
+
             Objects = new Dictionary<string, Object>();
             Enemy = new Enemy();
             EnemyList = new List<Enemy>();
@@ -84,11 +89,14 @@ namespace Projet_C_
             InitMap();
             InitType();
             InitCharacter();
+            InitSpells();
+            InitObjects();
             
             Player = new Player(CharacterPlayer, Maps["map1"].PlayerPos);
 
-            Player.Objects.Add(Objects["steak HP"].Name, Objects["steak HP"]); 
-            Player.Objects.Add(Objects["steak Attack"].Name, Objects["steak Attack"]);
+            Player.Objects.Add(Objects["Steak PV"].Name, Objects["Steak PV"]); 
+            Player.Objects.Add(Objects["Jus PT"].Name, Objects["Jus PT"]);
+            Player.Objects.Add(Objects["Sake Attack"].Name, Objects["Sake Attack"]);
 
             Draw = new Draw();
 
@@ -148,25 +156,11 @@ namespace Projet_C_
                 Character luffy = new Character(CharacterStats["Luffy"], 1);
                 CharacterPlayer["Luffy"] = luffy;
 
-                Character croco = new Character(CharacterStats["Zoro"], 1);
-                CharacterPlayer["Croco"] = croco;
-
-                Spell pistol = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["strength"]);
-                Spell redHawk = new Spell(1, "Gum Gum Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
-                Spell kong = new Spell(1, "Gum Gum Kong Gun", 2.5f, 100.0f, CharacterTypes["strength"]);
+                Character zoro = new Character(CharacterStats["Zoro"], 1);
+                CharacterPlayer["Zoro"] = zoro;
 
 
 
-                Food potionHeal = new Food("steak HP","Viande très bonne donnant de la vie à celui qui la mange.", -1, 0.5f, 0, 1);
-                Food potionAttack = new Food("steak Attack"," Viande apagnan Nattan bebou mange s'est pour donner de l'attaque", 2, 0, 0, 1.5f);
-
-                Objects[potionHeal.Name] = potionHeal;
-                Objects[potionAttack.Name] = potionAttack;
-
-                luffy.Spells.Add(pistol);
-                luffy.Spells.Add(redHawk);
-                luffy.Spells.Add(kong);
-                croco.Spells.Add(redHawk);
 
                 Enemy enemy1 = new Enemy();
                 Enemy enemy2 = new Enemy();
@@ -176,24 +170,66 @@ namespace Projet_C_
                 Character characterEnemy2 = new Character(CharacterStats["Soldat Géant"], 1);
                 Character characterEnemy3 = new Character(CharacterStats["Soldat épéiste"], 1);
 
-                Spell defaultSpellStrength = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["strength"]);
-                Spell defaultSpellSpeed = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["Speed"]);
-                Spell defaultSpellRange = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["range"]);
-
                 enemy1.Character = characterEnemy1;
-                enemy1.Character.Spells.Add(defaultSpellRange);
 
                 enemy2.Character = characterEnemy2;
-                enemy2.Character.Spells.Add(defaultSpellStrength);
 
                 enemy3.Character = characterEnemy3;
-                enemy3.Character.Spells.Add(defaultSpellSpeed);
 
                 EnemyList.Add(enemy1);
                 EnemyList.Add(enemy2);
                 EnemyList.Add(enemy3);
 
 
+
+            }
+        }
+
+        public void InitSpells()
+        {
+            var spells = new List<JsonSpell>();
+            string filePath = "..\\..\\..\\spell.json";
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                spells = JsonSerializer.Deserialize<List<JsonSpell>>(jsonContent);
+
+                foreach (JsonSpell spell in spells)
+                {
+                    Spells[spell.Name] = new Spell(spell.Name, spell.Attack, spell.Consumed, CharacterTypes[spell.Type]);
+                }
+
+                CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Pistol"]);
+                CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Red Hawk"]);
+                CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Kong Gun"]);
+
+                EnemyList[0].Character.Spells.Add(Spells["Tir de fusil"]);
+                EnemyList[1].Character.Spells.Add(Spells["Coup de poing"]);
+                EnemyList[2].Character.Spells.Add(Spells["Coup d'epee"]);
+
+
+
+
+
+            }
+        }
+        public void InitObjects()
+        {
+            var objects = new List<JsonObject>();
+            string filePath = "..\\..\\..\\objects.json";
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                objects = JsonSerializer.Deserialize<List<JsonObject>>(jsonContent);
+
+                foreach (JsonObject objectJson in objects)
+                {
+                    if(objectJson.Type == "Food")
+                    {
+                        Objects[objectJson.Name] = new Food(objectJson.Name, objectJson.Description, objectJson.Turn, objectJson.BoostHp, objectJson.BoostPt, objectJson.BoostAttack);
+                    }
+                    
+                }
 
             }
         }

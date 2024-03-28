@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "Gum Gum Pistol",
+    "Attack": 1.0,
+    "Consumed": 0.0,
+    "Type": "strength"
+  },
+  {
+    "Name": "Gum Gum Red Hawk",
+    "Attack": 1.5,
+    "Consumed": 50.0,
+    "Type": "range"
+  },
+  {
+    "Name": "Gum Gum Kong Gun",
+    "Attack": 2.5,
+    "Consumed": 100.0,
+    "Type": "strength"
+  },
+  {
+    "Name": "Coup de poing",
+    "Attack": 1.0,
+    "Consumed": 0.0,
+    "Type": "strength"
+  },
+  {
+    "Name": "Coup d'epee",
+    "Attack": 1.0,
+    "Consumed": 0.0,
+    "Type": "speed"
+  },
+  {
+    "Name": "Tir de fusil",
+    "Attack": 1.0,
+    "Consumed": 0.0,
+    "Type": "range"
+  }
+]

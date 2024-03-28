@@ -44,7 +44,7 @@
         "CharacterType": "range",
         "PV": 100,
         "PT": 1,
-        "Attack": 10,
+        "Attack": 20,
         "Defense": 10,
         "AttackSpeed": 70,
         "Precision": 60
@@ -54,7 +54,7 @@
         "CharacterType": "strength",
         "PV": 100,
         "PT": 1,
-        "Attack": 10,
+        "Attack": 20,
         "Defense": 10,
         "AttackSpeed": 70,
         "Precision": 60
@@ -64,7 +64,7 @@
         "CharacterType": "speed",
         "PV": 100,
         "PT": 1,
-        "Attack": 10,
+        "Attack": 20,
         "Defense": 10,
         "AttackSpeed":780,
         "Precision": 60

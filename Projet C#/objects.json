@@ -2,7 +2,7 @@
   {
     "Name": "Steak PV",
     "Type": "Food",
-    "Description": "Viande très bonne donnant de la vie à celui qui la mange.",
+    "Description": "Viande tres bonne donnant de la vie a celui qui la mange.",
     "Turn": -1,
     "BoostHp": 0.3,
     "BoostPt": 0,
@@ -11,7 +11,7 @@
   {
     "Name": "Steak juteux PV",
     "Type": "Food",
-    "Description": "Viande très bonne et juteuse donnant de la vie à celui qui la mange.",
+    "Description": "Viande tres bonne et juteuse donnant de la vie a celui qui la mange.",
     "Turn": -1,
     "BoostHp": 0.8,
     "BoostPt": 0,
@@ -20,7 +20,7 @@
   {
     "Name": "Jus PT",
     "Type": "Food",
-    "Description": "Jus donnant de les points techniques à celui qui le boit.",
+    "Description": "Jus donnant de les points techniques a celui qui le boit.",
     "Turn": -1,
     "BoostHp": 0,
     "BoostPt": 0.5,
@@ -29,7 +29,7 @@
   {
     "Name": "Super Jus PT",
     "Type": "Food",
-    "Description": "Jus donnant beaucoup de les points techniques à celui qui le boit.",
+    "Description": "Jus donnant beaucoup de les points techniques a celui qui le boit.",
     "Turn": -1,
     "BoostHp": 0,
     "BoostPt": 0.8,
@@ -38,7 +38,7 @@
   {
     "Name": "Sake Attack",
     "Type": "Food",
-    "Description": "Sake donnant un boost d'attaque temporaire'.",
+    "Description": "Sake donnant un boost d'attaque temporaire.",
     "Turn": 2,
     "BoostHp": 0.5,
     "BoostPt": 0,

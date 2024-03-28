@@ -38,11 +38,23 @@ namespace Projet_C_
         float _boostAttack;
 
         public string Name { get => _name; set => _name = value; }
-        public string TypeObject { get => _typeObject; set => _typeObject = value; }
+        public string Type { get => _typeObject; set => _typeObject = value; }
         public string Description { get => _description; set => _description = value; }
         public int Turn { get => _turn; set => _turn = value; }
         public float BoostPt { get => _boostPt; set => _boostPt = value; }
         public float BoostHp { get => _boostHp; set => _boostHp = value; }
         public float BoostAttack { get => _boostAttack; set => _boostAttack = value; }
+    }
+    public struct JsonSpell
+    {
+        string _name;
+        float _attack;
+        float _consumed;
+        string _type;
+
+        public string Name { get => _name; set => _name = value; }
+        public float Attack { get => _attack; set => _attack = value; }
+        public float Consumed { get => _consumed; set => _consumed = value; }
+        public string Type { get => _type; set => _type = value; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace Projet_C_
@@ -17,7 +18,7 @@ namespace Projet_C_
 
         float _consumedPT;
         float _attackRatio;
-        public int Level { get => _level; set=> _level = value}
+        public int Level { get => _level; set => _level = value; }
         public int NeedXP { get => _needXP; }
         public float AttackRation { get => _attackRatio; }
         public string Name { get => _name; set => _name = value; }
@@ -26,7 +27,7 @@ namespace Projet_C_
 
         public event Action LevelUpSpell;
 
-        public Spell(int level, string name, float attack, float consumed, CharacterType type)
+        public Spell( string name, float attack, float consumed, CharacterType type, int level = 1)
         {
             _level = level;
             _needXP = 500 * level;

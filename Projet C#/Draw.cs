@@ -58,6 +58,9 @@ namespace Projet_C_
                         case '2':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
+                        case '@':
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            break;
 
                     }
                     
@@ -187,7 +190,10 @@ namespace Projet_C_
                     break;
 
                 case InventoryManager.StateInventory.Object:
-                    for (int i = 0; i < player.ListCharacter.Count; i++)
+                    Console.SetCursorPosition(13, 14);
+                    Console.WriteLine("Les Objets :");
+
+                    for (int i = 0; i < player.Objects.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.SetCursorPosition(13, 15 + i);
@@ -200,6 +206,8 @@ namespace Projet_C_
 
                     break;
                 case InventoryManager.StateInventory.Character:
+                    Console.SetCursorPosition(13, 14);
+                    Console.WriteLine("Les Personnages : ");
                     for (int i = 0; i < player.ListCharacter.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
@@ -235,6 +243,13 @@ namespace Projet_C_
                     Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.AttackSpeed + " Vitesse d'Attack");
                     Console.SetCursorPosition(13, 22);
                     Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Precision + " Précision");
+                    
+                    for(int i = 0; i < player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.Spells.Count; i++)
+                    {
+                        Console.SetCursorPosition(40, 18 + i);
+                        Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Level +  "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Name + "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].ConsumedPT + "   " + (float)Math.Round(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].AttackRation));
+                        
+                    }
 
 
                     break;
