@@ -58,7 +58,15 @@ namespace Projet_C_
                         case '3':
                             Console.BackgroundColor = ConsoleColor.Black;
                             break;
-
+                        case '@':
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            break;
+                        case ' ':
+                            Console.BackgroundColor = ConsoleColor.White;
+                            break;
+                        case '%':
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            break;
                     }
                     if (drawPlayer)
                     {
@@ -108,9 +116,11 @@ namespace Projet_C_
             Console.WriteLine(enemy.DefaultStats.Name + "  " + enemy.DefaultStats.Type.Name);
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(14, 14);
-            Console.WriteLine(currentCharacter.PV);
+            Console.WriteLine(currentCharacter.Level + "  PV : " + currentCharacter.PV);
+            Console.SetCursorPosition(25, 14);
+            Console.WriteLine("   PT : " + currentCharacter.PT);
             Console.SetCursorPosition(59, 14);
-            Console.WriteLine(enemy.PV);
+            Console.WriteLine(enemy.Level + "    PV : " + enemy.PV);
             switch (fightManager.CurrentState)
             {
                 case FightManager.StateFight.Start:
@@ -135,7 +145,8 @@ namespace Projet_C_
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                         }
-                        Console.WriteLine(currentCharacter.Spells[i].Name);
+                        if(currentCharacter.Spells[i].ConsumedPT> player.CurrentCharacter.PT) Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine(currentCharacter.Spells[i].Level + "   "+ currentCharacter.Spells[i].Name + "    " + currentCharacter.Spells[i].ConsumedPT);
                     }
 
                     break;
@@ -199,7 +210,10 @@ namespace Projet_C_
                     break;
 
                 case InventoryManager.StateInventory.Object:
-                    for (int i = 0; i < player.ListCharacter.Count; i++)
+                    Console.SetCursorPosition(13, 14);
+                    Console.WriteLine("Les Objets :");
+
+                    for (int i = 0; i < player.Objects.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.SetCursorPosition(13, 15 + i);
@@ -212,6 +226,8 @@ namespace Projet_C_
 
                     break;
                 case InventoryManager.StateInventory.Character:
+                    Console.SetCursorPosition(13, 14);
+                    Console.WriteLine("Les Personnages : ");
                     for (int i = 0; i < player.ListCharacter.Count; i++)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
@@ -228,19 +244,40 @@ namespace Projet_C_
                     Console.SetCursorPosition(13, 15);
                     Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.DefaultStats.Name);
                     Console.SetCursorPosition(13, 16);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Level);
+                    Console.WriteLine("Level : "+ player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Level);
                     Console.SetCursorPosition(25, 16);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.NeedXP);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.NeedXP + " XP pour le prochain niveau");
                     Console.SetCursorPosition(13, 17);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PV);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PV );
                     Console.SetCursorPosition(25, 17);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPv);
+                    Console.WriteLine("/ " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPv + " HP");
                     Console.SetCursorPosition(13, 18);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PT);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.PT );
                     Console.SetCursorPosition(25, 18);
-                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPt);
+                    Console.WriteLine("/ " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.MaxPt +" PT");
+                    Console.SetCursorPosition(13, 19);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Attack + " Dégâts d'Attaque");
+                    Console.SetCursorPosition(13, 20);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Defense + " Défense");
+                    Console.SetCursorPosition(13, 21);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.AttackSpeed + " Vitesse d'Attack");
+                    Console.SetCursorPosition(13, 22);
+                    Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Precision + " Précision");
+                    
+                    for(int i = 0; i < player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.Spells.Count; i++)
+                    {
+                        Console.SetCursorPosition(40, 18 + i);
+                        Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Level +  "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Name + "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].ConsumedPT + "   " + (float)Math.Round(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].AttackRation * player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.Attack));
+                        
+                    }
 
 
+                    break;
+                case InventoryManager.StateInventory.ObjectDetails:
+                    Console.SetCursorPosition(13, 15);
+                    Console.WriteLine(player.Objects.ElementAt(inventoryManager.Select-1).Value.Name);
+                    Console.SetCursorPosition(13, 17);
+                    Console.WriteLine(player.Objects.ElementAt(inventoryManager.Select - 1).Value.Description);
                     break;
             }
             Console.ForegroundColor = ConsoleColor.Black;

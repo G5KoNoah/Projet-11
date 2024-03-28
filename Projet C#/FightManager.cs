@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet_C_
 {
@@ -80,58 +81,127 @@ namespace Projet_C_
                     Select = 1;
                     break;
                 case StateFight.Attack:
-                    player.ItemTime();
-                    float damage = player.CurrentCharacter.SpellAttack(Select - 1);
-                    Enemy.Character.TakeDamage(damage);
-                    draw.Damage(damage, false);
-                    Thread.Sleep(1000);
-                    if(Enemy.Character.PV > 0)
+                    if (player.CurrentCharacter.Spells[Select -1].ConsumedPT <= player.CurrentCharacter.PT)
                     {
-                        int spell = new Random().Next(0, Enemy.Character.Spells.Count);
-                        damage = Enemy.Character.SpellAttack(spell);
-                        player.CurrentCharacter.TakeDamage(damage);
-                        draw.Damage(damage, true);
-                        Thread.Sleep(1000);
-                        
-                        if (player.CurrentCharacter.PV == 0)
+                        if(player.CurrentCharacter.AttackSpeed >= Enemy.Character.AttackSpeed)
                         {
-                            int nbLoose = 0;
-                            for (int i = 0; i < player.ListCharacter.Count; i++)
+                            player.ItemTime();
+                            float damage = player.CurrentCharacter.SpellAttack(Select - 1, Enemy.Character);
+                            draw.Damage(Enemy.Character.TakeDamage(damage), false);
+                            Thread.Sleep(1000);
+                            if (Enemy.Character.PV > 0)
                             {
-                                if(player.ListCharacter.ElementAt(i).Value.PV == 0)
+                                int spell = new Random().Next(0, Enemy.Character.Spells.Count);
+                                damage = Enemy.Character.SpellAttack(spell, player.CurrentCharacter);
+                                draw.Damage(player.CurrentCharacter.TakeDamage(damage), true);
+                                Thread.Sleep(1000);
+
+                                if (player.CurrentCharacter.PV == 0)
                                 {
-                                    nbLoose++;
+                                    int nbLoose = 0;
+                                    for (int i = 0; i < player.ListCharacter.Count; i++)
+                                    {
+                                        if (player.ListCharacter.ElementAt(i).Value.PV == 0)
+                                        {
+                                            nbLoose++;
+                                        }
+                                    }
+                                    if (nbLoose == player.ListCharacter.Count)
+                                    {
+                                        player.ItemAllDestroy();
+                                        draw.Loose(player, Enemy.Character);
+                                        Thread.Sleep(2000);
+                                        DisplayState.Instance.State = DisplayState.Display.Map;
+                                        DisplayState.Instance.Exit = true;
+                                    }
+
+                                    CurrentState = StateFight.ChangePerso;
                                 }
+                                else
+                                {
+                                    CurrentState = StateFight.Start;
+                                }
+                                Select = 1;
+
+
                             }
-                            if(nbLoose == player.ListCharacter.Count)
+                            else
                             {
-                                draw.Loose(player, Enemy.Character);
+                                player.ItemAllDestroy();
+                                foreach(KeyValuePair<string, Character> charact in player.ListCharacter)
+                                {
+                                    charact.Value.GainExperience(50 * Enemy.Character.Level);
+                                }
+                                draw.Win(player, Enemy.Character);
+
                                 Thread.Sleep(2000);
+
                                 DisplayState.Instance.State = DisplayState.Display.Map;
                                 DisplayState.Instance.Exit = true;
-                            }
 
-                            CurrentState = StateFight.ChangePerso;
+
+                            }
                         }
                         else
                         {
-                            CurrentState = StateFight.Start;
+                            int spell = new Random().Next(0, Enemy.Character.Spells.Count);
+                            float damage = Enemy.Character.SpellAttack(spell, player.CurrentCharacter);
+                            
+                            draw.Damage(player.CurrentCharacter.TakeDamage(damage), true);
+                            Thread.Sleep(1000);
+                            if (player.CurrentCharacter.PV > 0)
+                            {
+                                player.ItemTime();
+                                damage = player.CurrentCharacter.SpellAttack(Select - 1, Enemy.Character);
+                                
+                                draw.Damage(Enemy.Character.TakeDamage(damage), false);
+                                Thread.Sleep(1000);
+
+                                if (Enemy.Character.PV == 0)
+                                {
+                                    player.ItemAllDestroy();
+                                    foreach (KeyValuePair<string, Character> charact in player.ListCharacter)
+                                    {
+                                        charact.Value.GainExperience(50 * Enemy.Character.Level);
+                                    }
+                                    draw.Win(player, Enemy.Character);
+
+                                    Thread.Sleep(2000);
+
+                                    DisplayState.Instance.State = DisplayState.Display.Map;
+                                    DisplayState.Instance.Exit = true;
+                                }
+                                else
+                                {
+                                    CurrentState = StateFight.Start;
+                                }
+                                Select = 1;
+
+                            }
+                            else
+                            {
+                                int nbLoose = 0;
+                                for (int i = 0; i < player.ListCharacter.Count; i++)
+                                {
+                                    if (player.ListCharacter.ElementAt(i).Value.PV == 0)
+                                    {
+                                        nbLoose++;
+                                    }
+                                }
+                                if (nbLoose == player.ListCharacter.Count)
+                                {
+                                    player.ItemAllDestroy();
+                                    draw.Loose(player, Enemy.Character);
+                                    Thread.Sleep(2000);
+                                    DisplayState.Instance.State = DisplayState.Display.Map;
+                                    DisplayState.Instance.Exit = true;
+                                }
+
+                                CurrentState = StateFight.ChangePerso;
+                            }
+
+
                         }
-                        Select = 1;
-
-                        
-                    }
-                    else
-                    {
-
-                        draw.Win(player, Enemy.Character);
-                        
-                        Thread.Sleep(2000);
-                        
-                        DisplayState.Instance.State = DisplayState.Display.Map;
-                        DisplayState.Instance.Exit = true;
-
-
                     }
                     break;
 

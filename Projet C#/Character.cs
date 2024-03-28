@@ -18,7 +18,7 @@ namespace Projet_C_
 
         List<Spell> _spells = new List<Spell> { };
 
-        public int Level { get => _level; private set => _level = value; }
+        public int Level { get => _level;  set => _level = value; }
         public int NeedXP { get => _needXP; private set => _needXP = value; }
 
         public List<Spell> Spells { get => _spells; private set => _spells = value; }
@@ -36,13 +36,6 @@ namespace Projet_C_
             DefaultStats = stats;
             _level = level;
             _needXP = 100 * level;
-
-            PV = DefaultStats.PV;
-            PT = DefaultStats.PT;
-            Attack = DefaultStats.Attack;
-            Defense = DefaultStats.Defense;
-            AttackSpeed = DefaultStats.AttackSpeed;
-            Precision = DefaultStats.Precision;
 
             StatsLevel();
         }
@@ -89,31 +82,38 @@ namespace Projet_C_
             MaxPt = PT;
         }
 
-        public void TakeDamage(float damage)
+        public float TakeDamage(float damage)
         {
             OnDamage?.Invoke();
-
-            PV -= damage;
+            float trueDamage = (float)Math.Round(damage * (1 - Defense / 100));
+            PV -= trueDamage;
             if (PV < 0)
             {
                 OnDeath?.Invoke();
                 PV = 0;
 
             }
+            return trueDamage;
         }
 
-        public float SpellAttack(int spell)
+        public float SpellAttack(int spell, Character enemy)
         {
             onAttack?.Invoke();
-            float damage = _spells[spell].AttackRation * Attack;
-            if (_spells[spell].Type == DefaultStats.Type.Weakness)
+            float damage = Spells[spell].AttackRation * Attack;
+            if (Spells[spell].Type == enemy.DefaultStats.Type.Weakness)
             {
                 damage *= 2;
             }
-            else if (_spells[spell].Type.Weakness == DefaultStats.Type)
+            else if (Spells[spell].Type.Weakness == enemy.DefaultStats.Type)
             {
                 damage *= 0.5f;
             }
+            PT -= Spells[spell].ConsumedPT;
+            if (new Random().Next(1, (int)Precision / 10) == 1) damage = 0;
+            if (Spells[spell]== Spells.ElementAt(0)) PT += (float)Math.Round( 0.5f * MaxPt);
+
+            if (PT > MaxPt) PT = MaxPt;
+            Spells[spell].GainExperience(100);
             return (float)Math.Round(damage);
         }
 

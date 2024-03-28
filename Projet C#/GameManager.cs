@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -23,7 +24,10 @@ namespace Projet_C_
         Dictionary<string, CharacterType> _characterTypes;
         Dictionary<string, Character> _characterPlayer;
 
-        Enemy _enemy;
+        Dictionary<string, Spell> _spells;
+
+        Enemy _boss;
+        List<Enemy> _enemyList;
         int _select;
         string[] _choice;
         List<string> menuChoice = new List<string>();
@@ -58,17 +62,21 @@ namespace Projet_C_
         public Dictionary<string, Map> Maps { get => _maps; set => _maps = value; }
         public Parser Parser { get => _parser; set => _parser = value; }
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
-        public Enemy Enemy { get => _enemy; set => _enemy = value; }
+        public Enemy Boss { get => _boss; set => _boss = value; }
         public int Select { get => _select; set => _select = value; }
         public string[] Choice { get => _choice; set => _choice = value; }
         public int NumMap { get => _numMap; set => _numMap = value; }
         public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
         public InventoryManager InventoryManager { get => _inventoryManager; set => _inventoryManager = value; }
+        public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
+        public Dictionary<string, Spell> Spells { get => _spells; set => _spells = value; }
         public List<string> MenuChoice { get => menuChoice; set => menuChoice = value; }
 
         public event Action SelectChange;
 
         public GameManager() {
+
+
             Parser = new Parser();
             FightManager = new FightManager();
             InventoryManager = new InventoryManager();
@@ -78,17 +86,23 @@ namespace Projet_C_
             CharacterTypes = new Dictionary<string, CharacterType>();
             CharacterPlayer = new Dictionary<string, Character>();
             
+            Spells = new Dictionary<string, Spell>();
+
             Objects = new Dictionary<string, Object>();
-            Enemy = new Enemy();
+            Boss = new Enemy();
+            EnemyList = new List<Enemy>();
 
             InitMap();
             InitType();
             InitCharacter();
+            InitSpells();
+            InitObjects();
             
             Player = new Player(CharacterPlayer, Maps["map1"].PlayerPos);
 
-            Player.Objects.Add(Objects["steak HP"].Name, Objects["steak HP"]); 
-            Player.Objects.Add(Objects["steak Attack"].Name, Objects["steak Attack"]);
+            Player.Objects.Add(Objects["Steak PV"].Name, Objects["Steak PV"]); 
+            Player.Objects.Add(Objects["Jus PT"].Name, Objects["Jus PT"]);
+            Player.Objects.Add(Objects["Sake Attack"].Name, Objects["Sake Attack"]);
 
             Draw = new Draw();
 
@@ -152,27 +166,93 @@ namespace Projet_C_
                 Character luffy = new Character(CharacterStats["Luffy"], 1);
                 CharacterPlayer["Luffy"] = luffy;
 
-                Character croco = new Character(CharacterStats["Croco"], 1);
-                CharacterPlayer["Croco"] = croco;
+                Character zoro = new Character(CharacterStats["Zoro"], 1);
+                CharacterPlayer["Zoro"] = zoro;
 
-                Spell redHawk = new Spell(1, "Red Hawk", 1.5f, 50.0f, CharacterTypes["range"]);
-                Spell attaque2 = new Spell(1, "Attaque 2", 2.5f, 50.0f, CharacterTypes["strength"]);
+                Character nami = new Character(CharacterStats["Nami"], 1);
+                CharacterPlayer["Nami"] = nami;
 
-                Food potionHeal = new Food("steak HP", -1, 0.5f, 0, 1);
-                Food potionAttack = new Food("steak Attack", 2, 0, 0, 1.5f);
+                Character boss = new Character(CharacterStats["Crocodile"], 20);
+                Boss.Character = boss;
 
-                Objects[potionHeal.Name] = potionHeal;
-                Objects[potionAttack.Name] = potionAttack;
+                Enemy enemy1 = new Enemy();
+                Enemy enemy2 = new Enemy();
+                Enemy enemy3 = new Enemy();
 
-                luffy.Spells.Add(redHawk);
-                luffy.Spells.Add(attaque2);
-                croco.Spells.Add(redHawk);
-                CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 100, 100, 2000, 1000, 2000, 100);
-                Character cTest = new Character(stats, 1000);
-                Enemy.Character = cTest;
-                Enemy.Character.Spells.Add(redHawk);
+                Character characterEnemy1 = new Character(CharacterStats["Soldat Fantassin"], 1);
+                Character characterEnemy2 = new Character(CharacterStats["Soldat Géant"], 1);
+                Character characterEnemy3 = new Character(CharacterStats["Soldat épéiste"], 1);
+
+                enemy1.Character = characterEnemy1;
+
+                enemy2.Character = characterEnemy2;
+
+                enemy3.Character = characterEnemy3;
+
+                EnemyList.Add(enemy1);
+                EnemyList.Add(enemy2);
+                EnemyList.Add(enemy3);
 
 
+
+            }
+        }
+
+        public void InitSpells()
+        {
+            var spells = new List<JsonSpell>();
+            string filePath = "..\\..\\..\\spell.json";
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                spells = JsonSerializer.Deserialize<List<JsonSpell>>(jsonContent);
+
+                foreach (JsonSpell spell in spells)
+                {
+                    Spells[spell.Name] = new Spell(spell.Name, spell.Attack, spell.Consumed, CharacterTypes[spell.Type]);
+                }
+
+                CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Pistol"]);
+                CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Red Hawk"]);
+                CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Kong Gun"]);
+
+                CharacterPlayer["Zoro"].Spells.Add(Spells["Santoryu Oni Giri"]);
+                CharacterPlayer["Zoro"].Spells.Add(Spells["Santoryu Ougi : Sanzen Sekai"]);
+                CharacterPlayer["Zoro"].Spells.Add(Spells["Kiki Kitoryuu Ashura"]);
+
+                CharacterPlayer["Nami"].Spells.Add(Spells["Thunder Ball"]);
+                CharacterPlayer["Nami"].Spells.Add(Spells["Thunder Lance Tempo"]);
+                CharacterPlayer["Nami"].Spells.Add(Spells["Nimpo: Raitei"]);
+
+                EnemyList[0].Character.Spells.Add(Spells["Tir de fusil"]);
+                EnemyList[1].Character.Spells.Add(Spells["Coup de poing"]);
+                EnemyList[2].Character.Spells.Add(Spells["Coup d'epee"]);
+
+                Boss.Character.Spells.Add(Spells["Sables"]);
+                Boss.Character.Spells.Add(Spells["Tornado"]);
+                Boss.Character.Spells.Add(Spells["Desert"]);
+
+
+
+            }
+        }
+        public void InitObjects()
+        {
+            var objects = new List<JsonObject>();
+            string filePath = "..\\..\\..\\objects.json";
+            if (File.Exists(filePath))
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                objects = JsonSerializer.Deserialize<List<JsonObject>>(jsonContent);
+
+                foreach (JsonObject objectJson in objects)
+                {
+                    if(objectJson.Type == "Food")
+                    {
+                        Objects[objectJson.Name] = new Food(objectJson.Name, objectJson.Description, objectJson.Turn, objectJson.BoostHp, objectJson.BoostPt, objectJson.BoostAttack);
+                    }
+                    
+                }
 
             }
         }

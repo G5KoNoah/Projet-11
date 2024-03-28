@@ -81,7 +81,11 @@ namespace Projet_C_
                         break;
                     case Display.Fight:
                         draw.Map = maps["fight"];
-                        fightManager.Enemy = GameManager.Instance.Enemy;
+                        
+                        fightManager.Enemy = GameManager.Instance.EnemyList[new Random().Next(0, GameManager.Instance.EnemyList.Count -1)];
+                        fightManager.Enemy.Character.Level = player.CurrentCharacter.Level;
+                        fightManager.Enemy.Character.StatsLevel();
+                        fightManager.Enemy.Character.Spells[0].Level = 1;
                         fightManager.CurrentState = FightManager.StateFight.Start;
                         fightManager.SelectChange += draw.Fight;
                         fightManager.ModifySelect(0);
@@ -145,6 +149,12 @@ namespace Projet_C_
                         Thread.Sleep(2000);
                         State = Display.Fight;
                         Exit = true;
+                    }else if(draw.Map.MapList[player.TopPos][player.LeftPos] == '@')
+                    {
+                        foreach(var charact in player.ListCharacter)
+                        {
+                            charact.Value.StatsLevel();
+                        }
                     }
                     if(draw.Map.ObjectPos.Item1 == player.LeftPos && draw.Map.ObjectPos.Item2 == player.TopPos)
                     {
