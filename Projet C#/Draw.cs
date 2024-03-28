@@ -72,25 +72,31 @@ namespace Projet_C_
                     {
                         bool letterDraw = false;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        foreach (var PNJ in Map.PosPNJ)
-                        {
-                            if (i == PNJ.Pos.Item2 && j == PNJ.Pos.Item1)
-                            {
-                                Console.Write('A');
-                                letterDraw = true;
-                            }
-                        }
                         if (i == player.TopPos && j == player.LeftPos)
                         {
                             Console.Write('P');
                             letterDraw = true;
                         }
-                        if (i == Map.ObjectPos.Item2 && j == Map.ObjectPos.Item1)
-                        {
-                            Console.Write('C');
-                            letterDraw = true;
-                        }
                         if (letterDraw == false)
+                        {
+                            foreach (var PNJ in Map.PosPNJ)
+                            {
+                                if (i == PNJ.Pos.Item2 && j == PNJ.Pos.Item1)
+                                {
+                                    Console.Write('A');
+                                    letterDraw = true;
+                                }
+                            }
+                            foreach (var OBJ in Map.Objects)
+                            {
+                                if (i == OBJ.Pos.Item2 && j == OBJ.Pos.Item1 && OBJ.IsTake == false)
+                                {
+                                    Console.Write('O');
+                                    letterDraw = true;
+                                }
+                            }
+                        }
+                    if (letterDraw == false)
                         {
                             Console.Write(' ');
                         }

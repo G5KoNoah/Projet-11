@@ -80,6 +80,7 @@ namespace Projet_C_
                         { ConsoleKey.UpArrow, () => { inventoryManager.ModifySelect(-1); }},
                         { ConsoleKey.DownArrow, () => { inventoryManager.ModifySelect(1); }},
                         { ConsoleKey.Enter, () => { inventoryManager.ValideSelect(); }},
+                        { ConsoleKey.LeftArrow, () => { inventoryManager.SelectBack(); }},
                         { ConsoleKey.Escape, () => {
                             var displayState = DisplayState.Instance;
                             displayState.State = DisplayState.Display.Pause;

@@ -100,11 +100,6 @@ namespace Projet_C_
             
             Player = new Player(CharacterPlayer, Maps["map1"].PlayerPos);
 
-            Player.Objects.Add(Objects["Steak PV"].Name, Objects["Steak PV"]); 
-            Player.Objects.Add(Objects["Jus PT"].Name, Objects["Jus PT"]);
-            Player.Objects.Add(Objects["Sake Attack"].Name, Objects["Sake Attack"]);
-            Player.Objects.Add(Objects["Cle"].Name, Objects["Cle"]);
-
             Draw = new Draw();
 
             Select = 1;
@@ -125,7 +120,7 @@ namespace Projet_C_
             foreach (string name in names)
             {
                 var infoText = Parser.FileToTextTest("..\\..\\..\\" + name +".txt");
-                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos, infoText.PNJ, infoText.ObjectPos);
+                Map map = new Map(infoText.MapOrCharacter, infoText.PLayerPos, infoText.PNJ, infoText.Objects);
                 Maps.Add(name, map);
             }
         }
@@ -301,7 +296,6 @@ namespace Projet_C_
                     switch (Select)
                     {
                         case 1:
-                            displayState.State = DisplayState.Display.Map;
                             displayState.Exit = true;
                             break;
                         case 2:

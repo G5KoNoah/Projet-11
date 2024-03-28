@@ -91,9 +91,19 @@ namespace Projet_C_
                     break;
 
             }
-
             SelectChange?.Invoke(player);
 
+        }
+
+        public void SelectBack()
+        {
+            var player = GameManager.Instance.Player;
+            if (CurrentState != StateInventory.Start)
+            {
+                CurrentState = StateInventory.Start;
+                Select = 1;
+                SelectChange?.Invoke(player);
+            }
         }
     }
 }
