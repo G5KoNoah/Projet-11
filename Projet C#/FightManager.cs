@@ -86,16 +86,14 @@ namespace Projet_C_
                         if(player.CurrentCharacter.AttackSpeed >= Enemy.Character.AttackSpeed)
                         {
                             player.ItemTime();
-                            float damage = player.CurrentCharacter.SpellAttack(Select - 1);
-                            Enemy.Character.TakeDamage(damage);
-                            draw.Damage(damage, false);
+                            float damage = player.CurrentCharacter.SpellAttack(Select - 1, Enemy.Character);
+                            draw.Damage(Enemy.Character.TakeDamage(damage), false);
                             Thread.Sleep(1000);
                             if (Enemy.Character.PV > 0)
                             {
                                 int spell = new Random().Next(0, Enemy.Character.Spells.Count);
-                                damage = Enemy.Character.SpellAttack(spell);
-                                player.CurrentCharacter.TakeDamage(damage);
-                                draw.Damage(damage, true);
+                                damage = Enemy.Character.SpellAttack(spell, player.CurrentCharacter);
+                                draw.Damage(player.CurrentCharacter.TakeDamage(damage), true);
                                 Thread.Sleep(1000);
 
                                 if (player.CurrentCharacter.PV == 0)
@@ -130,6 +128,10 @@ namespace Projet_C_
                             else
                             {
                                 player.ItemAllDestroy();
+                                foreach(KeyValuePair<string, Character> charact in player.ListCharacter)
+                                {
+                                    charact.Value.GainExperience(100 * Enemy.Character.Level);
+                                }
                                 draw.Win(player, Enemy.Character);
 
                                 Thread.Sleep(2000);
@@ -143,21 +145,25 @@ namespace Projet_C_
                         else
                         {
                             int spell = new Random().Next(0, Enemy.Character.Spells.Count);
-                            float damage = Enemy.Character.SpellAttack(spell);
-                            player.CurrentCharacter.TakeDamage(damage);
-                            draw.Damage(damage, true);
+                            float damage = Enemy.Character.SpellAttack(spell, player.CurrentCharacter);
+                            
+                            draw.Damage(player.CurrentCharacter.TakeDamage(damage), true);
                             Thread.Sleep(1000);
                             if (player.CurrentCharacter.PV > 0)
                             {
                                 player.ItemTime();
-                                damage = player.CurrentCharacter.SpellAttack(Select - 1);
-                                Enemy.Character.TakeDamage(damage);
-                                draw.Damage(damage, false);
+                                damage = player.CurrentCharacter.SpellAttack(Select - 1, Enemy.Character);
+                                
+                                draw.Damage(Enemy.Character.TakeDamage(damage), false);
                                 Thread.Sleep(1000);
 
                                 if (Enemy.Character.PV == 0)
                                 {
                                     player.ItemAllDestroy();
+                                    foreach (KeyValuePair<string, Character> charact in player.ListCharacter)
+                                    {
+                                        charact.Value.GainExperience(100 * Enemy.Character.Level);
+                                    }
                                     draw.Win(player, Enemy.Character);
 
                                     Thread.Sleep(2000);
@@ -197,7 +203,6 @@ namespace Projet_C_
 
                         }
                     }
-
                     break;
 
                 case StateFight.ChangePerso:

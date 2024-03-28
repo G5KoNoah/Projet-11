@@ -78,7 +78,10 @@ namespace Projet_C_
                         break;
                     case Display.Fight:
                         draw.Map = maps["fight"];
-                        fightManager.Enemy = GameManager.Instance.Enemy;
+                        
+                        fightManager.Enemy = GameManager.Instance.EnemyList[new Random().Next(0, GameManager.Instance.EnemyList.Count -1)];
+                        fightManager.Enemy.Character.Level = player.CurrentCharacter.Level;
+                        fightManager.Enemy.Character.ResetStats();
                         fightManager.CurrentState = FightManager.StateFight.Start;
                         fightManager.SelectChange += draw.Fight;
                         fightManager.ModifySelect(0);

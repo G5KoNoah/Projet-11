@@ -24,6 +24,7 @@ namespace Projet_C_
         Dictionary<string, Character> _characterPlayer;
 
         Enemy _enemy;
+        List<Enemy> _enemyList;
         int _select;
         string[] _choice;
 
@@ -62,6 +63,7 @@ namespace Projet_C_
         public int NumMap { get => _numMap; set => _numMap = value; }
         public Dictionary<string, Object> Objects { get => _objects; set => _objects = value; }
         public InventoryManager InventoryManager { get => _inventoryManager; set => _inventoryManager = value; }
+        public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
 
         public event Action SelectChange;
 
@@ -77,6 +79,7 @@ namespace Projet_C_
             
             Objects = new Dictionary<string, Object>();
             Enemy = new Enemy();
+            EnemyList = new List<Enemy>();
 
             InitMap();
             InitType();
@@ -145,7 +148,7 @@ namespace Projet_C_
                 Character luffy = new Character(CharacterStats["Luffy"], 1);
                 CharacterPlayer["Luffy"] = luffy;
 
-                Character croco = new Character(CharacterStats["Croco"], 1);
+                Character croco = new Character(CharacterStats["Zoro"], 1);
                 CharacterPlayer["Croco"] = croco;
 
                 Spell pistol = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["strength"]);
@@ -164,10 +167,31 @@ namespace Projet_C_
                 luffy.Spells.Add(redHawk);
                 luffy.Spells.Add(kong);
                 croco.Spells.Add(redHawk);
-                CharacterStats stats = new CharacterStats("oui", CharacterTypes["range"], 100, 100, 2000, 1000, 2000, 100);
-                Character cTest = new Character(CharacterStats["Croco"], 1);
-                Enemy.Character = cTest;
-                Enemy.Character.Spells.Add(redHawk);
+
+                Enemy enemy1 = new Enemy();
+                Enemy enemy2 = new Enemy();
+                Enemy enemy3 = new Enemy();
+
+                Character characterEnemy1 = new Character(CharacterStats["Soldat Fantassin"], 1);
+                Character characterEnemy2 = new Character(CharacterStats["Soldat Géant"], 1);
+                Character characterEnemy3 = new Character(CharacterStats["Soldat épéiste"], 1);
+
+                Spell defaultSpellStrength = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["strength"]);
+                Spell defaultSpellSpeed = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["Speed"]);
+                Spell defaultSpellRange = new Spell(1, "Gum Gum Pistol", 1.0f, 0.0f, CharacterTypes["range"]);
+
+                enemy1.Character = characterEnemy1;
+                enemy1.Character.Spells.Add(defaultSpellRange);
+
+                enemy2.Character = characterEnemy2;
+                enemy2.Character.Spells.Add(defaultSpellStrength);
+
+                enemy3.Character = characterEnemy3;
+                enemy3.Character.Spells.Add(defaultSpellSpeed);
+
+                EnemyList.Add(enemy1);
+                EnemyList.Add(enemy2);
+                EnemyList.Add(enemy3);
 
 
 

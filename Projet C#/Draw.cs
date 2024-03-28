@@ -89,11 +89,11 @@ namespace Projet_C_
             Console.WriteLine(enemy.DefaultStats.Name + "  " + enemy.DefaultStats.Type.Name);
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(14, 14);
-            Console.WriteLine("PV : " + currentCharacter.PV);
+            Console.WriteLine(currentCharacter.Level + "  PV : " + currentCharacter.PV);
             Console.SetCursorPosition(25, 14);
-            Console.WriteLine("PT : " + currentCharacter.PT);
+            Console.WriteLine("   PT : " + currentCharacter.PT);
             Console.SetCursorPosition(59, 14);
-            Console.WriteLine("PV : " + enemy.PV);
+            Console.WriteLine(enemy.Level + "    PV : " + enemy.PV);
             switch (fightManager.CurrentState)
             {
                 case FightManager.StateFight.Start:
@@ -119,7 +119,7 @@ namespace Projet_C_
                             Console.ForegroundColor = ConsoleColor.Green;
                         }
                         if(currentCharacter.Spells[i].ConsumedPT> player.CurrentCharacter.PT) Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine(currentCharacter.Spells[i].Name + "    " + currentCharacter.Spells[i].ConsumedPT);
+                        Console.WriteLine(currentCharacter.Spells[i].Level + "   "+ currentCharacter.Spells[i].Name + "    " + currentCharacter.Spells[i].ConsumedPT);
                     }
 
                     break;
