@@ -40,9 +40,6 @@ namespace Projet_C_
                         case '.':
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             break;
-                        case 'A':
-                            Console.BackgroundColor = ConsoleColor.Yellow;
-                            break;
                         case '*':
                             Console.BackgroundColor = ConsoleColor.Gray;
                             break;
@@ -61,7 +58,6 @@ namespace Projet_C_
                         case '2':
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             break;
-
                         case '3':
                             Console.BackgroundColor = ConsoleColor.Black;
                             break;
@@ -75,7 +71,7 @@ namespace Projet_C_
                         {
                             if (i == PNJ.Item2 && j == PNJ.Item1)
                             {
-                                Console.Write('T');
+                                Console.Write('A');
                                 letterDraw = true;
                             }
                         }
@@ -93,11 +89,6 @@ namespace Projet_C_
                         {
                             Console.Write(' ');
                         }
-                    }
-                    else if (lMap[i][j] == 'A' && drawPlayer)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write('A');
                     }
                     else
                     {
