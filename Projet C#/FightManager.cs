@@ -216,7 +216,15 @@ namespace Projet_C_
                     break;
 
                 case StateFight.Tools:
-                    player.Item(player.Objects.ElementAt(Select-1).Value.Name, player.CurrentCharacter);
+                    if(player.Objects.ElementAt(Select - 1).Value.Name == "Cle")
+                    {
+                        Console.WriteLine("Vous ne pouvez pas utiliser cet objet");
+                    }
+                    else
+                    {
+                        player.Item(player.Objects.ElementAt(Select - 1).Value.Name, player.CurrentCharacter);
+                    }
+
                     
                     CurrentState = StateFight.Start;
                     Select = 1;

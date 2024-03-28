@@ -11,12 +11,14 @@ namespace Projet_C_
     {
         bool _exit;
         bool _enter;
+        bool _bossUnlock;
         public enum Display
         {
             Menu,
             Map,
             Transition,
             Fight,
+            Boss,
             Inventory,
             Pause
         }
@@ -44,6 +46,7 @@ namespace Projet_C_
 
         public bool Exit { get => _exit; set => _exit = value; }
         public bool Enter { get => _enter; set => _enter = value; }
+        public bool BossUnlock { get => _bossUnlock; set => _bossUnlock = value; }
 
         public DisplayState() 
         {
@@ -82,10 +85,7 @@ namespace Projet_C_
                     case Display.Fight:
                         draw.Map = maps["fight"];
                         
-                        fightManager.Enemy = GameManager.Instance.EnemyList[new Random().Next(0, GameManager.Instance.EnemyList.Count -1)];
-                        fightManager.Enemy.Character.Level = player.CurrentCharacter.Level;
-                        fightManager.Enemy.Character.StatsLevel();
-                        fightManager.Enemy.Character.Spells[0].Level = 1;
+
                         fightManager.CurrentState = FightManager.StateFight.Start;
                         fightManager.SelectChange += draw.Fight;
                         fightManager.ModifySelect(0);
@@ -148,6 +148,10 @@ namespace Projet_C_
                         Console.SetCursorPosition(0, 0);
                         Thread.Sleep(2000);
                         State = Display.Fight;
+                        fightManager.Enemy = GameManager.Instance.EnemyList[new Random().Next(0, GameManager.Instance.EnemyList.Count - 1)];
+                        fightManager.Enemy.Character.Level = player.CurrentCharacter.Level;
+                        fightManager.Enemy.Character.StatsLevel();
+                        fightManager.Enemy.Character.Spells[0].Level = 1;
                         Exit = true;
                     }else if(draw.Map.MapList[player.TopPos][player.LeftPos] == '@')
                     {
@@ -165,7 +169,36 @@ namespace Projet_C_
                     }
                     if (player.LeftPos == 35 && player.TopPos == 9)
                     {
-                        draw.Dialogue("Vous ne pouvez pas entrer, il vous faut une clé!!");
+                        if (BossUnlock)
+                        {
+                            Console.WriteLine("Vous affrontez le BOSS !!!!");
+                            Console.SetCursorPosition(0, 0);
+                            Thread.Sleep(2000);
+                            State = Display.Fight;
+                            fightManager.Enemy = GameManager.Instance.Boss;
+                            Exit = true;
+                        }
+                        else
+                        {
+                            bool keyFind = false;
+                            foreach (var objectPlayer in player.Objects)
+                            {
+                                if (objectPlayer.Key == "Cle")
+                                {
+                                    keyFind = true;
+                                }
+                            }
+                            if (keyFind)
+                            {
+                                BossUnlock = true;
+                                draw.Dialogue("Vous avez debloque la porte, Crocodile vous attend !");
+                                player.TopPos = 10;
+                            }
+                            else
+                            {
+                                draw.Dialogue("Vous ne pouvez pas entrer, il vous faut une clé!!");
+                            }
+                        }  
                     }
                     break;
                 case Display.Transition:

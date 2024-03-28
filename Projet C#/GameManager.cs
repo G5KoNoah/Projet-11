@@ -103,6 +103,7 @@ namespace Projet_C_
             Player.Objects.Add(Objects["Steak PV"].Name, Objects["Steak PV"]); 
             Player.Objects.Add(Objects["Jus PT"].Name, Objects["Jus PT"]);
             Player.Objects.Add(Objects["Sake Attack"].Name, Objects["Sake Attack"]);
+            Player.Objects.Add(Objects["Cle"].Name, Objects["Cle"]);
 
             Draw = new Draw();
 
@@ -250,6 +251,10 @@ namespace Projet_C_
                     if(objectJson.Type == "Food")
                     {
                         Objects[objectJson.Name] = new Food(objectJson.Name, objectJson.Description, objectJson.Turn, objectJson.BoostHp, objectJson.BoostPt, objectJson.BoostAttack);
+                    }
+                    else
+                    {
+                        Objects[objectJson.Name] = new ObjectQuest(objectJson.Name, objectJson.Description, objectJson.Turn);
                     }
                     
                 }
