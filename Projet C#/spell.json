@@ -67,7 +67,7 @@
         "Type": "range"
     },
     {
-        "Name": "Nimpo: Raitei ",
+        "Name": "Nimpo: Raitei",
         "Attack": 3.0,
         "Consumed": 100.0,
         "Type": "range"

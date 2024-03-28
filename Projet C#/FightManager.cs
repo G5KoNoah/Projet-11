@@ -130,7 +130,7 @@ namespace Projet_C_
                                 player.ItemAllDestroy();
                                 foreach(KeyValuePair<string, Character> charact in player.ListCharacter)
                                 {
-                                    charact.Value.GainExperience(100 * Enemy.Character.Level);
+                                    charact.Value.GainExperience(50 * Enemy.Character.Level);
                                 }
                                 draw.Win(player, Enemy.Character);
 
@@ -162,7 +162,7 @@ namespace Projet_C_
                                     player.ItemAllDestroy();
                                     foreach (KeyValuePair<string, Character> charact in player.ListCharacter)
                                     {
-                                        charact.Value.GainExperience(100 * Enemy.Character.Level);
+                                        charact.Value.GainExperience(50 * Enemy.Character.Level);
                                     }
                                     draw.Win(player, Enemy.Character);
 

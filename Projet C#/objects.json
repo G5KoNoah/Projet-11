@@ -20,7 +20,7 @@
   {
     "Name": "Jus PT",
     "Type": "Food",
-    "Description": "Jus donnant de les points techniques a celui qui le boit.",
+    "Description": "Jus donnant des points techniques a celui qui le boit.",
     "Turn": -1,
     "BoostHp": 0,
     "BoostPt": 0.5,
@@ -29,7 +29,7 @@
   {
     "Name": "Super Jus PT",
     "Type": "Food",
-    "Description": "Jus donnant beaucoup de les points techniques a celui qui le boit.",
+    "Description": "Jus donnant beaucoup de points techniques a celui qui le boit.",
     "Turn": -1,
     "BoostHp": 0,
     "BoostPt": 0.8,

@@ -101,8 +101,9 @@ namespace Projet_C_
             }
             PT -= Spells[spell].ConsumedPT;
             if (new Random().Next(1, (int)Precision / 10) == 1) damage = 0;
-            PT += 0.1f * MaxPt;
-            if(PT > MaxPt) PT = MaxPt;
+            if (Spells[spell]== Spells.ElementAt(0)) PT += 0.5f * MaxPt;
+
+            if (PT > MaxPt) PT = MaxPt;
             Spells[spell].GainExperience(100);
             return (float)Math.Round(damage);
         }

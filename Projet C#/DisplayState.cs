@@ -144,7 +144,14 @@ namespace Projet_C_
                         Thread.Sleep(2000);
                         State = Display.Fight;
                         Exit = true;
+                    }else if(draw.Map.MapList[player.TopPos][player.LeftPos] == '@')
+                    {
+                        foreach(var charact in player.ListCharacter)
+                        {
+                            charact.Value.StatsLevel();
+                        }
                     }
+
                         break;
                 case Display.Transition:
                     Thread.Sleep(2000);

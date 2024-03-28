@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Projet_C_
 
         Dictionary<string, Spell> _spells;
 
-        Enemy _enemy;
+        Enemy _boss;
         List<Enemy> _enemyList;
         int _select;
         string[] _choice;
@@ -59,7 +60,7 @@ namespace Projet_C_
         public Dictionary<string, Map> Maps { get => _maps; set => _maps = value; }
         public Parser Parser { get => _parser; set => _parser = value; }
         public FightManager FightManager { get => _fightManager; set => _fightManager = value; }
-        public Enemy Enemy { get => _enemy; set => _enemy = value; }
+        public Enemy Boss { get => _boss; set => _boss = value; }
         public int Select { get => _select; set => _select = value; }
         public string[] Choice { get => _choice; set => _choice = value; }
         public int NumMap { get => _numMap; set => _numMap = value; }
@@ -71,6 +72,8 @@ namespace Projet_C_
         public event Action SelectChange;
 
         public GameManager() {
+
+
             Parser = new Parser();
             FightManager = new FightManager();
             InventoryManager = new InventoryManager();
@@ -83,7 +86,7 @@ namespace Projet_C_
             Spells = new Dictionary<string, Spell>();
 
             Objects = new Dictionary<string, Object>();
-            Enemy = new Enemy();
+            Boss = new Enemy();
             EnemyList = new List<Enemy>();
 
             InitMap();
@@ -159,8 +162,11 @@ namespace Projet_C_
                 Character zoro = new Character(CharacterStats["Zoro"], 1);
                 CharacterPlayer["Zoro"] = zoro;
 
+                Character nami = new Character(CharacterStats["Nami"], 1);
+                CharacterPlayer["Nami"] = nami;
 
-
+                Character boss = new Character(CharacterStats["Crocodile"], 20);
+                Boss.Character = boss;
 
                 Enemy enemy1 = new Enemy();
                 Enemy enemy2 = new Enemy();
@@ -203,11 +209,21 @@ namespace Projet_C_
                 CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Red Hawk"]);
                 CharacterPlayer["Luffy"].Spells.Add(Spells["Gum Gum Kong Gun"]);
 
+                CharacterPlayer["Zoro"].Spells.Add(Spells["Santoryu Oni Giri"]);
+                CharacterPlayer["Zoro"].Spells.Add(Spells["Santoryu Ougi : Sanzen Sekai"]);
+                CharacterPlayer["Zoro"].Spells.Add(Spells["Kiki Kitoryuu Ashura"]);
+
+                CharacterPlayer["Nami"].Spells.Add(Spells["Thunder Ball"]);
+                CharacterPlayer["Nami"].Spells.Add(Spells["Thunder Lance Tempo"]);
+                CharacterPlayer["Nami"].Spells.Add(Spells["Nimpo: Raitei"]);
+
                 EnemyList[0].Character.Spells.Add(Spells["Tir de fusil"]);
                 EnemyList[1].Character.Spells.Add(Spells["Coup de poing"]);
                 EnemyList[2].Character.Spells.Add(Spells["Coup d'epee"]);
 
-
+                Boss.Character.Spells.Add(Spells["Sables"]);
+                Boss.Character.Spells.Add(Spells["Tornado"]);
+                Boss.Character.Spells.Add(Spells["Desert"]);
 
 
 

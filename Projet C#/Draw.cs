@@ -252,7 +252,7 @@ namespace Projet_C_
                     for(int i = 0; i < player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.Spells.Count; i++)
                     {
                         Console.SetCursorPosition(40, 18 + i);
-                        Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Level +  "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Name + "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].ConsumedPT + "   " + (float)Math.Round(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].AttackRation));
+                        Console.WriteLine(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Level +  "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].Name + "   " + player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].ConsumedPT + "   " + (float)Math.Round(player.ListCharacter.ElementAt(inventoryManager.Select - 1).Value.Spells[i].AttackRation * player.ListCharacter.ElementAt(inventoryManager.Select-1).Value.Attack));
                         
                     }
 
