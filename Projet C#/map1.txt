@@ -1,10 +1,10 @@
 ﻿Player
 73 14
 PNJ
-50/10/Vous devez trouver un clé pour combattre le boss! Faites attention il est très puissant !
+50/20/Vous devez trouver une clé pour combattre le boss! Faites attention il est très puissant !
 Object
-55/20/Jus PT
-20/20/Steak PV
+55/10/Sake Attack
+30/15/Steak PV
 Map
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

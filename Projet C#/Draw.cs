@@ -59,7 +59,7 @@ namespace Projet_C_
                             Console.BackgroundColor = ConsoleColor.Black;
                             break;
                         case '@':
-                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.BackgroundColor = ConsoleColor.Cyan;
                             break;
                         case ' ':
                             Console.BackgroundColor = ConsoleColor.White;
