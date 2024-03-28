@@ -135,7 +135,7 @@ namespace Projet_C_
                     {
                         if (PNJ.Item1 == player.LeftPos && PNJ.Item2 == player.TopPos)
                         {
-                            draw.Dialogue("Salut");
+                            draw.Dialogue("Bonjour, un méchant domine cette île. Combat ce monstre pour nous libérer !!");
                         }
                     }
                     if (draw.Map.MapList[player.TopPos][player.LeftPos] == '$' && new Random().Next(1, 10) == 1)
