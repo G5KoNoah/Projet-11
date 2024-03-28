@@ -1,38 +1,93 @@
 [
-  {
-    "Name": "Gum Gum Pistol",
-    "Attack": 1.0,
-    "Consumed": 0.0,
-    "Type": "strength"
-  },
-  {
-    "Name": "Gum Gum Red Hawk",
-    "Attack": 1.5,
-    "Consumed": 50.0,
-    "Type": "range"
-  },
-  {
-    "Name": "Gum Gum Kong Gun",
-    "Attack": 2.5,
-    "Consumed": 100.0,
-    "Type": "strength"
-  },
-  {
-    "Name": "Coup de poing",
-    "Attack": 1.0,
-    "Consumed": 0.0,
-    "Type": "strength"
-  },
-  {
-    "Name": "Coup d'epee",
-    "Attack": 1.0,
-    "Consumed": 0.0,
-    "Type": "speed"
-  },
-  {
-    "Name": "Tir de fusil",
-    "Attack": 1.0,
-    "Consumed": 0.0,
-    "Type": "range"
-  }
+    {
+        "Name": "Gum Gum Pistol",
+        "Attack": 1.0,
+        "Consumed": 0.0,
+        "Type": "strength"
+    },
+    {
+        "Name": "Gum Gum Red Hawk",
+        "Attack": 1.5,
+        "Consumed": 50.0,
+        "Type": "range"
+    },
+
+    {
+        "Name": "Gum Gum Kong Gun",
+        "Attack": 2.5,
+        "Consumed": 100.0,
+        "Type": "strength"
+    },
+    {
+        "Name": "Coup de poing",
+        "Attack": 1.0,
+        "Consumed": 0.0,
+        "Type": "strength"
+    },
+    {
+        "Name": "Coup d'epee",
+        "Attack": 1.0,
+        "Consumed": 0.0,
+        "Type": "speed"
+    },
+    {
+        "Name": "Tir de fusil",
+        "Attack": 1.0,
+        "Consumed": 0.0,
+        "Type": "range"
+    },
+    {
+        "Name": "Santoryu Oni Giri",
+        "Attack": 1.0,
+        "Consumed": 0.0,
+        "Type": "speed"
+    },
+    {
+        "Name": "Santoryu Ougi : Sanzen Sekai",
+        "Attack": 2.0,
+        "Consumed": 60.0,
+        "Type": "speed"
+    },
+    {
+        "Name": "Kiki Kitoryuu Ashura",
+        "Attack": 3.0,
+        "Consumed": 120.0,
+        "Type": "speed"
+    },
+    {
+        "Name": "Thunder Ball",
+        "Attack": 1.0,
+        "Consumed": 0.0,
+        "Type": "range"
+    },
+    {
+        "Name": "Thunder Lance Tempo",
+        "Attack": 1.5,
+        "Consumed": 50.0,
+        "Type": "range"
+    },
+    {
+        "Name": "Nimpo: Raitei ",
+        "Attack": 3.0,
+        "Consumed": 100.0,
+        "Type": "range"
+    },
+    {
+        "Name": "Sables",
+        "Attack": 1.5,
+        "Consumed": 0.0,
+        "Type": "strength"
+    },
+    {
+        "Name": "Tornado",
+        "Attack": 2.5,
+        "Consumed": 100.0,
+        "Type": "strength"
+    },
+    {
+        "Name": "Desert",
+        "Attack": 4.0,
+        "Consumed": 150.0,
+        "Type": "strength"
+    }
 ]
