@@ -146,6 +146,13 @@ namespace Projet_C_
                         State = Display.Fight;
                         Exit = true;
                     }
+                    if(draw.Map.ObjectPos.Item1 == player.LeftPos && draw.Map.ObjectPos.Item2 == player.TopPos)
+                    {
+                        //Object key = new Object("oui", 1);
+                        
+                        //player.Objects.Add();
+                        Console.WriteLine("objet récup");
+                    }
                         break;
                 case Display.Transition:
                     Thread.Sleep(2000);
