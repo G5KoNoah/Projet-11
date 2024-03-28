@@ -153,7 +153,11 @@ namespace Projet_C_
                         //player.Objects.Add();
                         Console.WriteLine("objet récup");
                     }
-                        break;
+                    if (player.LeftPos == 35 && player.TopPos == 9)
+                    {
+                        draw.Dialogue("Vous ne pouvez pas entrer, il vous faut une clé!!");
+                    }
+                    break;
                 case Display.Transition:
                     Thread.Sleep(2000);
                     State = Display.Map;
